@@ -1,0 +1,70 @@
+export type Locale = "ru" | "en";
+
+export interface NavLink {
+  label: string;
+  href: string;
+}
+
+export interface ProjectCard {
+  slug: string;
+  title: string;
+  tag: string;
+  description: string;
+  image: string;
+  category: "product" | "graphic";
+  available: boolean;
+  timeline?: string;
+  users?: string;
+}
+
+export interface HomeContent {
+  role: string;
+  bio: string;
+  ctaLabel: string;
+  sectionsNav: { projects: string; about: string };
+  projects: ProjectCard[];
+  viewCase: string;
+  comingSoon: string;
+  timelineLabel: string;
+  usersLabel: string;
+  about: {
+    heading: string;
+    bio: string[];
+    contactHeading: string;
+  };
+  contactTitle: string;
+}
+
+export type TextParagraph = string | { text: string; muted?: boolean };
+
+export type Section =
+  | { type: "lead"; body: string }
+  | { type: "text"; heading?: string; body: TextParagraph[] }
+  | { type: "quote"; text: string; author?: string }
+  | {
+      type: "numbered";
+      heading?: string;
+      items: { number: string; title: string; body: string }[];
+    }
+  | { type: "image"; src: string; alt: string; caption?: string }
+  | { type: "imageGrid"; images: { src: string; alt: string }[] }
+  | { type: "stats"; items: { value: string; label: string }[] }
+  | { type: "highlight"; label?: string; body: string }
+  | { type: "insight"; label: string; body: string }
+  | { type: "tips"; heading: string; items: string[] }
+  | { type: "table"; heading?: string; columns: string[]; rows: string[][] };
+
+export interface CaseStudy {
+  slug: string;
+  title: string;
+  subtitle?: string;
+  coverImage: string;
+  role?: string;
+  sections: Section[];
+}
+
+export interface Dictionary {
+  nav: { cv: string; behance: string; linkedin: string; telegram: string; back: string };
+  home: HomeContent;
+  caseStudies: Record<string, CaseStudy>;
+}
