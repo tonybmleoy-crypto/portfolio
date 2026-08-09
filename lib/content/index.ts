@@ -33,7 +33,7 @@ export const SOCIAL_LINKS = {
     en: "https://drive.google.com/file/d/1wl-Fr-ryGZDkexVXBSbkI3Vblk3Bv_gA/view?usp=sharing",
   },
   behance: "https://www.behance.net/cyberpapaz",
-  linkedin: "https://www.behance.net/",
+  linkedin: "https://www.linkedin.com/in/anton-lopatin-88a2a3396",
   email: "tonybmleoy@gmail.com",
   phone: "+7 (922) 041-05-21",
 };
