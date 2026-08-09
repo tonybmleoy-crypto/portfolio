@@ -24,7 +24,7 @@ export default async function WorkPageEn({
       <main className="flex-1">
         <CaseStudyView caseStudy={caseStudy} locale="en" dict={dict} />
       </main>
-      <Footer dict={dict} />
+      <Footer locale="en" dict={dict} />
     </>
   );
 }

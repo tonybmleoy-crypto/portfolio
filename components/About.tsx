@@ -44,7 +44,7 @@ export function About({ content }: { content: HomeContent }) {
     <section className="mx-auto max-w-5xl px-6 sm:px-10">
       <div className="grid grid-cols-1 gap-10 sm:grid-cols-[1fr_320px] sm:gap-11">
         <FadeIn>
-          <h2 className="text-2xl font-medium tracking-tight">{content.about.heading}</h2>
+          <h2 className="text-2xl font-medium tracking-[-0.017em]">{content.about.heading}</h2>
           <div className="mt-4 space-y-4 leading-relaxed text-foreground/90">
             {content.about.bio.map((p, i) => (
               <p key={i}>{p}</p>
@@ -60,23 +60,35 @@ export function About({ content }: { content: HomeContent }) {
               fill
               sizes="320px"
               className="object-cover"
+              quality={90}
             />
           </div>
         </FadeIn>
       </div>
 
       <FadeIn delay={0.15} className="mt-11">
-        <h3 className="text-2xl font-medium tracking-tight">{content.about.contactHeading}</h3>
+        <h3 className="text-2xl font-medium tracking-[-0.017em]">{content.about.contactHeading}</h3>
         <div className="mt-4 flex flex-wrap items-center gap-x-6 gap-y-3 text-sm">
-          <a href={`tel:${SOCIAL_LINKS.phone.replace(/[^+\d]/g, "")}`} className="flex items-center gap-2">
+          <a
+            href={`tel:${SOCIAL_LINKS.phone.replace(/[^+\d]/g, "")}`}
+            className="flex items-center gap-2 transition-[opacity,transform] duration-150 hover:opacity-70 active:scale-[0.96] active:opacity-60"
+          >
             <PhoneIcon />
             {SOCIAL_LINKS.phone}
           </a>
-          <a href={`mailto:${SOCIAL_LINKS.email}`} className="flex items-center gap-2">
+          <a
+            href={`mailto:${SOCIAL_LINKS.email}`}
+            className="flex items-center gap-2 transition-[opacity,transform] duration-150 hover:opacity-70 active:scale-[0.96] active:opacity-60"
+          >
             <MailIcon />
             {SOCIAL_LINKS.email}
           </a>
-          <a href={SOCIAL_LINKS.telegram} target="_blank" rel="noreferrer" className="flex items-center gap-2">
+          <a
+            href={SOCIAL_LINKS.telegram}
+            target="_blank"
+            rel="noreferrer"
+            className="flex items-center gap-2 transition-[opacity,transform] duration-150 hover:opacity-70 active:scale-[0.96] active:opacity-60"
+          >
             <TelegramIcon />
             {SOCIAL_LINKS.telegramHandle}
           </a>

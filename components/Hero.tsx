@@ -6,10 +6,10 @@ import { MagneticButton } from "./MagneticButton";
 
 export function Hero({ content }: { content: HomeContent }) {
   return (
-    <section className="mx-auto max-w-5xl px-6 pt-28 pb-20 sm:px-10 sm:pt-36">
+    <section className="mx-auto max-w-5xl px-6 pt-16 pb-20 sm:px-10 sm:pt-36">
       <div className="flex flex-col-reverse items-start gap-8 sm:flex-row sm:items-center sm:justify-between">
         <FadeIn className="max-w-xl">
-          <h1 className="flex flex-wrap items-baseline gap-x-4 gap-y-1 text-3xl font-medium tracking-tight sm:text-4xl">
+          <h1 className="flex flex-wrap items-baseline gap-x-4 gap-y-1 text-3xl font-medium tracking-[-0.021em] sm:text-4xl sm:tracking-[-0.025em]">
             Anton Lopatin
             <span className="text-xl text-muted sm:text-2xl">{content.role}</span>
           </h1>
@@ -25,6 +25,7 @@ export function Hero({ content }: { content: HomeContent }) {
               sizes="224px"
               className="object-cover"
               priority
+              quality={90}
             />
           </div>
         </FadeIn>

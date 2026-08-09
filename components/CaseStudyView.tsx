@@ -3,6 +3,15 @@ import Link from "next/link";
 import { CaseStudy, Dictionary, Locale, Section, TextParagraph } from "@/lib/types";
 import { homeHref } from "@/lib/paths";
 import { FadeIn } from "./FadeIn";
+import { ScrollToTop } from "./ScrollToTop";
+
+function ChevronLeftIcon() {
+  return (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden>
+      <path d="m15 5-7 7 7 7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
 
 function Paragraph({ p }: { p: TextParagraph }) {
   const text = typeof p === "string" ? p : p.text;
@@ -21,9 +30,9 @@ function SectionView({ section }: { section: Section }) {
 
     case "text":
       return (
-        <FadeIn>
+        <FadeIn className="max-w-[640px]">
           {section.heading && (
-            <h2 className="mb-3 text-2xl font-medium tracking-tight">{section.heading}</h2>
+            <h2 className="mb-3 text-2xl font-medium tracking-[-0.017em]">{section.heading}</h2>
           )}
           <div className="space-y-3 text-foreground leading-relaxed">
             {section.body.map((p, i) => (
@@ -33,11 +42,28 @@ function SectionView({ section }: { section: Section }) {
         </FadeIn>
       );
 
+    case "list":
+      return (
+        <FadeIn className="max-w-[640px]">
+          {section.heading && (
+            <h2 className="mb-3 text-2xl font-medium tracking-[-0.017em]">{section.heading}</h2>
+          )}
+          {section.intro && (
+            <p className="mb-3 leading-relaxed text-foreground">{section.intro}</p>
+          )}
+          <ul className="list-disc space-y-2 pl-5 leading-relaxed text-foreground">
+            {section.items.map((item, i) => (
+              <li key={i}>{item}</li>
+            ))}
+          </ul>
+        </FadeIn>
+      );
+
     case "table":
       return (
         <FadeIn>
           {section.heading && (
-            <h2 className="mb-3 text-2xl font-medium tracking-tight">{section.heading}</h2>
+            <h2 className="mb-3 text-2xl font-medium tracking-[-0.017em]">{section.heading}</h2>
           )}
           <div className="overflow-hidden rounded-2xl shadow-card">
             <div className="overflow-x-auto">
@@ -70,7 +96,7 @@ function SectionView({ section }: { section: Section }) {
 
     case "insight":
       return (
-        <FadeIn>
+        <FadeIn className="max-w-[640px]">
           <div className="flex gap-3 rounded-2xl border-l-4 border-accent-green px-6 py-5 shadow-card">
             <span aria-hidden className="mt-0.5 text-lg">✦</span>
             <div>
@@ -83,7 +109,7 @@ function SectionView({ section }: { section: Section }) {
 
     case "tips":
       return (
-        <FadeIn>
+        <FadeIn className="max-w-[640px]">
           <div className="rounded-2xl border-l-4 border-accent-blue bg-accent-blue-tint px-6 py-5">
             <p className="font-medium">{section.heading}</p>
             <ul className="mt-2 space-y-1 text-sm text-foreground/80">
@@ -97,7 +123,7 @@ function SectionView({ section }: { section: Section }) {
 
     case "quote":
       return (
-        <FadeIn className="border-l-2 border-foreground pl-6">
+        <FadeIn className="max-w-[640px] border-l-2 border-foreground pl-6">
           <p className="text-lg italic leading-relaxed">&ldquo;{section.text}&rdquo;</p>
           {section.author && (
             <p className="mt-3 text-sm text-muted">— {section.author}</p>
@@ -107,7 +133,7 @@ function SectionView({ section }: { section: Section }) {
 
     case "highlight":
       return (
-        <FadeIn>
+        <FadeIn className="max-w-[640px]">
           <div className="flex gap-3 rounded-2xl bg-surface p-5 shadow-card">
             <span aria-hidden className="mt-0.5 text-lg">💡</span>
             <div>
@@ -125,15 +151,36 @@ function SectionView({ section }: { section: Section }) {
       );
 
     case "numbered":
+      if (section.style === "cards") {
+        return (
+          <FadeIn>
+            {section.heading && (
+              <h2 className="mb-3 text-2xl font-medium tracking-[-0.017em]">{section.heading}</h2>
+            )}
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+              {section.items.map((item) => (
+                <div
+                  key={item.number}
+                  className="rounded-3xl bg-surface p-5 shadow-card"
+                >
+                  <span className="text-sm font-medium text-muted">{item.number}</span>
+                  <h3 className="mt-2 font-medium">{item.title}</h3>
+                  <p className="mt-1.5 text-muted leading-relaxed">{item.body}</p>
+                </div>
+              ))}
+            </div>
+          </FadeIn>
+        );
+      }
       return (
-        <FadeIn>
+        <FadeIn className="max-w-[640px]">
           {section.heading && (
-            <h2 className="mb-3 text-2xl font-medium tracking-tight">{section.heading}</h2>
+            <h2 className="mb-3 text-2xl font-medium tracking-[-0.017em]">{section.heading}</h2>
           )}
           <div className="space-y-5">
             {section.items.map((item) => (
               <div key={item.number} className="flex gap-5">
-                <span className="text-sm font-mono text-muted">{item.number}</span>
+                <span className="text-sm font-medium text-muted">{item.number}</span>
                 <div>
                   <h3 className="font-medium">{item.title}</h3>
                   <p className="mt-1.5 text-muted leading-relaxed">{item.body}</p>
@@ -147,37 +194,43 @@ function SectionView({ section }: { section: Section }) {
     case "image":
       return (
         <FadeIn>
-          <div className="relative w-full overflow-hidden rounded-2xl bg-black/5">
-            <Image
-              src={section.src}
-              alt={section.alt}
-              width={1600}
-              height={1000}
-              className="h-auto w-full object-cover"
-              sizes="(max-width: 896px) 100vw, 896px"
-            />
+          <div className="relative left-1/2 w-screen max-w-[1200px] -translate-x-1/2 px-6 sm:px-0">
+            <div
+              className={`relative flex w-full items-center justify-center overflow-hidden ${section.flush ? "rounded-[24px]" : "max-h-[720px] rounded-2xl"} ${section.shadow ? "shadow-card" : ""}`}
+            >
+              <Image
+                src={section.src}
+                alt={section.alt}
+                width={section.width ?? 2400}
+                height={section.height ?? 1500}
+                className={`h-auto w-full object-contain ${section.flush ? "" : "max-h-[720px]"}`}
+                sizes="(max-width: 1200px) 100vw, 1200px"
+                quality={90}
+              />
+            </div>
+            {section.caption && (
+              <p className="mt-1.5 text-center text-sm text-muted">{section.caption}</p>
+            )}
           </div>
-          {section.caption && (
-            <p className="mt-1.5 text-sm text-muted">{section.caption}</p>
-          )}
         </FadeIn>
       );
 
     case "imageGrid":
       return (
         <FadeIn>
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+          <div
+            className={`grid grid-cols-1 items-start gap-4 sm:grid-cols-2 ${section.size === "sm" ? "mx-auto max-w-sm sm:max-w-md" : ""}`}
+          >
             {section.images.map((img, i) => (
-              <div
-                key={i}
-                className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-black/5"
-              >
+              <div key={i} className="overflow-hidden rounded-2xl">
                 <Image
                   src={img.src}
                   alt={img.alt}
-                  fill
-                  sizes="(max-width: 640px) 100vw, 448px"
-                  className="object-cover"
+                  width={img.width}
+                  height={img.height}
+                  sizes={section.size === "sm" ? "(max-width: 640px) 50vw, 220px" : "(max-width: 640px) 100vw, 448px"}
+                  className="h-auto w-full"
+                  quality={90}
                 />
               </div>
             ))}
@@ -194,7 +247,7 @@ function SectionView({ section }: { section: Section }) {
                 key={i}
                 className="flex flex-col items-center justify-center gap-2 rounded-2xl bg-surface px-4 py-6 text-center shadow-card"
               >
-                <p className="text-3xl font-medium tracking-tight text-accent-green sm:text-4xl">
+                <p className="text-3xl font-medium tracking-[-0.021em] text-accent-green sm:text-4xl sm:tracking-[-0.025em]">
                   {stat.value}
                 </p>
                 <p className="text-sm leading-snug">{stat.label}</p>
@@ -218,43 +271,93 @@ export function CaseStudyView({
   locale: Locale;
   dict: Dictionary;
 }) {
+  const [firstSection, ...restSections] = caseStudy.sections;
+  const leadSection = firstSection?.type === "lead" ? firstSection : null;
+  const remainingSections = leadSection ? restSections : caseStudy.sections;
+
   return (
-    <article className="mx-auto max-w-4xl px-6 pt-28 pb-20 sm:px-10 sm:pt-36">
+    <article className="mx-auto max-w-5xl px-6 pt-28 pb-20 sm:px-10 sm:pt-36">
       <FadeIn>
         <Link
           href={homeHref(locale)}
-          className="text-sm text-muted hover:text-foreground transition-colors"
+          className="inline-flex w-min items-center justify-center gap-1 whitespace-nowrap rounded-[28px] bg-white/45 px-4 py-2 text-sm text-foreground shadow-[inset_0px_1px_0px_0px_rgba(255,255,255,0.6),inset_0px_-1px_1px_0px_rgba(16,16,18,0.08)] backdrop-blur-md backdrop-saturate-150 transition-[background-color,transform] duration-150 hover:bg-white/65 active:scale-[0.96] active:bg-white/75"
         >
-          ← {dict.nav.back}
+          <ChevronLeftIcon />
+          {dict.nav.back}
         </Link>
       </FadeIn>
-      <FadeIn delay={0.05} className="mt-6">
-        <h1 className="text-3xl font-medium tracking-tight sm:text-5xl">{caseStudy.title}</h1>
-      </FadeIn>
-      {caseStudy.subtitle && (
-        <FadeIn delay={0.1} className="mt-5">
-          <p className="text-lg text-muted leading-relaxed">{caseStudy.subtitle}</p>
-        </FadeIn>
-      )}
 
-      <FadeIn className="mt-10">
-        <div className="relative flex h-[320px] w-full items-center justify-center overflow-hidden rounded-2xl bg-black/5 shadow-card ring-1 ring-black/[0.06] sm:h-[420px] md:h-[520px]">
+      <div className="mt-6">
+        <FadeIn delay={0.05}>
+          <h1 className="text-3xl font-medium tracking-[-0.021em] sm:text-5xl sm:tracking-[-0.03em]">{caseStudy.title}</h1>
+        </FadeIn>
+        {caseStudy.subtitle && (
+          <FadeIn delay={0.1} className="mt-5">
+            <p className="max-w-[640px] text-lg text-muted leading-relaxed">{caseStudy.subtitle}</p>
+          </FadeIn>
+        )}
+        {leadSection && (
+          <FadeIn delay={0.15} className="mt-5">
+            <p className="max-w-[640px] leading-relaxed text-foreground/90">{leadSection.body}</p>
+          </FadeIn>
+        )}
+      </div>
+
+      {caseStudy.coverPlain ? (
+        <FadeIn delay={0.15} className="mt-8 flex justify-center">
           <Image
             src={caseStudy.coverImage}
             alt={caseStudy.title}
-            fill
-            sizes="(max-width: 896px) 100vw, 896px"
-            className="object-contain"
+            width={caseStudy.coverWidth ?? 1600}
+            height={caseStudy.coverHeight ?? 1000}
+            sizes="(max-width: 768px) 100vw, 448px"
+            className="h-[320px] w-auto max-w-full object-contain sm:h-[380px] md:h-[400px]"
             priority
+            quality={90}
           />
-        </div>
-      </FadeIn>
+        </FadeIn>
+      ) : (
+        <FadeIn delay={0.15} className="mt-10">
+          <div className="relative left-1/2 w-screen max-w-[1200px] -translate-x-1/2 px-6 sm:px-0">
+            <div className="relative flex w-full items-center justify-center overflow-hidden rounded-[24px] shadow-card">
+              {caseStudy.coverVideo ? (
+                <video
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  poster={caseStudy.coverImage}
+                  width={caseStudy.coverVideo.width}
+                  height={caseStudy.coverVideo.height}
+                  className="h-auto w-full object-contain"
+                >
+                  {caseStudy.coverVideo.webm && <source src={caseStudy.coverVideo.webm} type="video/webm" />}
+                  <source src={caseStudy.coverVideo.mp4} type="video/mp4" />
+                </video>
+              ) : (
+                <Image
+                  src={caseStudy.coverImage}
+                  alt={caseStudy.title}
+                  width={caseStudy.coverWidth ?? 1600}
+                  height={caseStudy.coverHeight ?? 1000}
+                  sizes="(max-width: 1200px) 100vw, 1200px"
+                  className="h-auto w-full object-contain"
+                  priority
+                  quality={90}
+                />
+              )}
+            </div>
+          </div>
+        </FadeIn>
+      )}
 
       <div className="mt-10 flex flex-col gap-8">
-        {caseStudy.sections.map((section, i) => (
+        {remainingSections.map((section, i) => (
           <SectionView key={i} section={section} />
         ))}
       </div>
+
+      <ScrollToTop />
     </article>
   );
 }

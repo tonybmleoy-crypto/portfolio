@@ -6,6 +6,14 @@ export const sevenpr: CaseStudy = {
   subtitle:
     "7 Prudov Investments is an investment company that let users register, browse real-estate assets, invest in them, and track their portfolio through a dashboard.",
   coverImage: "/images/7pr/hero.png",
+  coverWidth: 3840,
+  coverHeight: 2266,
+  coverVideo: {
+    mp4: "/images/7pr/hero-transactions.mp4",
+    webm: "/images/7pr/hero-transactions.webm",
+    width: 1920,
+    height: 1210,
+  },
   sections: [
     {
       type: "text",
@@ -87,8 +95,12 @@ export const sevenpr: CaseStudy = {
     },
     {
       type: "image",
-      src: "/images/7pr/ui-kit.png",
+      src: "/images/7pr/ui-kit-v2.png",
       alt: "7 Prudov dev design system UI kit",
+      width: 3840,
+      height: 1690,
+      shadow: true,
+      flush: true,
     },
     {
       type: "highlight",
@@ -103,11 +115,31 @@ export const sevenpr: CaseStudy = {
       ],
     },
     {
-      type: "imageGrid",
-      images: [
-        { src: "/images/7pr/dashboard.png", alt: "7 Prudov dev dashboard" },
-        { src: "/images/7pr/dashboard-02.png", alt: "7 Prudov dev dashboard, alternate state" },
-      ],
+      type: "image",
+      src: "/images/7pr/dashboard.png",
+      alt: "7 Prudov dev dashboard — balance and stats",
+      width: 3840,
+      height: 2482,
+      shadow: true,
+      flush: true,
+    },
+    {
+      type: "image",
+      src: "/images/7pr/dashboard-02.png",
+      alt: "7 Prudov dev dashboard — summary and yield charts",
+      width: 3840,
+      height: 2788,
+      shadow: true,
+      flush: true,
+    },
+    {
+      type: "image",
+      src: "/images/7pr/dashboard-03.png",
+      alt: "7 Prudov dev dashboard — transactions",
+      width: 1920,
+      height: 1209,
+      shadow: true,
+      flush: true,
     },
     {
       type: "text",
@@ -116,11 +148,27 @@ export const sevenpr: CaseStudy = {
       ],
     },
     {
-      type: "imageGrid",
-      images: [
-        { src: "/images/7pr/catalog.png", alt: "7 Prudov dev property catalog" },
-        { src: "/images/7pr/catalog-02.png", alt: "7 Prudov dev property catalog, card detail" },
-      ],
+      type: "image",
+      src: "/images/7pr/hero.png",
+      alt: "7 Prudov dev property detail card",
+      width: 3840,
+      height: 2266,
+      shadow: true,
+      flush: true,
+    },
+    {
+      type: "image",
+      src: "/images/7pr/catalog.png",
+      alt: "7 Prudov dev property catalog",
+      width: 3840,
+      height: 2788,
+      shadow: true,
+      flush: true,
+    },
+    {
+      type: "image",
+      src: "/images/7pr/results.png",
+      alt: "7 Prudov dev design system results",
     },
     {
       type: "text",
@@ -140,11 +188,6 @@ export const sevenpr: CaseStudy = {
         { value: "+30%", label: "Faster to build new screens" },
         { value: "1–2", label: "Questions per screen, down from 5–7" },
       ],
-    },
-    {
-      type: "image",
-      src: "/images/7pr/results.png",
-      alt: "7 Prudov dev design system results",
     },
     {
       type: "text",

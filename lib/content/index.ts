@@ -28,7 +28,10 @@ export function getDictionary(locale: Locale): Dictionary {
 export const SOCIAL_LINKS = {
   telegram: "https://t.me/tonybml",
   telegramHandle: "@tonybml",
-  cv: "https://drive.google.com/file/d/1l3s2jUnAjGAJmSv_2MkYpxvLK0V6di2e/view?usp=sharing",
+  cv: {
+    ru: "https://drive.google.com/file/d/1yDsvn-dnZXsYthBaRwGL5iyTLMFofitj/view?usp=sharing",
+    en: "https://drive.google.com/file/d/1wl-Fr-ryGZDkexVXBSbkI3Vblk3Bv_gA/view?usp=sharing",
+  },
   behance: "https://www.behance.net/cyberpapaz",
   linkedin: "https://www.behance.net/",
   email: "tonybmleoy@gmail.com",

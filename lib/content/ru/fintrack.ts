@@ -5,17 +5,20 @@ export const fintrack: CaseStudy = {
   title: "Редизайн ключевых экранов для приложения FinTrack",
   subtitle:
     "Я получил задачу провести ресерч, протестировать интерфейсы и предложить улучшения. В итоге я сделал полный редизайн ключевых экранов.",
-  coverImage: "/images/fintrack/hero.png",
+  coverImage: "/images/fintrack/hero-promo.gif",
+  coverWidth: 1005,
+  coverHeight: 2037,
+  coverPlain: true,
   sections: [
     {
       type: "lead",
       body: "Стартап разрабатывал финтех-приложение для личного бюджета. К моменту моего входа уже существовали первые экраны — сделанные быстро, без исследования, «от идеи». Команда чувствовала, что что-то не так, но не понимала что именно.",
     },
     {
-      type: "text",
+      type: "list",
       heading: "Моя роль в проекте",
-      body: [
-        "Я выступал в роли продуктового дизайнера и отвечал за:",
+      intro: "Я выступал в роли продуктового дизайнера и отвечал за:",
+      items: [
         "Анализ существующих экранов: выявление проблем (информационная перегрузка, неясные пользовательские сценарии).",
         "Конкурентный анализ: изучение успешных решений в других финтех-приложениях.",
         "UX-дизайн: разработка оптимального пользовательского пути.",
@@ -24,9 +27,9 @@ export const fintrack: CaseStudy = {
       ],
     },
     {
-      type: "text",
+      type: "list",
       heading: "Постановка задач",
-      body: [
+      items: [
         "Сделать понятный и современный интерфейс, который можно показать инвесторам.",
         "Сформировать базовый UX-флоу (как пользователь двигается по приложению и выполняет ключевые задачи).",
         "Повысить понятность и привлекательность приложения в сравнении с конкурентами.",
@@ -51,8 +54,18 @@ export const fintrack: CaseStudy = {
       ],
     },
     {
+      type: "image",
+      src: "/images/fintrack/before-after.png",
+      alt: "FinTrack — экраны до и после редизайна",
+      width: 5600,
+      height: 2392,
+      shadow: true,
+      flush: true,
+    },
+    {
       type: "numbered",
       heading: "Три системные проблемы, которые я увидел сразу",
+      style: "cards",
       items: [
         {
           number: "01",
@@ -69,13 +82,6 @@ export const fintrack: CaseStudy = {
           title: "Нет контекста у цифр",
           body: "Цифры есть, но непонятно: это хорошо или плохо? 47 000 ₽ остатка — это норма или уже нужно экономить?",
         },
-      ],
-    },
-    {
-      type: "imageGrid",
-      images: [
-        { src: "/images/fintrack/screen-01.png", alt: "Первая версия прототипа FinTrack" },
-        { src: "/images/fintrack/screen-02.png", alt: "Экран прототипа FinTrack" },
       ],
     },
     {
@@ -117,23 +123,41 @@ export const fintrack: CaseStudy = {
       ],
     },
     {
-      type: "imageGrid",
-      images: [
-        { src: "/images/fintrack/persona-01.jpg", alt: "Материалы исследования" },
-        { src: "/images/fintrack/persona-02.jpg", alt: "Материалы исследования" },
-        { src: "/images/fintrack/persona-03.png", alt: "Материалы исследования" },
-        { src: "/images/fintrack/competitor-01.jpg", alt: "Бенчмарк конкурентов" },
-        { src: "/images/fintrack/competitor-02.jpg", alt: "Бенчмарк конкурентов" },
-        { src: "/images/fintrack/competitor-03.jpg", alt: "Бенчмарк конкурентов" },
-      ],
+      type: "image",
+      src: "/images/fintrack/user-flow.png",
+      alt: "User flow FinTrack",
+      caption: "User flow: путь пользователя от первого экрана до сохранения траты",
     },
     {
       type: "text",
       heading: "Дизайн экранов",
+      body: [],
+    },
+    {
+      type: "imageGrid",
+      images: [
+        { src: "/images/fintrack/analytics-bar.jpg", alt: "Экран статистики FinTrack с графиком по дням", width: 644, height: 734 },
+        { src: "/images/fintrack/analytics-gauge.jpg", alt: "Экран статистики FinTrack с индикатором бюджета", width: 644, height: 734 },
+      ],
+    },
+    {
+      type: "text",
       body: [
         "Экран «Статистика» выстроен вокруг быстрого получения инсайта: контекст задаётся заголовком и фильтром «Расходы», а ключевая сумма вынесена в центр, что сокращает время понимания данных и снижает когнитивную нагрузку.",
         "Карточки «Топ категорий» с иконками и суммами поддерживают быстрое сканирование и визуальное сравнение, что усиливает ощущение пользы и влияет на Retention.",
         "Главный экран выстроен вокруг одного ключевого смысла — текущего финансового состояния. Крупный общий баланс в центре экрана формирует мгновенный инсайт и снижает время на ориентацию, что положительно влияет на Engagement уже в первые секунды взаимодействия.",
+      ],
+    },
+    {
+      type: "imageGrid",
+      images: [
+        { src: "/images/fintrack/home-balance-1.png", alt: "Главный экран FinTrack с общим балансом", width: 644, height: 734 },
+        { src: "/images/fintrack/home-balance-2.jpg", alt: "Главный экран FinTrack, список последних трат", width: 644, height: 734 },
+      ],
+    },
+    {
+      type: "text",
+      body: [
         "Список последних трат завершает сценарий контроля: пользователь может быстро проверить операции и убедиться в корректности данных, снижая тревожность и повышая NPS.",
         "Блок быстрых действий поддерживает самые частые сценарии. Это сокращает путь до целевого действия и снижает Time on Task, особенно для регулярных пользователей.",
       ],
@@ -141,10 +165,8 @@ export const fintrack: CaseStudy = {
     {
       type: "imageGrid",
       images: [
-        { src: "/images/fintrack/screen-05.jpg", alt: "Экран статистики FinTrack" },
-        { src: "/images/fintrack/screen-06.jpg", alt: "Главный экран FinTrack" },
-        { src: "/images/fintrack/screen-07.jpg", alt: "Список трат FinTrack" },
-        { src: "/images/fintrack/screen-08.jpg", alt: "Быстрые действия FinTrack" },
+        { src: "/images/fintrack/goals-single.jpg", alt: "Экран цели FinTrack, одна цель", width: 644, height: 734 },
+        { src: "/images/fintrack/goals-double.jpg", alt: "Экран целей FinTrack, несколько целей", width: 644, height: 734 },
       ],
     },
     {
@@ -171,16 +193,30 @@ export const fintrack: CaseStudy = {
     {
       type: "imageGrid",
       images: [
-        { src: "/images/fintrack/screen-09.jpg", alt: "Lock Screen флоу FinTrack" },
-        { src: "/images/fintrack/screen-10.jpg", alt: "Undo-тост FinTrack" },
-        { src: "/images/fintrack/screen-11.jpg", alt: "Финальный экран FinTrack" },
+        { src: "/images/fintrack/lock-description.jpg", alt: "Lock Screen FinTrack, поле описания", width: 644, height: 734 },
+        { src: "/images/fintrack/lock-category.jpg", alt: "Lock Screen FinTrack, список категорий", width: 644, height: 734 },
       ],
     },
     {
-      type: "image",
-      src: "/images/fintrack/final-shots.jpg",
-      alt: "Финальные шоты FinTrack",
-      caption: "Финальные шоты",
+      type: "imageGrid",
+      images: [
+        { src: "/images/fintrack/lock-loading.jpg", alt: "Lock Screen FinTrack, автосохранение с лоадером", width: 644, height: 734 },
+        { src: "/images/fintrack/lock-undo.jpg", alt: "Lock Screen FinTrack, тост с отменой", width: 644, height: 734 },
+      ],
+    },
+    {
+      type: "text",
+      heading: "Финальные шоты",
+      body: [],
+    },
+    {
+      type: "imageGrid",
+      images: [
+        { src: "/images/fintrack/home-balance-1.png", alt: "Финальный шот: главный экран FinTrack", width: 644, height: 734 },
+        { src: "/images/fintrack/analytics-bar.jpg", alt: "Финальный шот: статистика FinTrack", width: 644, height: 734 },
+        { src: "/images/fintrack/goals-single.jpg", alt: "Финальный шот: цель FinTrack", width: 644, height: 734 },
+        { src: "/images/fintrack/lock-undo.jpg", alt: "Финальный шот: Lock Screen FinTrack", width: 644, height: 734 },
+      ],
     },
     {
       type: "text",

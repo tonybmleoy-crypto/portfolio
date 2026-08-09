@@ -5,17 +5,20 @@ export const fintrack: CaseStudy = {
   title: "Redesigning the key screens of the FinTrack app",
   subtitle:
     "I was asked to run research, test the interfaces, and propose improvements. It ended up as a full redesign of the key screens.",
-  coverImage: "/images/fintrack/hero.png",
+  coverImage: "/images/fintrack/hero-promo.gif",
+  coverWidth: 1005,
+  coverHeight: 2037,
+  coverPlain: true,
   sections: [
     {
       type: "lead",
       body: "A startup was building a fintech app for personal budgeting. By the time I joined, the first screens already existed — made quickly, without research, straight from an idea. The team felt something was off but couldn't pinpoint what.",
     },
     {
-      type: "text",
+      type: "list",
       heading: "My role in the project",
-      body: [
-        "I worked as the product designer, responsible for:",
+      intro: "I worked as the product designer, responsible for:",
+      items: [
         "Auditing the existing screens: identifying problems (information overload, unclear user scenarios).",
         "Competitive analysis: studying successful solutions in other fintech apps.",
         "UX design: designing the optimal user path.",
@@ -24,9 +27,9 @@ export const fintrack: CaseStudy = {
       ],
     },
     {
-      type: "text",
+      type: "list",
       heading: "Framing the task",
-      body: [
+      items: [
         "Create a clear, modern interface that could be shown to investors.",
         "Establish a basic UX flow (how a user moves through the app and completes key tasks).",
         "Improve clarity and appeal compared to competitors.",
@@ -51,8 +54,18 @@ export const fintrack: CaseStudy = {
       ],
     },
     {
+      type: "image",
+      src: "/images/fintrack/before-after.png",
+      alt: "FinTrack — before and after redesign screens",
+      width: 5600,
+      height: 2392,
+      shadow: true,
+      flush: true,
+    },
+    {
       type: "numbered",
       heading: "Three systemic problems I saw right away",
+      style: "cards",
       items: [
         {
           number: "01",
@@ -69,13 +82,6 @@ export const fintrack: CaseStudy = {
           title: "Numbers without context",
           body: "The numbers are there, but it's unclear whether they're good or bad. Is a ₽47,000 balance normal, or time to cut back?",
         },
-      ],
-    },
-    {
-      type: "imageGrid",
-      images: [
-        { src: "/images/fintrack/screen-01.png", alt: "Early FinTrack prototype screen" },
-        { src: "/images/fintrack/screen-02.png", alt: "FinTrack prototype screen" },
       ],
     },
     {
@@ -117,23 +123,41 @@ export const fintrack: CaseStudy = {
       ],
     },
     {
-      type: "imageGrid",
-      images: [
-        { src: "/images/fintrack/persona-01.jpg", alt: "Research materials" },
-        { src: "/images/fintrack/persona-02.jpg", alt: "Research materials" },
-        { src: "/images/fintrack/persona-03.png", alt: "Research materials" },
-        { src: "/images/fintrack/competitor-01.jpg", alt: "Competitor benchmark" },
-        { src: "/images/fintrack/competitor-02.jpg", alt: "Competitor benchmark" },
-        { src: "/images/fintrack/competitor-03.jpg", alt: "Competitor benchmark" },
-      ],
+      type: "image",
+      src: "/images/fintrack/user-flow.png",
+      alt: "FinTrack user flow",
+      caption: "User flow: the path from the first screen to saving an expense",
     },
     {
       type: "text",
       heading: "Screen design",
+      body: [],
+    },
+    {
+      type: "imageGrid",
+      images: [
+        { src: "/images/fintrack/analytics-bar.jpg", alt: "FinTrack statistics screen with a daily chart", width: 644, height: 734 },
+        { src: "/images/fintrack/analytics-gauge.jpg", alt: "FinTrack statistics screen with a budget gauge", width: 644, height: 734 },
+      ],
+    },
+    {
+      type: "text",
       body: [
         "The \"Statistics\" screen is built around getting an insight fast: the header and the \"Expenses\" filter set the context, and the key amount sits front and center, cutting the time it takes to read the data and lowering cognitive load.",
         "\"Top categories\" cards with icons and amounts support quick scanning and visual comparison, reinforcing a sense of usefulness and affecting retention.",
         "The home screen is built around a single key idea — current financial state. A large total balance in the center creates instant insight and reduces orientation time, positively affecting engagement within the first seconds of interaction.",
+      ],
+    },
+    {
+      type: "imageGrid",
+      images: [
+        { src: "/images/fintrack/home-balance-1.png", alt: "FinTrack home screen with total balance", width: 644, height: 734 },
+        { src: "/images/fintrack/home-balance-2.jpg", alt: "FinTrack home screen, recent transactions", width: 644, height: 734 },
+      ],
+    },
+    {
+      type: "text",
+      body: [
         "The recent-transactions list closes the control loop: users can quickly check their transactions and confirm the data is correct, lowering anxiety and improving NPS.",
         "The quick-actions block supports the most frequent scenarios, shortening the path to the target action and reducing time on task, especially for regular users.",
       ],
@@ -141,10 +165,8 @@ export const fintrack: CaseStudy = {
     {
       type: "imageGrid",
       images: [
-        { src: "/images/fintrack/screen-05.jpg", alt: "FinTrack statistics screen" },
-        { src: "/images/fintrack/screen-06.jpg", alt: "FinTrack home screen" },
-        { src: "/images/fintrack/screen-07.jpg", alt: "FinTrack transactions list" },
-        { src: "/images/fintrack/screen-08.jpg", alt: "FinTrack quick actions" },
+        { src: "/images/fintrack/goals-single.jpg", alt: "FinTrack goal screen, single goal", width: 644, height: 734 },
+        { src: "/images/fintrack/goals-double.jpg", alt: "FinTrack goals screen, multiple goals", width: 644, height: 734 },
       ],
     },
     {
@@ -171,16 +193,30 @@ export const fintrack: CaseStudy = {
     {
       type: "imageGrid",
       images: [
-        { src: "/images/fintrack/screen-09.jpg", alt: "FinTrack lock-screen flow" },
-        { src: "/images/fintrack/screen-10.jpg", alt: "FinTrack undo toast" },
-        { src: "/images/fintrack/screen-11.jpg", alt: "FinTrack final screen" },
+        { src: "/images/fintrack/lock-description.jpg", alt: "FinTrack lock screen, description field", width: 644, height: 734 },
+        { src: "/images/fintrack/lock-category.jpg", alt: "FinTrack lock screen, category list", width: 644, height: 734 },
       ],
     },
     {
-      type: "image",
-      src: "/images/fintrack/final-shots.jpg",
-      alt: "FinTrack final shots",
-      caption: "Final shots",
+      type: "imageGrid",
+      images: [
+        { src: "/images/fintrack/lock-loading.jpg", alt: "FinTrack lock screen, autosave with loader", width: 644, height: 734 },
+        { src: "/images/fintrack/lock-undo.jpg", alt: "FinTrack lock screen, undo toast", width: 644, height: 734 },
+      ],
+    },
+    {
+      type: "text",
+      heading: "Final shots",
+      body: [],
+    },
+    {
+      type: "imageGrid",
+      images: [
+        { src: "/images/fintrack/home-balance-1.png", alt: "Final shot: FinTrack home screen", width: 644, height: 734 },
+        { src: "/images/fintrack/analytics-bar.jpg", alt: "Final shot: FinTrack statistics", width: 644, height: 734 },
+        { src: "/images/fintrack/goals-single.jpg", alt: "Final shot: FinTrack goal", width: 644, height: 734 },
+        { src: "/images/fintrack/lock-undo.jpg", alt: "Final shot: FinTrack lock screen", width: 644, height: 734 },
+      ],
     },
     {
       type: "text",

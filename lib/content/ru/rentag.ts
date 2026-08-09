@@ -6,6 +6,8 @@ export const rentag: CaseStudy = {
   subtitle:
     "Как поэтапная заморозка и живые условия сделки защищают обе стороны B2B-маркетплейса",
   coverImage: "/images/rentag/cover.png",
+  coverWidth: 1400,
+  coverHeight: 1129,
   sections: [
     {
       type: "text",

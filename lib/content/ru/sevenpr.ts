@@ -6,6 +6,14 @@ export const sevenpr: CaseStudy = {
   subtitle:
     "7 прудов инвестиции — инвестиционная компания, которая давала пользователям возможность регистрироваться, выбирать объекты недвижимости, инвестировать в них и отслеживать свой портфель через дашборд.",
   coverImage: "/images/7pr/hero.png",
+  coverWidth: 3840,
+  coverHeight: 2266,
+  coverVideo: {
+    mp4: "/images/7pr/hero-transactions.mp4",
+    webm: "/images/7pr/hero-transactions.webm",
+    width: 1920,
+    height: 1210,
+  },
   sections: [
     {
       type: "text",
@@ -87,8 +95,12 @@ export const sevenpr: CaseStudy = {
     },
     {
       type: "image",
-      src: "/images/7pr/ui-kit.png",
+      src: "/images/7pr/ui-kit-v2.png",
       alt: "UI-кит дизайн-системы 7 Prudov dev",
+      width: 3840,
+      height: 1690,
+      shadow: true,
+      flush: true,
     },
     {
       type: "highlight",
@@ -103,11 +115,31 @@ export const sevenpr: CaseStudy = {
       ],
     },
     {
-      type: "imageGrid",
-      images: [
-        { src: "/images/7pr/dashboard.png", alt: "Дашборд 7 Prudov dev" },
-        { src: "/images/7pr/dashboard-02.png", alt: "Дашборд 7 Prudov dev, второй вариант" },
-      ],
+      type: "image",
+      src: "/images/7pr/dashboard.png",
+      alt: "Дашборд 7 Prudov dev — баланс и показатели",
+      width: 3840,
+      height: 2482,
+      shadow: true,
+      flush: true,
+    },
+    {
+      type: "image",
+      src: "/images/7pr/dashboard-02.png",
+      alt: "Дашборд 7 Prudov dev — сводка и графики доходности",
+      width: 3840,
+      height: 2788,
+      shadow: true,
+      flush: true,
+    },
+    {
+      type: "image",
+      src: "/images/7pr/dashboard-03.png",
+      alt: "Дашборд 7 Prudov dev — транзакции",
+      width: 1920,
+      height: 1209,
+      shadow: true,
+      flush: true,
     },
     {
       type: "text",
@@ -116,11 +148,27 @@ export const sevenpr: CaseStudy = {
       ],
     },
     {
-      type: "imageGrid",
-      images: [
-        { src: "/images/7pr/catalog.png", alt: "Каталог объектов 7 Prudov dev" },
-        { src: "/images/7pr/catalog-02.png", alt: "Каталог объектов 7 Prudov dev, карточка" },
-      ],
+      type: "image",
+      src: "/images/7pr/hero.png",
+      alt: "Карточка объекта 7 Prudov dev",
+      width: 3840,
+      height: 2266,
+      shadow: true,
+      flush: true,
+    },
+    {
+      type: "image",
+      src: "/images/7pr/catalog.png",
+      alt: "Каталог объектов 7 Prudov dev",
+      width: 3840,
+      height: 2788,
+      shadow: true,
+      flush: true,
+    },
+    {
+      type: "image",
+      src: "/images/7pr/results.png",
+      alt: "Результаты внедрения дизайн-системы 7 Prudov dev",
     },
     {
       type: "text",
@@ -140,11 +188,6 @@ export const sevenpr: CaseStudy = {
         { value: "+30%", label: "Скорость вёрстки новых экранов" },
         { value: "1–2", label: "Вопроса на экран вместо 5–7" },
       ],
-    },
-    {
-      type: "image",
-      src: "/images/7pr/results.png",
-      alt: "Результаты внедрения дизайн-системы 7 Prudov dev",
     },
     {
       type: "text",

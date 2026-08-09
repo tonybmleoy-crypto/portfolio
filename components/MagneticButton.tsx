@@ -68,7 +68,11 @@ export function MagneticButton({
               ? "0px 13px 38px 0px rgba(0,0,0,0.25)"
               : "0px 8px 24px 0px rgba(0,0,0,0.25)",
           }}
-          transition={{ scale: { duration: clicked ? 0.08 : 0.2, ease: "easeOut" }, duration: 0.2, ease: "easeOut" }}
+          transition={{
+            scale: { type: "spring", bounce: 0, duration: clicked ? 0.15 : 0.3 },
+            duration: 0.2,
+            ease: "easeOut",
+          }}
           className="inline-flex cursor-pointer items-center gap-2 whitespace-nowrap rounded-full px-8 py-3.5 text-base font-medium outline-none"
         >
           <motion.span style={{ x: innerX, y: innerY }} className="inline-flex items-center gap-2">

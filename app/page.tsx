@@ -14,7 +14,7 @@ export default function HomePage() {
         <Hero content={dict.home} />
         <HomeTabs locale="ru" content={dict.home} />
       </main>
-      <Footer dict={dict} />
+      <Footer locale="ru" dict={dict} />
     </>
   );
 }

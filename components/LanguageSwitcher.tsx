@@ -12,7 +12,7 @@ export function LanguageSwitcher({ locale, className }: { locale: Locale; classN
   return (
     <Link
       href={href}
-      className={className ?? "text-sm text-muted hover:text-foreground transition-colors"}
+      className={className ?? "text-sm text-muted transition-[color,transform] duration-150 hover:text-foreground active:scale-[0.96] active:opacity-70"}
     >
       {locale === "ru" ? "EN" : "RU"}
     </Link>

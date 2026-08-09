@@ -6,6 +6,8 @@ export const rentag: CaseStudy = {
   subtitle:
     "How staged escrow and living deal terms protect both sides of a B2B marketplace",
   coverImage: "/images/rentag/cover.png",
+  coverWidth: 1400,
+  coverHeight: 1129,
   sections: [
     {
       type: "text",

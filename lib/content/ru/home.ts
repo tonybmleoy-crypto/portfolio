@@ -2,7 +2,7 @@ import { HomeContent } from "@/lib/types";
 
 export const home: HomeContent = {
   role: "Product Designer",
-  bio: "Продуктовый дизайнер с 4 годами опыта в fintech и e-commerce. Специализируюсь на product discovery, оптимизации конверсии и построении scalable design systems. Работал в кросс-функциональных командах над инвестиционными платформами и мобильными приложениями: формулировал и валидировал продуктовые гипотезы через UX-research и usability testing, переводил инсайты в интерфейсные решения с измеримым влиянием на ключевые метрики — конверсию, MAU и время выполнения задач.",
+  bio: "Продуктовый дизайнер с 4 годами опыта в fintech и e-commerce, сейчас — Team Lead UX/UI в Rentag. Проектирую цифровые продукты от исследования пользовательских проблем до запуска, связывая UX-решения с бизнес-метриками.",
   ctaLabel: "Обсудим?",
   sectionsNav: { projects: "Проекты", about: "Обо мне" },
   viewCase: "Перейти",
@@ -14,7 +14,7 @@ export const home: HomeContent = {
       title: "Fintrack",
       tag: "Fintech",
       description: "Разработка дизайна iOS-приложения",
-      image: "/images/home/fintrack-card.png",
+      image: "/images/home/fintrack-card-v2.png",
       category: "product",
       available: true,
       timeline: "2025",
@@ -36,7 +36,7 @@ export const home: HomeContent = {
       title: "7 Prudov dev",
       tag: "Proptech",
       description: "Создание ключевых экранов для сервиса и поддержка дизайн-системы",
-      image: "/images/home/7pr-card.png",
+      image: "/images/home/7pr-card-v2.png",
       category: "product",
       available: true,
       timeline: "2025",

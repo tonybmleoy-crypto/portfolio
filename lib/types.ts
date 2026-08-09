@@ -40,14 +40,29 @@ export type TextParagraph = string | { text: string; muted?: boolean };
 export type Section =
   | { type: "lead"; body: string }
   | { type: "text"; heading?: string; body: TextParagraph[] }
+  | { type: "list"; heading?: string; intro?: string; items: string[] }
   | { type: "quote"; text: string; author?: string }
   | {
       type: "numbered";
       heading?: string;
+      style?: "cards";
       items: { number: string; title: string; body: string }[];
     }
-  | { type: "image"; src: string; alt: string; caption?: string }
-  | { type: "imageGrid"; images: { src: string; alt: string }[] }
+  | {
+      type: "image";
+      src: string;
+      alt: string;
+      caption?: string;
+      shadow?: boolean;
+      width?: number;
+      height?: number;
+      flush?: boolean;
+    }
+  | {
+      type: "imageGrid";
+      size?: "sm";
+      images: { src: string; alt: string; width: number; height: number }[];
+    }
   | { type: "stats"; items: { value: string; label: string }[] }
   | { type: "highlight"; label?: string; body: string }
   | { type: "insight"; label: string; body: string }
@@ -59,6 +74,10 @@ export interface CaseStudy {
   title: string;
   subtitle?: string;
   coverImage: string;
+  coverWidth?: number;
+  coverHeight?: number;
+  coverPlain?: boolean;
+  coverVideo?: { mp4: string; webm?: string; width: number; height: number };
   role?: string;
   sections: Section[];
 }

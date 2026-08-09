@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { HomeContent, Locale } from "@/lib/types";
 import { FadeIn } from "./FadeIn";
 import { ProjectGrid } from "./ProjectGrid";
@@ -25,35 +25,46 @@ export function HomeTabs({ locale, content }: { locale: Locale; content: HomeCon
             <button
               key={t.key}
               onClick={() => setTab(t.key)}
-              className={`rounded-full px-4 py-2 text-sm transition-colors ${
-                tab === t.key ? "bg-foreground text-background" : "hover:bg-black/5"
+              className={`relative rounded-full px-4 py-2 text-sm transition-colors ${
+                tab === t.key ? "text-background" : "hover:bg-black/5"
               }`}
             >
-              {t.label}
+              {tab === t.key && (
+                <motion.span
+                  layoutId="home-tab-pill"
+                  className="absolute inset-0 rounded-full bg-foreground"
+                  transition={{ type: "spring", bounce: 0, duration: 0.4 }}
+                />
+              )}
+              <span className="relative">{t.label}</span>
             </button>
           ))}
         </nav>
       </FadeIn>
 
-      {tab === "projects" ? (
-        <motion.div
-          key="projects"
-          initial={{ opacity: 0, y: 8 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.2, ease: "easeOut" }}
-        >
-          <ProjectGrid locale={locale} content={content} />
-        </motion.div>
-      ) : (
-        <motion.div
-          key="about"
-          initial={{ opacity: 0, y: 8 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.2, ease: "easeOut" }}
-        >
-          <About content={content} />
-        </motion.div>
-      )}
+      <AnimatePresence mode="wait" initial={false}>
+        {tab === "projects" ? (
+          <motion.div
+            key="projects"
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ type: "spring", bounce: 0, duration: 0.35 }}
+          >
+            <ProjectGrid locale={locale} content={content} />
+          </motion.div>
+        ) : (
+          <motion.div
+            key="about"
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ type: "spring", bounce: 0, duration: 0.35 }}
+          >
+            <About content={content} />
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 }
