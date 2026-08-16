@@ -1,43 +1,8 @@
 import Image from "next/image";
+import { Call, Send2, Sms } from "iconsax-react";
 import { HomeContent } from "@/lib/types";
 import { SOCIAL_LINKS } from "@/lib/content";
 import { FadeIn } from "./FadeIn";
-
-function PhoneIcon() {
-  return (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden>
-      <path
-        d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.8 21 3 13.2 3 3.6c0-.6.4-1 1-1h3.4c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.4 0 .8-.2 1L6.6 10.8Z"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
-
-function MailIcon() {
-  return (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden>
-      <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" strokeWidth="1.5" />
-      <path d="m4 7 8 6 8-6" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
-    </svg>
-  );
-}
-
-function TelegramIcon() {
-  return (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden>
-      <path
-        d="M21 4 3 11.2c-.6.2-.6 1 0 1.3l4.4 1.6L9 19c.2.7 1 .8 1.5.3l2.6-2.6 4.4 3.3c.5.4 1.3.1 1.4-.5l3-14.6c.1-.6-.5-1.1-1-.9Z"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinejoin="round"
-      />
-      <path d="M7.5 12.7 17 6.5l-7.8 7.7-.3 3.4" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
-    </svg>
-  );
-}
 
 export function About({ content }: { content: HomeContent }) {
   return (
@@ -73,14 +38,14 @@ export function About({ content }: { content: HomeContent }) {
             href={`tel:${SOCIAL_LINKS.phone.replace(/[^+\d]/g, "")}`}
             className="flex items-center gap-2 transition-[opacity,transform] duration-150 hover:opacity-70 active:scale-[0.96] active:opacity-60"
           >
-            <PhoneIcon />
+            <Call color="currentColor" size={20} variant="Linear" />
             {SOCIAL_LINKS.phone}
           </a>
           <a
             href={`mailto:${SOCIAL_LINKS.email}`}
             className="flex items-center gap-2 transition-[opacity,transform] duration-150 hover:opacity-70 active:scale-[0.96] active:opacity-60"
           >
-            <MailIcon />
+            <Sms color="currentColor" size={20} variant="Linear" />
             {SOCIAL_LINKS.email}
           </a>
           <a
@@ -89,7 +54,7 @@ export function About({ content }: { content: HomeContent }) {
             rel="noreferrer"
             className="flex items-center gap-2 transition-[opacity,transform] duration-150 hover:opacity-70 active:scale-[0.96] active:opacity-60"
           >
-            <TelegramIcon />
+            <Send2 color="currentColor" size={20} variant="Linear" />
             {SOCIAL_LINKS.telegramHandle}
           </a>
         </div>

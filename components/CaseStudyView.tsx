@@ -1,17 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
+import { ArrowLeft2, LampOn, Star } from "iconsax-react";
 import { CaseStudy, Dictionary, Locale, Section, TextParagraph } from "@/lib/types";
 import { homeHref } from "@/lib/paths";
+import { CoverVideo } from "./CoverVideo";
 import { FadeIn } from "./FadeIn";
 import { ScrollToTop } from "./ScrollToTop";
-
-function ChevronLeftIcon() {
-  return (
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden>
-      <path d="m15 5-7 7 7 7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
-}
+import { VodokachkaFlow } from "./vodokachka/VodokachkaFlow";
 
 function Paragraph({ p }: { p: TextParagraph }) {
   const text = typeof p === "string" ? p : p.text;
@@ -98,7 +93,7 @@ function SectionView({ section }: { section: Section }) {
       return (
         <FadeIn className="max-w-[640px]">
           <div className="flex gap-3 rounded-2xl border-l-4 border-accent-green px-6 py-5 shadow-card">
-            <span aria-hidden className="mt-0.5 text-lg">✦</span>
+            <Star aria-hidden color="currentColor" variant="Linear" size={20} className="mt-0.5 shrink-0" />
             <div>
               <p className="font-medium">{section.label}</p>
               <p className="mt-2 text-muted leading-relaxed">{section.body}</p>
@@ -126,7 +121,7 @@ function SectionView({ section }: { section: Section }) {
         <FadeIn className="max-w-[640px] border-l-2 border-foreground pl-6">
           <p className="text-lg italic leading-relaxed">&ldquo;{section.text}&rdquo;</p>
           {section.author && (
-            <p className="mt-3 text-sm text-muted">— {section.author}</p>
+            <p className="mt-3 text-sm text-muted">{section.author}</p>
           )}
         </FadeIn>
       );
@@ -135,7 +130,7 @@ function SectionView({ section }: { section: Section }) {
       return (
         <FadeIn className="max-w-[640px]">
           <div className="flex gap-3 rounded-2xl bg-surface p-5 shadow-card">
-            <span aria-hidden className="mt-0.5 text-lg">💡</span>
+            <LampOn aria-hidden color="currentColor" variant="Linear" size={20} className="mt-0.5 shrink-0" />
             <div>
               {section.label && (
                 <p className="text-xs font-medium uppercase tracking-wider text-muted">
@@ -152,17 +147,17 @@ function SectionView({ section }: { section: Section }) {
 
     case "numbered":
       if (section.style === "cards") {
+        const cols = section.items.length >= 4 ? "sm:grid-cols-4" : "sm:grid-cols-3";
         return (
           <FadeIn>
             {section.heading && (
               <h2 className="mb-3 text-2xl font-medium tracking-[-0.017em]">{section.heading}</h2>
             )}
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+            <div
+              className={`grid grid-cols-1 gap-8 rounded-3xl bg-surface p-6 shadow-card sm:gap-6 sm:p-8 ${cols}`}
+            >
               {section.items.map((item) => (
-                <div
-                  key={item.number}
-                  className="rounded-3xl bg-surface p-5 shadow-card"
-                >
+                <div key={item.number}>
                   <span className="text-sm font-medium text-muted">{item.number}</span>
                   <h3 className="mt-2 font-medium">{item.title}</h3>
                   <p className="mt-1.5 text-muted leading-relaxed">{item.body}</p>
@@ -222,19 +217,42 @@ function SectionView({ section }: { section: Section }) {
             className={`grid grid-cols-1 items-start gap-4 sm:grid-cols-2 ${section.size === "sm" ? "mx-auto max-w-sm sm:max-w-md" : ""}`}
           >
             {section.images.map((img, i) => (
-              <div key={i} className="overflow-hidden rounded-2xl">
+              <div
+                key={i}
+                className={`overflow-hidden rounded-2xl ${section.equalHeight ? "flex aspect-square items-center justify-center bg-surface p-4" : ""}`}
+              >
                 <Image
                   src={img.src}
                   alt={img.alt}
                   width={img.width}
                   height={img.height}
                   sizes={section.size === "sm" ? "(max-width: 640px) 50vw, 220px" : "(max-width: 640px) 100vw, 448px"}
-                  className="h-auto w-full"
+                  className={section.equalHeight ? "h-full w-full object-contain" : "h-auto w-full"}
                   quality={90}
                 />
               </div>
             ))}
           </div>
+        </FadeIn>
+      );
+
+    case "prototype":
+      return (
+        <FadeIn className="flex flex-col items-center gap-5 py-4">
+          <VodokachkaFlow />
+          {section.caption && (
+            <p className="max-w-[420px] text-center text-muted leading-relaxed">{section.caption}</p>
+          )}
+          {section.href && (
+            <Link
+              href={section.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 rounded-full bg-black/[0.06] px-4 py-2 text-sm font-medium transition-[background-color,transform] duration-150 hover:bg-black/10 active:scale-[0.96] active:bg-black/[0.08]"
+            >
+              {section.hrefLabel ?? "Open fullscreen"}
+            </Link>
+          )}
         </FadeIn>
       );
 
@@ -282,11 +300,45 @@ export function CaseStudyView({
           href={homeHref(locale)}
           className="inline-flex w-min items-center justify-center gap-1 whitespace-nowrap rounded-[28px] bg-white/45 px-4 py-2 text-sm text-foreground shadow-[inset_0px_1px_0px_0px_rgba(255,255,255,0.6),inset_0px_-1px_1px_0px_rgba(16,16,18,0.08)] backdrop-blur-md backdrop-saturate-150 transition-[background-color,transform] duration-150 hover:bg-white/65 active:scale-[0.96] active:bg-white/75"
         >
-          <ChevronLeftIcon />
+          <ArrowLeft2 color="currentColor" size={16} variant="Linear" />
           {dict.nav.back}
         </Link>
       </FadeIn>
 
+      {caseStudy.coverSide ? (
+        <div className="mt-6 grid grid-cols-1 items-center gap-8 sm:grid-cols-2 sm:gap-10">
+          <div>
+            <FadeIn delay={0.05}>
+              <h1 className="text-3xl font-medium tracking-[-0.021em] sm:text-4xl sm:tracking-[-0.028em]">
+                {caseStudy.title}
+              </h1>
+            </FadeIn>
+            {caseStudy.subtitle && (
+              <FadeIn delay={0.1} className="mt-5">
+                <p className="text-lg text-muted leading-relaxed">{caseStudy.subtitle}</p>
+              </FadeIn>
+            )}
+            {leadSection && (
+              <FadeIn delay={0.15} className="mt-5">
+                <p className="leading-relaxed text-foreground/90">{leadSection.body}</p>
+              </FadeIn>
+            )}
+          </div>
+          <FadeIn delay={0.15} className="flex justify-center sm:justify-end">
+            <Image
+              src={caseStudy.coverImage}
+              alt={caseStudy.title}
+              width={caseStudy.coverWidth ?? 1600}
+              height={caseStudy.coverHeight ?? 1000}
+              sizes="(max-width: 640px) 70vw, 340px"
+              className="h-[320px] w-auto max-w-full object-contain sm:h-[400px] md:h-[440px]"
+              priority
+              quality={90}
+            />
+          </FadeIn>
+        </div>
+      ) : (
+        <>
       <div className="mt-6">
         <FadeIn delay={0.05}>
           <h1 className="text-3xl font-medium tracking-[-0.021em] sm:text-5xl sm:tracking-[-0.03em]">{caseStudy.title}</h1>
@@ -321,19 +373,13 @@ export function CaseStudyView({
           <div className="relative left-1/2 w-screen max-w-[1200px] -translate-x-1/2 px-6 sm:px-0">
             <div className="relative flex w-full items-center justify-center overflow-hidden rounded-[24px] shadow-card">
               {caseStudy.coverVideo ? (
-                <video
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  poster={caseStudy.coverImage}
+                <CoverVideo
+                  mp4={caseStudy.coverVideo.mp4}
+                  webm={caseStudy.coverVideo.webm}
                   width={caseStudy.coverVideo.width}
                   height={caseStudy.coverVideo.height}
-                  className="h-auto w-full object-contain"
-                >
-                  {caseStudy.coverVideo.webm && <source src={caseStudy.coverVideo.webm} type="video/webm" />}
-                  <source src={caseStudy.coverVideo.mp4} type="video/mp4" />
-                </video>
+                  poster={caseStudy.coverImage}
+                />
               ) : (
                 <Image
                   src={caseStudy.coverImage}
@@ -349,6 +395,8 @@ export function CaseStudyView({
             </div>
           </div>
         </FadeIn>
+      )}
+        </>
       )}
 
       <div className="mt-10 flex flex-col gap-8">

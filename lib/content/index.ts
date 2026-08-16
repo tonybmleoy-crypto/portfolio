@@ -3,21 +3,23 @@ import { home as homeRu } from "./ru/home";
 import { fintrack as fintrackRu } from "./ru/fintrack";
 import { rentag as rentagRu } from "./ru/rentag";
 import { sevenpr as sevenprRu } from "./ru/sevenpr";
+import { vodokachka as vodokachkaRu } from "./ru/vodokachka";
 import { home as homeEn } from "./en/home";
 import { fintrack as fintrackEn } from "./en/fintrack";
 import { rentag as rentagEn } from "./en/rentag";
 import { sevenpr as sevenprEn } from "./en/sevenpr";
+import { vodokachka as vodokachkaEn } from "./en/vodokachka";
 
 export const dictionaries: Record<Locale, Dictionary> = {
   ru: {
     nav: { cv: "CV", behance: "Behance", linkedin: "LinkedIn", telegram: "Telegram", back: "Назад" },
     home: homeRu,
-    caseStudies: { fintrack: fintrackRu, rentag: rentagRu, "7pr": sevenprRu },
+    caseStudies: { fintrack: fintrackRu, rentag: rentagRu, "7pr": sevenprRu, vodokachka: vodokachkaRu },
   },
   en: {
     nav: { cv: "CV", behance: "Behance", linkedin: "LinkedIn", telegram: "Telegram", back: "Back" },
     home: homeEn,
-    caseStudies: { fintrack: fintrackEn, rentag: rentagEn, "7pr": sevenprEn },
+    caseStudies: { fintrack: fintrackEn, rentag: rentagEn, "7pr": sevenprEn, vodokachka: vodokachkaEn },
   },
 };
 

@@ -5,12 +5,12 @@ export const sevenpr: CaseStudy = {
   title: "Building key flows and maintaining the design system at 7 PRUDOV DEV",
   subtitle:
     "7 Prudov Investments is an investment company that let users register, browse real-estate assets, invest in them, and track their portfolio through a dashboard.",
-  coverImage: "/images/7pr/hero.png",
+  coverImage: "/images/7pr/hero-v3.png",
   coverWidth: 3840,
   coverHeight: 2266,
   coverVideo: {
-    mp4: "/images/7pr/hero-transactions.mp4",
-    webm: "/images/7pr/hero-transactions.webm",
+    mp4: "/images/7pr/hero-transactions-v4.mp4",
+    webm: "/images/7pr/hero-transactions-v4.webm",
     width: 1920,
     height: 1210,
   },
@@ -73,12 +73,12 @@ export const sevenpr: CaseStudy = {
         {
           number: "3",
           title: "User interviews",
-          body: "A handful of in-depth interviews — not to land on ready-made solutions, but to gauge the audience's financial literacy and risk tolerance.",
+          body: "A handful of in-depth interviews to gauge the audience's financial literacy and risk tolerance.",
         },
         {
           number: "4",
           title: "Sync with engineering",
-          body: "To lock in technical constraints early. That saved several iterations later on.",
+          body: "Locked in technical constraints early. That saved several iterations later on.",
         },
       ],
     },
@@ -105,7 +105,7 @@ export const sevenpr: CaseStudy = {
     {
       type: "highlight",
       label: "What I ran into",
-      body: "The first versions of the components didn't line up: buttons of different sizes, fields with inconsistent behavior. It took several iterations before the system became unified. That took longer than I'd planned — but that stage is exactly why everything after it moved much faster.",
+      body: "The first versions of the components didn't line up: buttons of different sizes, fields with inconsistent behavior. It took several iterations to land on one unified system — longer than I'd planned, but everything after moved faster.",
     },
     {
       type: "text",
@@ -116,7 +116,7 @@ export const sevenpr: CaseStudy = {
     },
     {
       type: "image",
-      src: "/images/7pr/dashboard.png",
+      src: "/images/7pr/dashboard-v3.png",
       alt: "7 Prudov dev dashboard — balance and stats",
       width: 3840,
       height: 2482,
@@ -125,7 +125,7 @@ export const sevenpr: CaseStudy = {
     },
     {
       type: "image",
-      src: "/images/7pr/dashboard-02.png",
+      src: "/images/7pr/dashboard-02-v3.png",
       alt: "7 Prudov dev dashboard — summary and yield charts",
       width: 3840,
       height: 2788,
@@ -134,10 +134,10 @@ export const sevenpr: CaseStudy = {
     },
     {
       type: "image",
-      src: "/images/7pr/dashboard-03.png",
+      src: "/images/7pr/dashboard-03-v3.png",
       alt: "7 Prudov dev dashboard — transactions",
-      width: 1920,
-      height: 1209,
+      width: 3840,
+      height: 2418,
       shadow: true,
       flush: true,
     },
@@ -149,7 +149,7 @@ export const sevenpr: CaseStudy = {
     },
     {
       type: "image",
-      src: "/images/7pr/hero.png",
+      src: "/images/7pr/hero-v3.png",
       alt: "7 Prudov dev property detail card",
       width: 3840,
       height: 2266,
@@ -158,7 +158,7 @@ export const sevenpr: CaseStudy = {
     },
     {
       type: "image",
-      src: "/images/7pr/catalog.png",
+      src: "/images/7pr/catalog-v3.png",
       alt: "7 Prudov dev property catalog",
       width: 3840,
       height: 2788,
@@ -193,7 +193,7 @@ export const sevenpr: CaseStudy = {
       type: "text",
       heading: "Reflection",
       body: [
-        "When data is scarce, that's not a license to invent insights. It's a signal to lean on proven principles, iterate fast, and document decisions in a way that lets you revisit them once new data shows up.",
+        "When data is scarce, don't invent insights — lean on proven principles, iterate fast, and document decisions so you can revisit them once new data shows up.",
         "A design system is trust inside a team. Without a shared language, every decision gets made from scratch. A conversation with engineering up front is an investment that pays off on every iteration after.",
       ],
     },

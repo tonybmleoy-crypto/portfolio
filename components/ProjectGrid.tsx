@@ -3,17 +3,10 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { ArrowRight2 } from "iconsax-react";
 import { HomeContent, Locale } from "@/lib/types";
 import { workHref } from "@/lib/paths";
 import { FadeIn } from "./FadeIn";
-
-function ChevronIcon() {
-  return (
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden>
-      <path d="m9 5 7 7-7 7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
-}
 
 export function ProjectGrid({ locale, content }: { locale: Locale; content: HomeContent }) {
   return (
@@ -69,7 +62,7 @@ export function ProjectGrid({ locale, content }: { locale: Locale; content: Home
                     </div>
                     <span className="inline-flex items-center gap-1 rounded-full bg-black/[0.06] py-3 pl-4 pr-3 text-sm font-medium transition-colors group-hover:bg-black/10">
                       {content.viewCase}
-                      <ChevronIcon />
+                      <ArrowRight2 color="currentColor" size={16} variant="Linear" />
                     </span>
                   </div>
                 )}

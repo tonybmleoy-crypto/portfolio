@@ -39,9 +39,9 @@ export const rentag: CaseStudy = {
       type: "text",
       heading: "Discovery",
       body: [
-        "The first step was understanding at which point in the flow users make financial decisions. I started by reading around 200 message threads from the last 90 days. Not a formal audit — just figuring out where conversations stalled. Two patterns held up consistently:",
-        "— In roughly a third of threads, the payment question came up in the first two or three messages. Not as a detail, but as a blocker.",
-        "— Threads that went quiet almost always ended on an unanswered question about money.",
+        "The first step was understanding at which point in the flow users make financial decisions. I read around 200 message threads from the last 90 days — not a formal audit, just an attempt to see where conversations stalled. Two patterns held up consistently:",
+        "— In roughly a third of threads, the payment question blocked the conversation within the first two or three messages.",
+        "— Threads that went quiet almost always broke off on an unanswered question about money.",
       ],
     },
     {
@@ -146,7 +146,7 @@ export const rentag: CaseStudy = {
       heading: "Living terms",
       body: [
         "Scope on a construction site changes after the deal starts — that's the norm, not the exception. Rigid deal terms would break the moment scope shifted. The solution: a revision mechanism that lets both sides renegotiate terms without losing protection.",
-        "I proposed a dynamic-deal model: the deal is created with initial terms, but those terms can be renegotiated mid-flight through a Pending Revision mechanism. Either side can propose changes — and both must explicitly accept them. This keeps escrow protection intact while staying fully flexible.",
+        "I proposed a dynamic-deal model: the deal is created with initial terms, but those terms can be renegotiated mid-flight through a Pending Revision mechanism. Either side can propose changes, and both must explicitly accept them. This keeps escrow protection intact while staying fully flexible.",
         "Paid stages can't be changed — that's irreversible. Stages with already-frozen funds are locked against edits.",
       ],
     },

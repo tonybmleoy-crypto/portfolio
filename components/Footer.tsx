@@ -14,13 +14,13 @@ export function Footer({ locale, dict }: { locale: Locale; dict: Dictionary }) {
   ];
 
   return (
-    <footer className="mt-32 px-4 pb-6 sm:px-6" style={navFont}>
+    <footer className="mt-32 px-4 pb-6 sm:px-6">
       <FadeIn className="mx-auto max-w-5xl">
         <div className="rounded-[28px] p-[3px] sm:rounded-[40px]" style={outerPillStyle}>
           <div className="rounded-[25px] sm:rounded-[37px]" style={innerPillStyle}>
             <div className="flex flex-col gap-6 px-6 py-8 sm:flex-row sm:items-center sm:justify-between sm:px-11 sm:py-10">
               <div>
-                <p className="text-[15px] font-semibold tracking-[-0.01em] text-[rgb(10,10,12)]">
+                <p className="text-[15px] font-semibold tracking-[-0.01em] text-[rgb(10,10,12)]" style={navFont}>
                   Anton Lopatin
                 </p>
                 <p className="mt-1.5 text-sm text-[rgba(20,20,25,0.55)]">{dict.home.contactTitle}</p>

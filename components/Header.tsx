@@ -21,7 +21,7 @@ export function Header({ locale, dict }: { locale: Locale; dict: Dictionary }) {
   ];
 
   return (
-    <header className="sticky top-4 z-50 flex justify-center px-4" style={navFont}>
+    <header className="sticky top-4 z-50 flex justify-center px-4">
       <nav
         className="hidden rounded-full p-[3px] sm:flex"
         style={outerPillStyle}
@@ -34,7 +34,7 @@ export function Header({ locale, dict }: { locale: Locale; dict: Dictionary }) {
             href={homeHref(locale)}
             className="flex items-center pr-3 transition-transform duration-150 active:scale-[0.96]"
           >
-            <span className="text-[15px] font-semibold tracking-[-0.01em] text-[rgb(10,10,12)]">
+            <span className="text-[15px] font-semibold tracking-[-0.01em] text-[rgb(10,10,12)]" style={navFont}>
               Anton Lopatin
             </span>
           </a>
@@ -64,7 +64,7 @@ export function Header({ locale, dict }: { locale: Locale; dict: Dictionary }) {
                 href={homeHref(locale)}
                 className="flex items-center transition-transform duration-150 active:scale-[0.96]"
               >
-                <span className="text-sm font-semibold tracking-[-0.01em] text-[rgb(10,10,12)]">
+                <span className="text-sm font-semibold tracking-[-0.01em] text-[rgb(10,10,12)]" style={navFont}>
                   Anton Lopatin
                 </span>
               </a>

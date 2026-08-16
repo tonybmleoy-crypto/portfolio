@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { navFont } from "@/lib/glassStyles";
 
 const variants = {
   rest: {
@@ -39,7 +38,6 @@ export function GlassCTA({
       whileTap={{ scale: 0.96, transition: { type: "spring", bounce: 0, duration: 0.15 } }}
       variants={variants}
       transition={{ type: "spring", bounce: 0, duration: 0.3 }}
-      style={navFont}
       className={`inline-flex items-center justify-center rounded-full text-sm font-medium tracking-[0.01em] ${padding} ${className ?? ""}`}
     >
       {label}

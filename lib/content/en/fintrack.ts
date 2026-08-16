@@ -9,10 +9,11 @@ export const fintrack: CaseStudy = {
   coverWidth: 1005,
   coverHeight: 2037,
   coverPlain: true,
+  coverSide: true,
   sections: [
     {
       type: "lead",
-      body: "A startup was building a fintech app for personal budgeting. By the time I joined, the first screens already existed — made quickly, without research, straight from an idea. The team felt something was off but couldn't pinpoint what.",
+      body: "A startup was building a fintech app for personal budgeting. By the time I joined, the first screens already existed, put together quickly, without research, straight from an idea. The team felt something was off but couldn't pinpoint what.",
     },
     {
       type: "list",
@@ -50,7 +51,7 @@ export const fintrack: CaseStudy = {
       type: "text",
       heading: "Research and getting started",
       body: [
-        "I started by auditing the existing prototype. I walked through every key scenario as a user and logged the problems before talking to anyone — so I wouldn't project my own assumptions onto the interviews.",
+        "I started by auditing the existing prototype. I walked through every key scenario as a user and logged the problems before talking to anyone. That way I wouldn't project my own assumptions onto the interviews.",
       ],
     },
     {
@@ -75,7 +76,7 @@ export const fintrack: CaseStudy = {
         {
           number: "02",
           title: "Overloaded dashboard",
-          body: "8+ metrics on one screen with no prioritization — balance, expenses, income, goals, history. The eye doesn't know where to look.",
+          body: "8+ metrics on one screen with no prioritization: balance, expenses, income, goals, history. The eye doesn't know where to look.",
         },
         {
           number: "03",
@@ -95,9 +96,9 @@ export const fintrack: CaseStudy = {
       type: "text",
       heading: "Key insights from the interviews",
       body: [
-        "People don't want to \"keep a budget.\" They want to stop worrying about money.",
+        "What people want is to stop worrying about money, not to \"keep a budget\" for its own sake.",
         "The entry barrier kills the habit. More than half the participants said they'd abandoned finance apps specifically because of friction at the start: a complicated onboarding, mandatory categories, unclear actions. The first experience was so heavy that they never reached the product's actual value.",
-        "Context matters more than precision. Participants didn't want to know the exact amount down to the last ruble — they wanted to understand the trend. \"Spending more than usual\" or \"within budget\" mattered more than \"₽47,382.\"",
+        "Context matters more than precision. Participants wanted to understand the trend, not the exact amount down to the last ruble. \"Spending more than usual\" or \"within budget\" mattered more than \"₽47,382.\"",
       ],
     },
     {
@@ -143,9 +144,9 @@ export const fintrack: CaseStudy = {
     {
       type: "text",
       body: [
-        "The \"Statistics\" screen is built around getting an insight fast: the header and the \"Expenses\" filter set the context, and the key amount sits front and center, cutting the time it takes to read the data and lowering cognitive load.",
-        "\"Top categories\" cards with icons and amounts support quick scanning and visual comparison, reinforcing a sense of usefulness and affecting retention.",
-        "The home screen is built around a single key idea — current financial state. A large total balance in the center creates instant insight and reduces orientation time, positively affecting engagement within the first seconds of interaction.",
+        "On the \"Statistics\" screen, the header and the \"Expenses\" filter set the context right away, and I put the key amount front and center so people read the data faster.",
+        "The \"Top categories\" cards pair an icon with an amount so categories are easy to compare at a glance.",
+        "The home screen answers one question: how much money is there right now. A large balance in the center gives that answer in a second, with no extra navigation.",
       ],
     },
     {
@@ -158,8 +159,8 @@ export const fintrack: CaseStudy = {
     {
       type: "text",
       body: [
-        "The recent-transactions list closes the control loop: users can quickly check their transactions and confirm the data is correct, lowering anxiety and improving NPS.",
-        "The quick-actions block supports the most frequent scenarios, shortening the path to the target action and reducing time on task, especially for regular users.",
+        "The recent-transactions list closes the loop: people can quickly check that everything recorded correctly.",
+        "The quick-actions block surfaces the most frequent scenarios, so the path to the action people need most is shorter, especially if they use the app every day.",
       ],
     },
     {
@@ -177,7 +178,7 @@ export const fintrack: CaseStudy = {
     {
       type: "text",
       body: [
-        "A progress bar creates a visual sense of momentum that motivates people to keep going — the Zeigarnik effect. The amounts next to it add concreteness.",
+        "A progress bar runs on the Zeigarnik effect: an unfinished action pulls you to finish it. The amount next to the bar adds specifics.",
         "In testing, participants who saw the progress bar called their goal \"actually achievable\" twice as often as those who only saw a number.",
       ],
     },
@@ -222,9 +223,8 @@ export const fintrack: CaseStudy = {
       type: "text",
       heading: "Testing",
       body: [
-        "After the redesign, I ran another round of testing on the same scenarios as the first stage. The results showed a marked improvement in user experience: 85% of users completed the \"add expense\" scenario without difficulty, 90% of respondents said the interface felt visually cleaner and easier to read, and logs and surveys showed 75% of users returning to the analytics screen more often.",
-        "The average time to complete key scenarios dropped by 40%, pointing directly to lower cognitive load and a clearer interface structure.",
-        "There was also a rise in interest in analytics — usage of that screen grew by 75%, confirming the redesign wasn't just simplifying basic actions, but encouraging deeper engagement with the product.",
+        "After the redesign, I ran the same tests again. 85% of users completed \"add expense\" without difficulty, 90% called the interface visually cleaner and easier to read.",
+        "The average time to complete key scenarios dropped 40%. Analytics-screen usage grew 75%: people started checking it more often, not just when something looked wrong.",
       ],
     },
     {

@@ -61,13 +61,16 @@ export type Section =
   | {
       type: "imageGrid";
       size?: "sm";
+      /** Fit every tile into one square box so mixed-aspect images line up. */
+      equalHeight?: boolean;
       images: { src: string; alt: string; width: number; height: number }[];
     }
   | { type: "stats"; items: { value: string; label: string }[] }
   | { type: "highlight"; label?: string; body: string }
   | { type: "insight"; label: string; body: string }
   | { type: "tips"; heading: string; items: string[] }
-  | { type: "table"; heading?: string; columns: string[]; rows: string[][] };
+  | { type: "table"; heading?: string; columns: string[]; rows: string[][] }
+  | { type: "prototype"; caption?: string; href?: string; hrefLabel?: string };
 
 export interface CaseStudy {
   slug: string;
@@ -77,6 +80,8 @@ export interface CaseStudy {
   coverWidth?: number;
   coverHeight?: number;
   coverPlain?: boolean;
+  /** Put the intro text and the cover mockup side by side in two equal columns. */
+  coverSide?: boolean;
   coverVideo?: { mp4: string; webm?: string; width: number; height: number };
   role?: string;
   sections: Section[];
