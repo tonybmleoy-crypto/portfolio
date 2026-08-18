@@ -7,6 +7,7 @@ import { SOCIAL_LINKS } from "@/lib/content";
 import { homeHref } from "@/lib/paths";
 import { navFont, outerPillStyle, innerPillStyle, navLinkClass } from "@/lib/glassStyles";
 import { LanguageSwitcher } from "./LanguageSwitcher";
+import { ThemeToggle } from "./ThemeToggle";
 import { GlassCTA } from "./GlassCTA";
 
 export function Header({ locale, dict }: { locale: Locale; dict: Dictionary }) {
@@ -22,8 +23,10 @@ export function Header({ locale, dict }: { locale: Locale; dict: Dictionary }) {
 
   return (
     <header className="sticky top-4 z-50 flex justify-center px-4">
+      {/* Desktop: the nav pill plus two standalone chips, all scrolling together. */}
+      <div className="hidden items-stretch gap-2 lg:flex">
       <nav
-        className="hidden rounded-full p-[3px] sm:flex"
+        className="rounded-full p-[3px]"
         style={outerPillStyle}
       >
         <div
@@ -32,9 +35,9 @@ export function Header({ locale, dict }: { locale: Locale; dict: Dictionary }) {
         >
           <a
             href={homeHref(locale)}
-            className="flex items-center pr-3 transition-transform duration-150 active:scale-[0.96]"
+            className="flex shrink-0 items-center pr-3 transition-transform duration-150 active:scale-[0.96]"
           >
-            <span className="text-[15px] font-semibold tracking-[-0.01em] text-[rgb(10,10,12)]" style={navFont}>
+            <span className="whitespace-nowrap text-[15px] font-semibold tracking-[-0.01em] text-foreground" style={navFont}>
               Anton Lopatin
             </span>
           </a>
@@ -50,13 +53,27 @@ export function Header({ locale, dict }: { locale: Locale; dict: Dictionary }) {
               {link.label}
             </a>
           ))}
-          <LanguageSwitcher locale={locale} className={navLinkClass} />
-
           <GlassCTA href={SOCIAL_LINKS.telegram} label={dict.home.ctaLabel} className="ml-1" />
         </div>
       </nav>
 
-      <div className="relative w-full max-w-[420px] sm:hidden">
+        <div className="rounded-[22px] p-[3px]" style={outerPillStyle}>
+          <div className="flex h-full rounded-[19px]" style={innerPillStyle}>
+            <LanguageSwitcher
+              locale={locale}
+              className="flex aspect-square h-full items-center justify-center rounded-[19px] text-sm font-medium tracking-[0.01em] text-[color:var(--nav-link)] transition-[color,background-color,transform] duration-150 hover:bg-[color:var(--nav-link-hover-bg)] hover:text-[color:var(--nav-link-hover)] active:scale-[0.92]"
+            />
+          </div>
+        </div>
+
+        <div className="rounded-[22px] p-[3px]" style={outerPillStyle}>
+          <div className="flex h-full rounded-[19px]" style={innerPillStyle}>
+            <ThemeToggle className="aspect-square h-full rounded-[19px]" />
+          </div>
+        </div>
+      </div>
+
+      <div className="relative w-full max-w-[420px] lg:hidden">
         <div className="rounded-[26px] p-[3px]" style={outerPillStyle}>
           <div className="rounded-[23px]" style={innerPillStyle}>
             <div className="flex w-full items-center justify-between gap-2 py-2.5 pr-2.5 pl-4">
@@ -64,11 +81,12 @@ export function Header({ locale, dict }: { locale: Locale; dict: Dictionary }) {
                 href={homeHref(locale)}
                 className="flex items-center transition-transform duration-150 active:scale-[0.96]"
               >
-                <span className="text-sm font-semibold tracking-[-0.01em] text-[rgb(10,10,12)]" style={navFont}>
+                <span className="text-sm font-semibold tracking-[-0.01em] text-foreground" style={navFont}>
                   Anton Lopatin
                 </span>
               </a>
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-1">
+                <ThemeToggle />
                 <GlassCTA href={SOCIAL_LINKS.telegram} label={dict.home.ctaLabel} size="sm" />
                 <button
                   aria-label="Menu"
@@ -78,15 +96,15 @@ export function Header({ locale, dict }: { locale: Locale; dict: Dictionary }) {
                   <span className="relative block h-3.5 w-4">
                     <motion.span
                       animate={{ rotate: open ? 45 : 0, y: open ? 6 : 0 }}
-                      className="absolute left-0 top-0 h-[1.5px] w-full bg-[rgb(10,10,12)]"
+                      className="absolute left-0 top-0 h-[1.5px] w-full bg-foreground"
                     />
                     <motion.span
                       animate={{ opacity: open ? 0 : 1 }}
-                      className="absolute left-0 top-1/2 h-[1.5px] w-full -translate-y-1/2 bg-[rgb(10,10,12)]"
+                      className="absolute left-0 top-1/2 h-[1.5px] w-full -translate-y-1/2 bg-foreground"
                     />
                     <motion.span
                       animate={{ rotate: open ? -45 : 0, y: open ? -6 : 0 }}
-                      className="absolute left-0 bottom-0 h-[1.5px] w-full bg-[rgb(10,10,12)]"
+                      className="absolute left-0 bottom-0 h-[1.5px] w-full bg-foreground"
                     />
                   </span>
                 </button>

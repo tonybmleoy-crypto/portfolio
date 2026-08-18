@@ -20,7 +20,7 @@ export function ProjectGrid({ locale, content }: { locale: Locale; content: Home
               transition={{ duration: 0.3 }}
               className="group relative flex h-full flex-col gap-5 rounded-[36px] bg-surface p-4 shadow-card"
             >
-              <div className="relative aspect-[556/461] w-full overflow-hidden rounded-[28px] bg-black/10">
+              <div className="relative aspect-[556/461] w-full overflow-hidden rounded-[28px] bg-[color:var(--fill-quiet-hover)]">
                 <Image
                   src={project.image}
                   alt={project.title}
@@ -30,7 +30,7 @@ export function ProjectGrid({ locale, content }: { locale: Locale; content: Home
                   quality={90}
                 />
                 {!project.available && (
-                  <span className="absolute right-3 top-3 rounded-full bg-white/70 px-3 py-1 text-xs text-muted backdrop-blur-md backdrop-saturate-150">
+                  <span className="absolute right-3 top-3 rounded-full bg-[color:var(--float-bg)] px-3 py-1 text-xs text-muted backdrop-blur-md backdrop-saturate-150">
                     {content.comingSoon}
                   </span>
                 )}
@@ -60,7 +60,7 @@ export function ProjectGrid({ locale, content }: { locale: Locale; content: Home
                         </div>
                       )}
                     </div>
-                    <span className="inline-flex items-center gap-1 rounded-full bg-black/[0.06] py-3 pl-4 pr-3 text-sm font-medium transition-colors group-hover:bg-black/10">
+                    <span className="inline-flex items-center gap-1 rounded-full bg-[color:var(--fill-quiet)] py-3 pl-4 pr-3 text-sm font-medium transition-colors group-hover:bg-[color:var(--fill-quiet-hover)]">
                       {content.viewCase}
                       <ArrowRight2 color="currentColor" size={16} variant="Linear" />
                     </span>

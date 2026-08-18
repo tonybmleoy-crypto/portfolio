@@ -1,8 +1,9 @@
 import Image from "next/image";
 import { Call, Send2, Sms } from "iconsax-react";
 import { HomeContent } from "@/lib/types";
-import { SOCIAL_LINKS } from "@/lib/content";
+import { MUSIC_LINKS, MUSIC_TRACK, SOCIAL_LINKS } from "@/lib/content";
 import { FadeIn } from "./FadeIn";
+import { MusicPlayer } from "./MusicPlayer";
 
 export function About({ content }: { content: HomeContent }) {
   return (
@@ -15,15 +16,21 @@ export function About({ content }: { content: HomeContent }) {
               <p key={i}>{p}</p>
             ))}
           </div>
+
+          {MUSIC_TRACK && (
+            <div className="mt-6">
+              <MusicPlayer track={MUSIC_TRACK} links={MUSIC_LINKS} />
+            </div>
+          )}
         </FadeIn>
 
         <FadeIn delay={0.1}>
-          <div className="relative aspect-[508/229] w-full overflow-hidden rounded-2xl shadow-card">
+          <div className="relative aspect-[2/3] w-full overflow-hidden rounded-2xl shadow-card">
             <Image
-              src="/images/home/profile.png"
-              alt="Anton Lopatin"
+              src="/images/home/stage.jpg"
+              alt="Anton Lopatin on stage"
               fill
-              sizes="320px"
+              sizes="(max-width: 640px) 100vw, 320px"
               className="object-cover"
               quality={90}
             />

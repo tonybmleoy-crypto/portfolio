@@ -26,7 +26,7 @@ export function HomeTabs({ locale, content }: { locale: Locale; content: HomeCon
               key={t.key}
               onClick={() => setTab(t.key)}
               className={`relative rounded-full px-4 py-2 text-sm transition-colors ${
-                tab === t.key ? "text-background" : "hover:bg-black/5"
+                tab === t.key ? "text-background" : "hover:bg-[color:var(--fill-quiet)]"
               }`}
             >
               {tab === t.key && (

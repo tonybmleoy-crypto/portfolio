@@ -31,18 +31,10 @@ export function ScrollToTop() {
             onClick={() => window.scrollTo({ top: 0, behavior: reduceMotion ? "auto" : "smooth" })}
             animate={{ y: [0, -6, 0] }}
             transition={{ duration: 2.6, repeat: Infinity, ease: "easeInOut" }}
-            whileHover={{
-              scale: 1.1,
-              boxShadow:
-                "inset 0px 1px 0px 0px rgba(255,255,255,0.7), 0px 1px 2px rgba(16,16,18,0.04), 0px 4px 8px rgba(16,16,18,0.06), 0px 12px 20px rgba(16,16,18,0.1), 0px 24px 48px rgba(16,16,18,0.16)",
-              transition: { type: "spring", bounce: 0, duration: 0.25 },
-            }}
+            whileHover={{ scale: 1.1, transition: { type: "spring", bounce: 0, duration: 0.25 } }}
             whileTap={{ scale: 0.94, transition: { type: "spring", bounce: 0, duration: 0.15 } }}
-            style={{
-              boxShadow:
-                "inset 0px 1px 0px 0px rgba(255,255,255,0.6), 0px 1px 2px rgba(16,16,18,0.04), 0px 4px 8px rgba(16,16,18,0.04), 0px 12px 12px rgba(16,16,18,0.02), 0px 24px 24px rgba(16,16,18,0.01)",
-            }}
-            className="flex h-14 w-14 items-center justify-center rounded-full bg-white/70 text-foreground backdrop-blur-xl backdrop-saturate-150"
+            style={{ boxShadow: "var(--float-shadow)" }}
+            className="flex h-14 w-14 items-center justify-center rounded-full bg-[color:var(--float-bg)] text-foreground backdrop-blur-xl backdrop-saturate-150 transition-shadow duration-200 hover:shadow-[var(--float-shadow-hover)]"
           >
             <ArrowUp2 color="currentColor" size={20} variant="Linear" />
           </motion.button>

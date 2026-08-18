@@ -248,7 +248,7 @@ function SectionView({ section }: { section: Section }) {
               href={section.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 rounded-full bg-black/[0.06] px-4 py-2 text-sm font-medium transition-[background-color,transform] duration-150 hover:bg-black/10 active:scale-[0.96] active:bg-black/[0.08]"
+              className="inline-flex items-center gap-1.5 rounded-full bg-[color:var(--fill-quiet)] px-4 py-2 text-sm font-medium transition-[background-color,transform] duration-150 hover:bg-[color:var(--fill-quiet-hover)] active:scale-[0.96] active:bg-[color:var(--fill-quiet-hover)]"
             >
               {section.hrefLabel ?? "Open fullscreen"}
             </Link>
@@ -298,7 +298,7 @@ export function CaseStudyView({
       <FadeIn>
         <Link
           href={homeHref(locale)}
-          className="inline-flex w-min items-center justify-center gap-1 whitespace-nowrap rounded-[28px] bg-white/45 px-4 py-2 text-sm text-foreground shadow-[inset_0px_1px_0px_0px_rgba(255,255,255,0.6),inset_0px_-1px_1px_0px_rgba(16,16,18,0.08)] backdrop-blur-md backdrop-saturate-150 transition-[background-color,transform] duration-150 hover:bg-white/65 active:scale-[0.96] active:bg-white/75"
+          className="inline-flex w-min items-center justify-center gap-1 whitespace-nowrap rounded-[28px] bg-[color:var(--float-bg)] px-4 py-2 text-sm text-foreground shadow-[var(--float-inset)] backdrop-blur-md backdrop-saturate-150 transition-[background-color,transform] duration-150 hover:bg-[color:var(--float-bg-hover)] active:scale-[0.96] active:bg-[color:var(--float-bg-hover)]"
         >
           <ArrowLeft2 color="currentColor" size={16} variant="Linear" />
           {dict.nav.back}

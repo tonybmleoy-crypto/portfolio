@@ -1,5 +1,6 @@
 @import "tailwindcss";
 
+/* Light theme. Values mirror the Figma "4.2 Semantic" collection. */
 :root {
   --background: #f8f8f8;
   --surface: #ffffff;
@@ -9,6 +10,134 @@
   --accent-blue: #0c80ff;
   --accent-blue-tint: #eff6ff;
   --accent-green: #34c759;
+
+  /* Liquid glass chrome (nav, footer, floating buttons) */
+  --glass-outer-bg: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.75) 0%,
+    rgba(255, 255, 255, 0.25) 50%,
+    rgba(255, 255, 255, 0.75) 100%
+  );
+  --glass-outer-shadow: 0px 8px 24px rgba(0, 0, 0, 0.05);
+  --glass-inner-bg: rgba(255, 255, 255, 0.45);
+  --glass-inner-inset: inset 0px 1px 0px 0px rgba(255, 255, 255, 0.6);
+  --glass-divider: rgba(10, 10, 12, 0.1);
+
+  /* Floating surfaces that sit on top of page content */
+  --float-bg: rgba(255, 255, 255, 0.7);
+  --float-bg-hover: rgba(255, 255, 255, 0.85);
+  --float-inset: inset 0px 1px 0px 0px rgba(255, 255, 255, 0.6);
+  --float-inset-hover: inset 0px 1px 0px 0px rgba(255, 255, 255, 0.7);
+  --float-shadow: inset 0px 1px 0px 0px rgba(255, 255, 255, 0.6),
+    0px 1px 2px rgba(16, 16, 18, 0.04), 0px 4px 8px rgba(16, 16, 18, 0.04),
+    0px 12px 12px rgba(16, 16, 18, 0.02), 0px 24px 24px rgba(16, 16, 18, 0.01);
+  --float-shadow-hover: inset 0px 1px 0px 0px rgba(255, 255, 255, 0.7),
+    0px 1px 2px rgba(16, 16, 18, 0.04), 0px 4px 8px rgba(16, 16, 18, 0.06),
+    0px 12px 20px rgba(16, 16, 18, 0.1), 0px 24px 48px rgba(16, 16, 18, 0.16);
+
+  /* Nav links */
+  --nav-link: rgba(20, 20, 25, 0.55);
+  --nav-link-hover: rgb(10, 10, 12);
+  --nav-link-hover-bg: rgba(255, 255, 255, 0.5);
+  --nav-link-active-bg: rgba(255, 255, 255, 0.6);
+  --nav-link-hover-shadow: inset 0px 1px 0px 0px rgba(255, 255, 255, 0.7),
+    0px 4px 14px -4px rgba(148, 160, 181, 0.3);
+
+  /* Subtle chips and quiet fills */
+  --fill-quiet: rgba(0, 0, 0, 0.06);
+  --fill-quiet-hover: rgba(0, 0, 0, 0.1);
+
+  /* Primary pill button (dark on light) */
+  --cta-bg: linear-gradient(180deg, rgba(30, 30, 34, 0.92) 0%, rgba(10, 10, 12, 0.92) 100%);
+  --cta-fg: #ffffff;
+  --cta-shadow: inset 0px 1px 0px 0px rgba(255, 255, 255, 0.18),
+    0px 4px 14px -4px rgba(0, 0, 0, 0.22);
+  --cta-bg-hover: #ffffff;
+  --cta-fg-hover: #0a0a0c;
+  --cta-shadow-hover: inset 0px 1px 0px 0px rgba(255, 255, 255, 0.7),
+    0px 8px 22px -6px rgba(16, 16, 18, 0.18);
+
+  /* Hero button: inverts on hover */
+  --hero-bg: #ffffff;
+  --hero-fg: #101012;
+  --hero-bg-hover: #101012;
+  --hero-fg-hover: #ffffff;
+  --hero-shadow: 0px 8px 24px 0px rgba(0, 0, 0, 0.25);
+  --hero-shadow-hover: 0px 13px 38px 0px rgba(0, 0, 0, 0.25);
+
+  --shadow-card-value: 0px 1px 2px rgba(16, 16, 18, 0.04), 0px 4px 8px rgba(16, 16, 18, 0.04),
+    0px 12px 12px rgba(16, 16, 18, 0.02), 0px 24px 24px rgba(16, 16, 18, 0.01);
+
+  color-scheme: light;
+}
+
+/*
+  Dark theme. Applied only when the visitor picks it: the toggle writes
+  data-theme on <html>. The system setting is deliberately ignored.
+*/
+[data-theme="dark"] {
+  --background: #0a0a0c;
+  --surface: #161619;
+  --foreground: #f2f2f4;
+  --muted: rgba(235, 235, 245, 0.62);
+  --border: rgba(255, 255, 255, 0.12);
+  --accent-blue: #0a84ff;
+  --accent-blue-tint: rgba(10, 132, 255, 0.14);
+  --accent-green: #30d158;
+
+  --glass-outer-bg: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.16) 0%,
+    rgba(255, 255, 255, 0.05) 50%,
+    rgba(255, 255, 255, 0.16) 100%
+  );
+  --glass-outer-shadow: 0px 8px 24px rgba(0, 0, 0, 0.5);
+  --glass-inner-bg: rgba(28, 28, 32, 0.72);
+  --glass-inner-inset: inset 0px 1px 0px 0px rgba(255, 255, 255, 0.14);
+  --glass-divider: rgba(255, 255, 255, 0.12);
+
+  --float-bg: rgba(28, 28, 32, 0.72);
+  --float-bg-hover: rgba(38, 38, 43, 0.85);
+  --float-inset: inset 0px 1px 0px 0px rgba(255, 255, 255, 0.14);
+  --float-inset-hover: inset 0px 1px 0px 0px rgba(255, 255, 255, 0.2);
+  --float-shadow: inset 0px 1px 0px 0px rgba(255, 255, 255, 0.14),
+    0px 1px 2px rgba(0, 0, 0, 0.4), 0px 8px 20px rgba(0, 0, 0, 0.45);
+  --float-shadow-hover: inset 0px 1px 0px 0px rgba(255, 255, 255, 0.2),
+    0px 2px 4px rgba(0, 0, 0, 0.45), 0px 16px 36px rgba(0, 0, 0, 0.6);
+
+  --nav-link: rgba(235, 235, 245, 0.6);
+  --nav-link-hover: #ffffff;
+  --nav-link-hover-bg: rgba(255, 255, 255, 0.1);
+  --nav-link-active-bg: rgba(255, 255, 255, 0.14);
+  --nav-link-hover-shadow: inset 0px 1px 0px 0px rgba(255, 255, 255, 0.16),
+    0px 4px 14px -4px rgba(0, 0, 0, 0.5);
+
+  --fill-quiet: rgba(255, 255, 255, 0.1);
+  --fill-quiet-hover: rgba(255, 255, 255, 0.16);
+
+  /* Inverted: light pill on a dark page */
+  --cta-bg: linear-gradient(180deg, rgba(248, 248, 250, 0.96) 0%, rgba(228, 228, 234, 0.96) 100%);
+  --cta-fg: #0a0a0c;
+  --cta-shadow: inset 0px 1px 0px 0px rgba(255, 255, 255, 0.9),
+    0px 4px 14px -4px rgba(0, 0, 0, 0.5);
+  --cta-bg-hover: #ffffff;
+  --cta-fg-hover: #0a0a0c;
+  --cta-shadow-hover: inset 0px 1px 0px 0px rgba(255, 255, 255, 1),
+    0px 8px 22px -6px rgba(0, 0, 0, 0.6);
+
+  /* A light pill stays the strongest call to action on a dark page. */
+  --hero-bg: #f2f2f4;
+  --hero-fg: #0a0a0c;
+  --hero-bg-hover: #ffffff;
+  --hero-fg-hover: #0a0a0c;
+  --hero-shadow: 0px 8px 24px 0px rgba(0, 0, 0, 0.55);
+  --hero-shadow-hover: 0px 13px 38px 0px rgba(0, 0, 0, 0.65);
+
+  /* Shadows barely read on dark, so the lift comes from a hairline instead. */
+  --shadow-card-value: 0px 0px 0px 1px rgba(255, 255, 255, 0.07),
+    0px 4px 12px rgba(0, 0, 0, 0.4), 0px 16px 32px rgba(0, 0, 0, 0.3);
+
+  color-scheme: dark;
 }
 
 @theme inline {
@@ -20,8 +149,7 @@
   --color-accent-blue: var(--accent-blue);
   --color-accent-blue-tint: var(--accent-blue-tint);
   --color-accent-green: var(--accent-green);
-  --shadow-card: 0px 1px 2px rgba(16, 16, 18, 0.04), 0px 4px 8px rgba(16, 16, 18, 0.04),
-    0px 12px 12px rgba(16, 16, 18, 0.02), 0px 24px 24px rgba(16, 16, 18, 0.01);
+  --shadow-card: var(--shadow-card-value);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
@@ -36,8 +164,64 @@ body {
   font-family: var(--font-sans), Arial, Helvetica, sans-serif;
 }
 
+/* Nav and footer links share one look across both themes. */
+.nav-link {
+  border-radius: 9999px;
+  padding: 0.625rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  color: var(--nav-link);
+  transition: color 150ms, background-color 150ms, box-shadow 150ms, transform 150ms;
+}
+
+.nav-link:hover {
+  color: var(--nav-link-hover);
+  background-color: var(--nav-link-hover-bg);
+  box-shadow: var(--nav-link-hover-shadow);
+}
+
+.nav-link:active {
+  transform: scale(0.96);
+  background-color: var(--nav-link-active-bg);
+}
+
+/* Pill CTA in the nav and footer. */
+.cta-pill {
+  background: var(--cta-bg);
+  color: var(--cta-fg);
+  box-shadow: var(--cta-shadow);
+  transition: background 200ms ease-out, color 200ms ease-out, box-shadow 200ms ease-out;
+}
+
+.cta-pill:hover {
+  background: var(--cta-bg-hover);
+  color: var(--cta-fg-hover);
+  box-shadow: var(--cta-shadow-hover);
+}
+
+/* Large hero button that inverts on hover. */
+.hero-pill {
+  background: var(--hero-bg);
+  color: var(--hero-fg);
+  box-shadow: var(--hero-shadow);
+  transition: background-color 200ms ease-out, color 200ms ease-out, box-shadow 200ms ease-out;
+}
+
+.hero-pill:hover {
+  background: var(--hero-bg-hover);
+  color: var(--hero-fg-hover);
+  box-shadow: var(--hero-shadow-hover);
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+
+  .nav-link,
+  .cta-pill,
+  .hero-pill {
+    transition-duration: 0ms;
   }
 }

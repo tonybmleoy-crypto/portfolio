@@ -27,6 +27,29 @@ export function getDictionary(locale: Locale): Dictionary {
   return dictionaries[locale];
 }
 
+export interface Track {
+  title: string;
+  /** Band or project name shown under the title. */
+  artist?: string;
+  /** Audio file under /public, e.g. "/audio/track.mp3". */
+  src: string;
+  /** Optional square cover art under /public. */
+  cover?: string;
+}
+
+/** Set the track to show the player. Leave it null and the player stays hidden. */
+export const MUSIC_TRACK: Track | null = {
+  title: "BRUTALISM",
+  artist: "Eyes Of Yokai",
+  src: "/audio/brutalism.mp3",
+  cover: "/audio/brutalism-cover.jpg",
+};
+
+/** Streaming profiles shown under the player. */
+export const MUSIC_LINKS: { label: string; href: string }[] = [
+  { label: "Spotify", href: "https://open.spotify.com/album/03t1UCi1VABVGiEO1W5FZi" },
+];
+
 export const SOCIAL_LINKS = {
   telegram: "https://t.me/tonybml",
   telegramHandle: "@tonybml",
