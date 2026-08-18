@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { MotionConfig } from "framer-motion";
 import { Preloader } from "@/components/Preloader";
+import { PostHogProvider } from "@/components/PostHogProvider";
 import { themeInitScript } from "@/components/ThemeToggle";
 import "./globals.css";
 
@@ -33,6 +34,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
       </head>
       <body className="min-h-full flex flex-col overflow-x-hidden bg-background text-foreground">
+        <PostHogProvider />
         <MotionConfig reducedMotion="user">
           <Preloader text="Anton Lopatin — Product Designer" />
           {children}
