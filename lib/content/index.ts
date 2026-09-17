@@ -54,9 +54,9 @@ export const SOCIAL_LINKS = {
   telegram: "https://t.me/tonybml",
   telegramHandle: "@tonybml",
   cv: {
-    ru: "https://drive.google.com/file/d/1yDsvn-dnZXsYthBaRwGL5iyTLMFofitj/view?usp=sharing",
-    en: "https://drive.google.com/file/d/1wl-Fr-ryGZDkexVXBSbkI3Vblk3Bv_gA/view?usp=sharing",
-  },
+  ru: "https://drive.google.com/file/d/1yDsvn-dnZXsYthBaRwGL5iyTLMFofitj/view?usp=sharing",
+  en: "https://drive.google.com/file/d/1wl-Fr-ryGZDkexVXBSbkI3Vblk3Bv_gA/view?usp=sharing",
+},
   behance: "https://www.behance.net/cyberpapaz",
   linkedin: "https://www.linkedin.com/in/anton-lopatin-88a2a3396",
   email: "tonybmleoy@gmail.com",
