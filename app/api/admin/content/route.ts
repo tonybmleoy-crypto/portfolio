@@ -39,6 +39,10 @@ export async function GET() {
     };
   });
 
+  // Vercel injects this automatically for the project's production domain —
+  // nothing to configure. Absent in local dev, where "the live site" doesn't apply.
+  const productionHost = process.env.VERCEL_PROJECT_PRODUCTION_URL;
+
   return NextResponse.json({
     projects,
     cases,
@@ -48,5 +52,6 @@ export async function GET() {
     },
     social: getSocialLinks(),
     musicLinks: getMusicLinks(),
+    siteUrl: productionHost ? `https://${productionHost}` : null,
   });
 }

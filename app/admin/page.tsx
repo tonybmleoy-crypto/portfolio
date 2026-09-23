@@ -30,6 +30,7 @@ interface FormState {
   home: { bio: { ru: string; en: string }; aboutBio: { ru: string; en: string } };
   social: { telegram: string; behance: string; linkedin: string; email: string; phone: string; cv: { ru: string; en: string } };
   musicLinks: { label: string; href: string }[];
+  siteUrl: string | null;
 }
 
 type SaveStatus = { kind: "idle" } | { kind: "saving" } | { kind: "ok"; redeploying: boolean } | { kind: "error"; message: string };
@@ -406,7 +407,7 @@ export default function AdminPage() {
         </section>
       </div>
 
-      <div className="sticky bottom-6 mt-8 flex items-center gap-4 rounded-2xl bg-surface p-4 shadow-card">
+      <div className="sticky bottom-6 mt-8 flex flex-wrap items-center gap-4 rounded-2xl bg-surface p-4 shadow-card">
         <button
           onClick={save}
           disabled={status.kind === "saving"}
@@ -414,9 +415,21 @@ export default function AdminPage() {
         >
           {status.kind === "saving" ? "Сохраняю…" : "Сохранить всё"}
         </button>
+        {state.siteUrl && (
+          <a
+            href={state.siteUrl}
+            target="_blank"
+            rel="noreferrer"
+            className="rounded-xl border border-border px-5 py-2.5 text-sm font-medium text-foreground hover:bg-black/5"
+          >
+            Открыть сайт ↗
+          </a>
+        )}
         {status.kind === "ok" && (
           <p className="text-sm text-accent-green">
-            {status.redeploying ? "Сохранено. Сайт пересобирается, изменения появятся через 1–2 минуты." : "Сохранено."}
+            {status.redeploying
+              ? "Сохранено. Сайт пересобирается — подожди 1–2 минуты, потом открывай ссылку."
+              : "Сохранено."}
           </p>
         )}
         {status.kind === "error" && <p className="text-sm text-red-500">{status.message}</p>}
