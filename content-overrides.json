@@ -1,1 +1,118 @@
-{}
+{
+  "projects": {
+    "fintrack": {
+      "available": true,
+      "image": "/images/home/fintrack-card-v2.png",
+      "tag": "Fintech",
+      "timeline": "2025",
+      "users": "144k",
+      "description": {
+        "ru": "Разработка дизайна iOS-приложения",
+        "en": "Development of iOS application design"
+      }
+    },
+    "rentag": {
+      "available": false,
+      "image": "/images/home/rentag-card.png",
+      "tag": "Fintech",
+      "timeline": "2026",
+      "users": "370k",
+      "description": {
+        "ru": "Спроектировал escrow-механику для B2B строительного маркетплейса",
+        "en": "Designed escrow mechanics for a B2B construction marketplace"
+      }
+    },
+    "7pr": {
+      "available": true,
+      "image": "/images/home/7pr-card-v2.png",
+      "tag": "Proptech",
+      "timeline": "2025",
+      "users": "",
+      "description": {
+        "ru": "Создание ключевых экранов для сервиса и поддержка дизайн-системы",
+        "en": "Creating key screens for the service and supporting the design system"
+      }
+    },
+    "vodokachka": {
+      "available": true,
+      "image": "/images/home/vodokachka-card.png",
+      "tag": "Foodtech",
+      "timeline": "2025",
+      "users": "",
+      "description": {
+        "ru": "0 → 1: разработка сервиса для заказа еды в баре",
+        "en": "0 → 1: building a food ordering service for a bar"
+      }
+    }
+  },
+  "cases": {
+    "fintrack": {
+      "title": "Редизайн ключевых экранов для приложения FinTrack",
+      "coverImage": "/images/fintrack/hero-promo.gif",
+      "coverWidth": 1005,
+      "coverHeight": 2037,
+      "subtitle": {
+        "ru": "Я получил задачу провести ресерч, протестировать интерфейсы и предложить улучшения. В итоге я сделал полный редизайн ключевых экранов.",
+        "en": "I was asked to run research, test the interfaces, and propose improvements. It ended up as a full redesign of the key screens."
+      }
+    },
+    "rentag": {
+      "title": "Rentag — Безопасная сделка для строительного рынка",
+      "coverImage": "/images/rentag/cover.png",
+      "coverWidth": 1400,
+      "coverHeight": 1129,
+      "subtitle": {
+        "ru": "Как поэтапная заморозка и живые условия сделки защищают обе стороны B2B-маркетплейса",
+        "en": "How staged escrow and living deal terms protect both sides of a B2B marketplace"
+      }
+    },
+    "7pr": {
+      "title": "Создание ключевых флоу и поддержка дизайн-системы в 7 PRUDOV DEV",
+      "coverImage": "/images/7pr/hero-v3.png",
+      "coverWidth": 3840,
+      "coverHeight": 2266,
+      "subtitle": {
+        "ru": "7 прудов инвестиции — инвестиционная компания, которая давала пользователям возможность регистрироваться, выбирать объекты недвижимости, инвестировать в них и отслеживать свой портфель через дашборд.",
+        "en": "7 Prudov Investments is an investment company that let users register, browse real-estate assets, invest in them, and track their portfolio through a dashboard."
+      }
+    },
+    "vodokachka": {
+      "title": "VODOKACHKA",
+      "coverImage": "/images/vodokachka/cover.png",
+      "coverWidth": 1040,
+      "coverHeight": 2072,
+      "subtitle": {
+        "ru": "0 → 1: разработка сервиса для заказа еды в баре",
+        "en": "0 → 1: building a food ordering service for a bar"
+      }
+    }
+  },
+  "home": {
+    "bio": {
+      "ru": "Продуктовый дизайнер с 4 годами опыта в fintech и e-commerce, сейчас — Team Lead UX/UI в Rentag. Проектирую цифровые продукты от исследования пользовательских проблем до запуска, связывая UX-решения с бизнес-метриками.",
+      "en": "Product designer with 4 years of experience in fintech and e-commerce, currently Team Lead UX/UI at Rentag. I design digital products from user research to launch, tying UX decisions to business metrics."
+    },
+    "aboutBio": {
+      "ru": "Я занимаюсь продуктовым дизайном больше трёх лет, в основном работал с финтехом, инвестициями и разными цифровыми сервисами. Мне важно, чтобы интерфейс реально помогал пользователям и решал задачи бизнеса. Поэтому в работе я всегда опираюсь на исследования и аналитику.\n\nКроме дизайна, большую часть моей жизни занимает музыка. Я играю на гитаре уже более одиннадцать лет: выступал на сцене, преподавал, а сейчас развиваю свой музыкальный проект. Музыка научила меня дисциплине, умению работать с аудиторией и помогать творческим идеям укладываться в чёткую структуру.\n\nЕщё одно моё увлечение — японские автомобили. Мне нравится разбираться в том, как устроена техника, и заниматься машинами самостоятельно. Сейчас я восстанавливаю и дорабатываю свою некро-тойоту. В этом процессе мне интересны инженерные решения и то, как из отдельных деталей собирается работающая система.\n\nМне кажется, что у хорошего дизайна, музыки и инженерии много общего. Везде нужно внимание к мелочам, понимание людей и желание сделать сложные вещи простыми и удобными.",
+      "en": "I've been working in product design for over three years, mostly with fintech, investment, and various digital services. It matters to me that an interface actually helps users and solves real business problems. I always lean on research and analytics in my work.\n\nBesides design, music takes up a big part of my life. I've been playing guitar for more than eleven years: performed on stage, taught lessons, and now I'm building my own music project. Music taught me discipline, how to work with an audience, and how to fit creative ideas into a clear structure.\n\nAnother thing I'm into is Japanese cars. I like understanding how the mechanics work and doing the wrenching myself. Right now I'm restoring and upgrading my beat-up old Toyota. What interests me in that process is the engineering — how a working system comes together out of individual parts.\n\nI think good design, music, and engineering have a lot in common. All three need attention to detail, an understanding of people, and a drive to make complicated things simple and usable."
+    }
+  },
+  "social": {
+    "telegram": "https://t.me/tonybml",
+    "telegramHandle": "@tonybml",
+    "cv": {
+      "ru": "https://drive.google.com/file/d/1f2unPZRwIX3vbDOvnKzSUKHJeyANUXZA/view?usp=sharing",
+      "en": "https://drive.google.com/file/d/10BLA0X578HJ5qZVQ8-3Z_xd70Ja14lJt/view?usp=sharing"
+    },
+    "behance": "https://www.behance.net/cyberpapaz",
+    "linkedin": "https://www.linkedin.com/in/anton-lopatin-88a2a3396",
+    "email": "tonybmleoy@gmail.com",
+    "phone": "+7 (922) 041-05-21"
+  },
+  "musicLinks": [
+    {
+      "label": "Spotify",
+      "href": "https://open.spotify.com/album/03t1UCi1VABVGiEO1W5FZi"
+    }
+  ]
+}
