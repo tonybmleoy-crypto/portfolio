@@ -7,6 +7,7 @@ import { ArrowRight2 } from "iconsax-react";
 import { HomeContent, Locale } from "@/lib/types";
 import { workHref } from "@/lib/paths";
 import { FadeIn } from "./FadeIn";
+import { Squircle } from "./Squircle";
 
 export function ProjectGrid({ locale, content }: { locale: Locale; content: HomeContent }) {
   return (
@@ -18,55 +19,60 @@ export function ProjectGrid({ locale, content }: { locale: Locale; content: Home
               whileHover={project.available ? { y: -4 } : undefined}
               whileTap={project.available ? { scale: 0.985 } : undefined}
               transition={{ duration: 0.3 }}
-              className="group relative flex h-full flex-col gap-5 rounded-[36px] bg-surface p-4 shadow-card"
+              className="group relative h-full rounded-[36px] shadow-card"
             >
-              <div className="relative aspect-[556/461] w-full overflow-hidden rounded-[28px] bg-[color:var(--fill-quiet-hover)]">
-                <Image
-                  src={project.image}
-                  alt={project.title}
-                  fill
-                  sizes="(max-width: 640px) 100vw, 50vw"
-                  className={`object-cover ${project.available ? "" : "opacity-70 grayscale"}`}
-                  quality={90}
-                />
-                {!project.available && (
-                  <span className="absolute right-3 top-3 rounded-full bg-[color:var(--float-bg)] px-3 py-1 text-xs text-muted backdrop-blur-md backdrop-saturate-150">
-                    {content.comingSoon}
-                  </span>
-                )}
-              </div>
-              <div className="flex flex-1 flex-col gap-4 px-3 pb-3">
-                <div>
-                  <div className="flex flex-wrap items-center gap-1.5">
-                    <h3 className="text-2xl font-medium tracking-[-0.017em]">{project.title}</h3>
-                    <span aria-hidden className="size-1.5 rounded-full bg-foreground/30" />
-                    <span className="text-2xl font-medium tracking-[-0.017em]">{project.tag}</span>
-                  </div>
-                  <p className="mt-3 line-clamp-3 leading-relaxed">{project.description}</p>
-                </div>
-                {project.available && (
-                  <div className="mt-auto flex items-center justify-between">
-                    <div className="flex items-center gap-6">
-                      {project.timeline && (
-                        <div className="flex flex-col gap-1">
-                          <span className="text-sm text-foreground/50">{content.timelineLabel}</span>
-                          <span className="text-lg font-medium tracking-[-0.011em]">{project.timeline}</span>
-                        </div>
-                      )}
-                      {project.users && (
-                        <div className="flex flex-col gap-1">
-                          <span className="text-sm text-foreground/50">{content.usersLabel}</span>
-                          <span className="text-lg font-medium tracking-[-0.011em]">{project.users}</span>
-                        </div>
-                      )}
-                    </div>
-                    <span className="inline-flex items-center gap-1 rounded-full bg-[color:var(--fill-quiet)] py-3 pl-4 pr-3 text-sm font-medium transition-colors group-hover:bg-[color:var(--fill-quiet-hover)]">
-                      {content.viewCase}
-                      <ArrowRight2 color="currentColor" size={16} variant="Linear" />
+              <Squircle radius={36} className="flex h-full flex-col gap-5 bg-surface p-4">
+                <Squircle
+                  radius={28}
+                  className="relative aspect-[556/461] w-full overflow-hidden bg-[color:var(--fill-quiet-hover)]"
+                >
+                  <Image
+                    src={project.image}
+                    alt={project.title}
+                    fill
+                    sizes="(max-width: 640px) 100vw, 50vw"
+                    className={`object-cover ${project.available ? "" : "opacity-70 grayscale"}`}
+                    quality={90}
+                  />
+                  {!project.available && (
+                    <span className="absolute right-3 top-3 rounded-full bg-[color:var(--float-bg)] px-3 py-1 text-xs text-muted backdrop-blur-md backdrop-saturate-150">
+                      {content.comingSoon}
                     </span>
+                  )}
+                </Squircle>
+                <div className="flex flex-1 flex-col gap-4 px-3 pb-3">
+                  <div>
+                    <div className="flex flex-wrap items-center gap-1.5">
+                      <h3 className="text-2xl font-medium tracking-[-0.017em]">{project.title}</h3>
+                      <span aria-hidden className="size-1.5 rounded-full bg-foreground/30" />
+                      <span className="text-2xl font-medium tracking-[-0.017em]">{project.tag}</span>
+                    </div>
+                    <p className="mt-3 line-clamp-3 leading-relaxed">{project.description}</p>
                   </div>
-                )}
-              </div>
+                  {project.available && (
+                    <div className="mt-auto flex items-center justify-between">
+                      <div className="flex items-center gap-6">
+                        {project.timeline && (
+                          <div className="flex flex-col gap-1">
+                            <span className="text-sm text-foreground/50">{content.timelineLabel}</span>
+                            <span className="text-lg font-medium tracking-[-0.011em]">{project.timeline}</span>
+                          </div>
+                        )}
+                        {project.users && (
+                          <div className="flex flex-col gap-1">
+                            <span className="text-sm text-foreground/50">{content.usersLabel}</span>
+                            <span className="text-lg font-medium tracking-[-0.011em]">{project.users}</span>
+                          </div>
+                        )}
+                      </div>
+                      <span className="inline-flex items-center gap-1 rounded-full bg-[color:var(--fill-quiet)] py-3 pl-4 pr-3 text-sm font-medium transition-colors group-hover:bg-[color:var(--fill-quiet-hover)]">
+                        {content.viewCase}
+                        <ArrowRight2 color="currentColor" size={16} variant="Linear" />
+                      </span>
+                    </div>
+                  )}
+                </div>
+              </Squircle>
             </motion.div>
           );
 

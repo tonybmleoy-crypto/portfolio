@@ -3,6 +3,7 @@ import { HomeContent } from "@/lib/types";
 import { SOCIAL_LINKS } from "@/lib/content";
 import { FadeIn } from "./FadeIn";
 import { MagneticButton } from "./MagneticButton";
+import { Squircle } from "./Squircle";
 
 export function Hero({ content }: { content: HomeContent }) {
   return (
@@ -17,16 +18,18 @@ export function Hero({ content }: { content: HomeContent }) {
         </FadeIn>
 
         <FadeIn delay={0.1} className="w-40 shrink-0 sm:w-56">
-          <div className="relative aspect-[245/229] overflow-hidden rounded-2xl shadow-card">
-            <Image
-              src="/images/home/profile.png"
-              alt="Anton Lopatin"
-              fill
-              sizes="224px"
-              className="object-cover"
-              priority
-              quality={90}
-            />
+          <div className="relative aspect-[245/229] rounded-2xl shadow-card">
+            <Squircle radius={16} className="absolute inset-0 overflow-hidden">
+              <Image
+                src="/images/home/profile.png"
+                alt="Anton Lopatin"
+                fill
+                sizes="224px"
+                className="object-cover"
+                priority
+                quality={90}
+              />
+            </Squircle>
           </div>
         </FadeIn>
       </div>

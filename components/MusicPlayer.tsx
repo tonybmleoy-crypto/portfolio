@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import { motion, useMotionValue, useTransform } from "framer-motion";
 import { Pause, Play } from "iconsax-react";
 import type { Track } from "@/lib/content";
+import { Squircle } from "./Squircle";
 
 function formatTime(seconds: number) {
   if (!Number.isFinite(seconds) || seconds < 0) return "0:00";
@@ -79,8 +80,10 @@ export function MusicPlayer({
       >
         <div className="flex items-center gap-4">
           {track.cover && (
-            <div className="relative size-14 shrink-0 overflow-hidden rounded-2xl shadow-card">
-              <Image src={track.cover} alt="" fill sizes="56px" className="object-cover" />
+            <div className="relative size-14 shrink-0 rounded-2xl shadow-card">
+              <Squircle radius={16} className="absolute inset-0 overflow-hidden">
+                <Image src={track.cover} alt="" fill sizes="56px" className="object-cover" />
+              </Squircle>
             </div>
           )}
 

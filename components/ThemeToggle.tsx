@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { flushSync } from "react-dom";
 import { Moon, Sun1 } from "iconsax-react";
 
 export const THEME_STORAGE_KEY = "theme";
@@ -11,9 +12,25 @@ export const THEME_STORAGE_KEY = "theme";
  */
 export const themeInitScript = `(function(){try{if(localStorage.getItem("${THEME_STORAGE_KEY}")==="dark"){document.documentElement.setAttribute("data-theme","dark")}}catch(e){}})()`;
 
+function applyThemeAttribute(dark: boolean) {
+  const root = document.documentElement;
+  if (dark) {
+    root.setAttribute("data-theme", "dark");
+  } else {
+    root.removeAttribute("data-theme");
+  }
+
+  try {
+    localStorage.setItem(THEME_STORAGE_KEY, dark ? "dark" : "light");
+  } catch {
+    // Private mode blocks storage. The choice still applies to this page.
+  }
+}
+
 export function ThemeToggle({ className }: { className?: string }) {
   const [dark, setDark] = useState(false);
   const [ready, setReady] = useState(false);
+  const buttonRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     setDark(document.documentElement.getAttribute("data-theme") === "dark");
@@ -22,24 +39,52 @@ export function ThemeToggle({ className }: { className?: string }) {
 
   function toggle() {
     const next = !dark;
-    setDark(next);
+    const button = buttonRef.current;
+    const canAnimate =
+      button &&
+      typeof document.startViewTransition === "function" &&
+      !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    if (!canAnimate) {
+      setDark(next);
+      applyThemeAttribute(next);
+      return;
+    }
+
+    // The circle grows from the button's own center, so it works wherever
+    // this toggle is rendered — desktop chip or the compact mobile button.
+    const { left, top, width, height } = button.getBoundingClientRect();
+    const x = left + width / 2;
+    const y = top + height / 2;
+    const radius = Math.hypot(
+      Math.max(x, window.innerWidth - x),
+      Math.max(y, window.innerHeight - y),
+    );
+
     const root = document.documentElement;
+    root.style.setProperty("--theme-toggle-x", `${x}px`);
+    root.style.setProperty("--theme-toggle-y", `${y}px`);
+    root.style.setProperty("--theme-toggle-r", `${radius}px`);
 
-    if (next) {
-      root.setAttribute("data-theme", "dark");
-    } else {
-      root.removeAttribute("data-theme");
-    }
+    const transition = document.startViewTransition(() => {
+      // startViewTransition needs the "after" DOM committed and painted
+      // before it takes its snapshot. A plain setState is batched and may
+      // not have flushed yet, so force it synchronously.
+      flushSync(() => setDark(next));
+      applyThemeAttribute(next);
+    });
 
-    try {
-      localStorage.setItem(THEME_STORAGE_KEY, next ? "dark" : "light");
-    } catch {
-      // Private mode blocks storage. The choice still applies to this page.
-    }
+    // The browser can legitimately refuse to animate (tab backgrounded,
+    // reduced-transparency mode, a second click landing mid-transition).
+    // The DOM update above still applies either way; only the animation
+    // is skipped, so this only needs to stop it from surfacing as an
+    // unhandled rejection.
+    transition.ready.catch(() => {});
   }
 
   return (
     <button
+      ref={buttonRef}
       type="button"
       onClick={toggle}
       aria-label={dark ? "Switch to light theme" : "Switch to dark theme"}

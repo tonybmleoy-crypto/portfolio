@@ -6,6 +6,7 @@ import { homeHref } from "@/lib/paths";
 import { CoverVideo } from "./CoverVideo";
 import { FadeIn } from "./FadeIn";
 import { ScrollToTop } from "./ScrollToTop";
+import { Squircle } from "./Squircle";
 import { VodokachkaFlow } from "./vodokachka/VodokachkaFlow";
 
 function Paragraph({ p }: { p: TextParagraph }) {
@@ -60,31 +61,33 @@ function SectionView({ section }: { section: Section }) {
           {section.heading && (
             <h2 className="mb-3 text-2xl font-medium tracking-[-0.017em]">{section.heading}</h2>
           )}
-          <div className="overflow-hidden rounded-2xl shadow-card">
-            <div className="overflow-x-auto">
-              <table className="w-full min-w-[560px] border-collapse text-left text-sm">
-                <thead>
-                  <tr className="bg-accent-blue text-white">
-                    {section.columns.map((col, i) => (
-                      <th key={i} className="px-4 py-3 font-medium">
-                        {col}
-                      </th>
-                    ))}
-                  </tr>
-                </thead>
-                <tbody className="bg-surface">
-                  {section.rows.map((row, ri) => (
-                    <tr key={ri} className="border-b border-border last:border-0">
-                      {row.map((cell, ci) => (
-                        <td key={ci} className="px-4 py-3 align-top">
-                          {cell}
-                        </td>
+          <div className="rounded-2xl shadow-card">
+            <Squircle radius={16} className="overflow-hidden">
+              <div className="overflow-x-auto">
+                <table className="w-full min-w-[560px] border-collapse text-left text-sm">
+                  <thead>
+                    <tr className="bg-accent-blue text-white">
+                      {section.columns.map((col, i) => (
+                        <th key={i} className="px-4 py-3 font-medium">
+                          {col}
+                        </th>
                       ))}
                     </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
+                  </thead>
+                  <tbody className="bg-surface">
+                    {section.rows.map((row, ri) => (
+                      <tr key={ri} className="border-b border-border last:border-0">
+                        {row.map((cell, ci) => (
+                          <td key={ci} className="px-4 py-3 align-top">
+                            {cell}
+                          </td>
+                        ))}
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </Squircle>
           </div>
         </FadeIn>
       );
@@ -92,12 +95,14 @@ function SectionView({ section }: { section: Section }) {
     case "insight":
       return (
         <FadeIn className="max-w-[640px]">
-          <div className="flex gap-3 rounded-2xl border-l-4 border-accent-green px-6 py-5 shadow-card">
-            <Star aria-hidden color="currentColor" variant="Linear" size={20} className="mt-0.5 shrink-0" />
-            <div>
-              <p className="font-medium">{section.label}</p>
-              <p className="mt-2 text-muted leading-relaxed">{section.body}</p>
-            </div>
+          <div className="rounded-2xl shadow-card">
+            <Squircle radius={16} className="flex gap-3 border-l-4 border-accent-green px-6 py-5">
+              <Star aria-hidden color="currentColor" variant="Linear" size={20} className="mt-0.5 shrink-0" />
+              <div>
+                <p className="font-medium">{section.label}</p>
+                <p className="mt-2 text-muted leading-relaxed">{section.body}</p>
+              </div>
+            </Squircle>
           </div>
         </FadeIn>
       );
@@ -105,14 +110,14 @@ function SectionView({ section }: { section: Section }) {
     case "tips":
       return (
         <FadeIn className="max-w-[640px]">
-          <div className="rounded-2xl border-l-4 border-accent-blue bg-accent-blue-tint px-6 py-5">
+          <Squircle radius={16} className="border-l-4 border-accent-blue bg-accent-blue-tint px-6 py-5">
             <p className="font-medium">{section.heading}</p>
             <ul className="mt-2 space-y-1 text-sm text-foreground/80">
               {section.items.map((item, i) => (
                 <li key={i}>• {item}</li>
               ))}
             </ul>
-          </div>
+          </Squircle>
         </FadeIn>
       );
 
@@ -129,18 +134,20 @@ function SectionView({ section }: { section: Section }) {
     case "highlight":
       return (
         <FadeIn className="max-w-[640px]">
-          <div className="flex gap-3 rounded-2xl bg-surface p-5 shadow-card">
-            <LampOn aria-hidden color="currentColor" variant="Linear" size={20} className="mt-0.5 shrink-0" />
-            <div>
-              {section.label && (
-                <p className="text-xs font-medium uppercase tracking-wider text-muted">
-                  {section.label}
+          <div className="rounded-2xl shadow-card">
+            <Squircle radius={16} className="flex gap-3 bg-surface p-5">
+              <LampOn aria-hidden color="currentColor" variant="Linear" size={20} className="mt-0.5 shrink-0" />
+              <div>
+                {section.label && (
+                  <p className="text-xs font-medium uppercase tracking-wider text-muted">
+                    {section.label}
+                  </p>
+                )}
+                <p className={section.label ? "mt-2 leading-relaxed" : "leading-relaxed"}>
+                  {section.body}
                 </p>
-              )}
-              <p className={section.label ? "mt-2 leading-relaxed" : "leading-relaxed"}>
-                {section.body}
-              </p>
-            </div>
+              </div>
+            </Squircle>
           </div>
         </FadeIn>
       );
@@ -153,16 +160,16 @@ function SectionView({ section }: { section: Section }) {
             {section.heading && (
               <h2 className="mb-3 text-2xl font-medium tracking-[-0.017em]">{section.heading}</h2>
             )}
-            <div
-              className={`grid grid-cols-1 gap-8 rounded-3xl bg-surface p-6 shadow-card sm:gap-6 sm:p-8 ${cols}`}
-            >
-              {section.items.map((item) => (
-                <div key={item.number}>
-                  <span className="text-sm font-medium text-muted">{item.number}</span>
-                  <h3 className="mt-2 font-medium">{item.title}</h3>
-                  <p className="mt-1.5 text-muted leading-relaxed">{item.body}</p>
-                </div>
-              ))}
+            <div className="rounded-3xl shadow-card">
+              <Squircle radius={24} className={`grid grid-cols-1 gap-8 bg-surface p-6 sm:gap-6 sm:p-8 ${cols}`}>
+                {section.items.map((item) => (
+                  <div key={item.number}>
+                    <span className="text-sm font-medium text-muted">{item.number}</span>
+                    <h3 className="mt-2 font-medium">{item.title}</h3>
+                    <p className="mt-1.5 text-muted leading-relaxed">{item.body}</p>
+                  </div>
+                ))}
+              </Squircle>
             </div>
           </FadeIn>
         );
@@ -191,17 +198,22 @@ function SectionView({ section }: { section: Section }) {
         <FadeIn>
           <div className="relative left-1/2 w-screen max-w-[1200px] -translate-x-1/2 px-6 sm:px-0">
             <div
-              className={`relative flex w-full items-center justify-center overflow-hidden ${section.flush ? "rounded-[24px]" : "max-h-[720px] rounded-2xl"} ${section.shadow ? "shadow-card" : ""}`}
+              className={`${section.flush ? "rounded-[24px]" : "max-h-[720px] rounded-2xl"} ${section.shadow ? "shadow-card" : ""}`}
             >
-              <Image
-                src={section.src}
-                alt={section.alt}
-                width={section.width ?? 2400}
-                height={section.height ?? 1500}
-                className={`h-auto w-full object-contain ${section.flush ? "" : "max-h-[720px]"}`}
-                sizes="(max-width: 1200px) 100vw, 1200px"
-                quality={90}
-              />
+              <Squircle
+                radius={section.flush ? 24 : 16}
+                className={`relative flex w-full items-center justify-center overflow-hidden ${section.flush ? "" : "max-h-[720px]"}`}
+              >
+                <Image
+                  src={section.src}
+                  alt={section.alt}
+                  width={section.width ?? 2400}
+                  height={section.height ?? 1500}
+                  className={`h-auto w-full object-contain ${section.flush ? "" : "max-h-[720px]"}`}
+                  sizes="(max-width: 1200px) 100vw, 1200px"
+                  quality={90}
+                />
+              </Squircle>
             </div>
             {section.caption && (
               <p className="mt-1.5 text-center text-sm text-muted">{section.caption}</p>
@@ -217,9 +229,10 @@ function SectionView({ section }: { section: Section }) {
             className={`grid grid-cols-1 items-start gap-4 sm:grid-cols-2 ${section.size === "sm" ? "mx-auto max-w-sm sm:max-w-md" : ""}`}
           >
             {section.images.map((img, i) => (
-              <div
+              <Squircle
                 key={i}
-                className={`overflow-hidden rounded-2xl ${section.equalHeight ? "flex aspect-square items-center justify-center bg-surface p-4" : ""}`}
+                radius={16}
+                className={`overflow-hidden ${section.equalHeight ? "flex aspect-square items-center justify-center bg-surface p-4" : ""}`}
               >
                 <Image
                   src={img.src}
@@ -230,7 +243,7 @@ function SectionView({ section }: { section: Section }) {
                   className={section.equalHeight ? "h-full w-full object-contain" : "h-auto w-full"}
                   quality={90}
                 />
-              </div>
+              </Squircle>
             ))}
           </div>
         </FadeIn>
@@ -261,14 +274,16 @@ function SectionView({ section }: { section: Section }) {
         <FadeIn>
           <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
             {section.items.map((stat, i) => (
-              <div
-                key={i}
-                className="flex flex-col items-center justify-center gap-2 rounded-2xl bg-surface px-4 py-6 text-center shadow-card"
-              >
-                <p className="text-3xl font-medium tracking-[-0.021em] text-accent-green sm:text-4xl sm:tracking-[-0.025em]">
-                  {stat.value}
-                </p>
-                <p className="text-sm leading-snug">{stat.label}</p>
+              <div key={i} className="rounded-2xl shadow-card">
+                <Squircle
+                  radius={16}
+                  className="flex flex-col items-center justify-center gap-2 bg-surface px-4 py-6 text-center"
+                >
+                  <p className="text-3xl font-medium tracking-[-0.021em] text-accent-green sm:text-4xl sm:tracking-[-0.025em]">
+                    {stat.value}
+                  </p>
+                  <p className="text-sm leading-snug">{stat.label}</p>
+                </Squircle>
               </div>
             ))}
           </div>
@@ -371,27 +386,29 @@ export function CaseStudyView({
       ) : (
         <FadeIn delay={0.15} className="mt-10">
           <div className="relative left-1/2 w-screen max-w-[1200px] -translate-x-1/2 px-6 sm:px-0">
-            <div className="relative flex w-full items-center justify-center overflow-hidden rounded-[24px] shadow-card">
-              {caseStudy.coverVideo ? (
-                <CoverVideo
-                  mp4={caseStudy.coverVideo.mp4}
-                  webm={caseStudy.coverVideo.webm}
-                  width={caseStudy.coverVideo.width}
-                  height={caseStudy.coverVideo.height}
-                  poster={caseStudy.coverImage}
-                />
-              ) : (
-                <Image
-                  src={caseStudy.coverImage}
-                  alt={caseStudy.title}
-                  width={caseStudy.coverWidth ?? 1600}
-                  height={caseStudy.coverHeight ?? 1000}
-                  sizes="(max-width: 1200px) 100vw, 1200px"
-                  className="h-auto w-full object-contain"
-                  priority
-                  quality={90}
-                />
-              )}
+            <div className="rounded-[24px] shadow-card">
+              <Squircle radius={24} className="relative flex w-full items-center justify-center overflow-hidden">
+                {caseStudy.coverVideo ? (
+                  <CoverVideo
+                    mp4={caseStudy.coverVideo.mp4}
+                    webm={caseStudy.coverVideo.webm}
+                    width={caseStudy.coverVideo.width}
+                    height={caseStudy.coverVideo.height}
+                    poster={caseStudy.coverImage}
+                  />
+                ) : (
+                  <Image
+                    src={caseStudy.coverImage}
+                    alt={caseStudy.title}
+                    width={caseStudy.coverWidth ?? 1600}
+                    height={caseStudy.coverHeight ?? 1000}
+                    sizes="(max-width: 1200px) 100vw, 1200px"
+                    className="h-auto w-full object-contain"
+                    priority
+                    quality={90}
+                  />
+                )}
+              </Squircle>
             </div>
           </div>
         </FadeIn>

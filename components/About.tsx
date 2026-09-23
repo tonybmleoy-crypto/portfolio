@@ -4,6 +4,7 @@ import { HomeContent } from "@/lib/types";
 import { MUSIC_LINKS, MUSIC_TRACK, SOCIAL_LINKS } from "@/lib/content";
 import { FadeIn } from "./FadeIn";
 import { MusicPlayer } from "./MusicPlayer";
+import { Squircle } from "./Squircle";
 
 export function About({ content }: { content: HomeContent }) {
   return (
@@ -25,15 +26,19 @@ export function About({ content }: { content: HomeContent }) {
         </FadeIn>
 
         <FadeIn delay={0.1}>
-          <div className="relative aspect-[2/3] w-full overflow-hidden rounded-2xl shadow-card">
-            <Image
-              src="/images/home/stage.jpg"
-              alt="Anton Lopatin on stage"
-              fill
-              sizes="(max-width: 640px) 100vw, 320px"
-              className="object-cover"
-              quality={90}
-            />
+          {/* Shadow lives on this plain-radius shell; clip-path on Squircle below
+              would otherwise cut the shadow off at the box edge. */}
+          <div className="relative aspect-[2/3] w-full rounded-2xl shadow-card">
+            <Squircle radius={16} className="absolute inset-0 overflow-hidden">
+              <Image
+                src="/images/home/stage.jpg"
+                alt="Anton Lopatin on stage"
+                fill
+                sizes="(max-width: 640px) 100vw, 320px"
+                className="object-cover"
+                quality={90}
+              />
+            </Squircle>
           </div>
         </FadeIn>
       </div>

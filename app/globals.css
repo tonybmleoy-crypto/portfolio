@@ -225,3 +225,36 @@ body {
     transition-duration: 0ms;
   }
 }
+
+/*
+ * Theme toggle: the new theme grows out of the toggle button as a circle.
+ * ThemeToggle.tsx sets --theme-toggle-x/y/r (the button's center and the
+ * radius needed to cover the viewport from there) right before calling
+ * document.startViewTransition(). Skipped by JS entirely when the browser
+ * doesn't support it, or the visitor asked for reduced motion — this CSS
+ * block is a second line of defense in case some other caller ever invokes
+ * startViewTransition() without checking for it.
+ */
+::view-transition-old(root) {
+  animation: none;
+}
+
+::view-transition-new(root) {
+  animation: theme-reveal 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes theme-reveal {
+  from {
+    clip-path: circle(0px at var(--theme-toggle-x, 50%) var(--theme-toggle-y, 50%));
+  }
+  to {
+    clip-path: circle(var(--theme-toggle-r, 150%) at var(--theme-toggle-x, 50%) var(--theme-toggle-y, 50%));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation: none !important;
+  }
+}
