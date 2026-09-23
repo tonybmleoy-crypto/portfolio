@@ -1,16 +1,24 @@
 import { Dictionary, Locale } from "@/lib/types";
-import { SOCIAL_LINKS } from "@/lib/content";
+import { SocialLinks } from "@/lib/content";
 import { navFont, outerPillStyle, innerPillStyle, navLinkClass } from "@/lib/glassStyles";
 import { FadeIn } from "./FadeIn";
 import { GlassCTA } from "./GlassCTA";
 
-export function Footer({ locale, dict }: { locale: Locale; dict: Dictionary }) {
+export function Footer({
+  locale,
+  dict,
+  socialLinks,
+}: {
+  locale: Locale;
+  dict: Dictionary;
+  socialLinks: SocialLinks;
+}) {
   const links = [
-    { label: dict.nav.telegram, href: SOCIAL_LINKS.telegram },
-    { label: dict.nav.cv, href: SOCIAL_LINKS.cv[locale] },
-    { label: dict.nav.linkedin, href: SOCIAL_LINKS.linkedin },
-    { label: dict.nav.behance, href: SOCIAL_LINKS.behance },
-    { label: "Gmail", href: `mailto:${SOCIAL_LINKS.email}` },
+    { label: dict.nav.telegram, href: socialLinks.telegram },
+    { label: dict.nav.cv, href: socialLinks.cv[locale] },
+    { label: dict.nav.linkedin, href: socialLinks.linkedin },
+    { label: dict.nav.behance, href: socialLinks.behance },
+    { label: "Gmail", href: `mailto:${socialLinks.email}` },
   ];
 
   return (
@@ -26,7 +34,7 @@ export function Footer({ locale, dict }: { locale: Locale; dict: Dictionary }) {
                 <p className="mt-1.5 text-sm text-muted">{dict.home.contactTitle}</p>
               </div>
               <GlassCTA
-                href={SOCIAL_LINKS.telegram}
+                href={socialLinks.telegram}
                 label={dict.home.ctaLabel}
                 className="self-start sm:self-auto"
               />

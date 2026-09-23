@@ -3,22 +3,30 @@
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Dictionary, Locale } from "@/lib/types";
-import { SOCIAL_LINKS } from "@/lib/content";
+import { SocialLinks } from "@/lib/content";
 import { homeHref } from "@/lib/paths";
 import { navFont, outerPillStyle, innerPillStyle, navLinkClass } from "@/lib/glassStyles";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 import { ThemeToggle } from "./ThemeToggle";
 import { GlassCTA } from "./GlassCTA";
 
-export function Header({ locale, dict }: { locale: Locale; dict: Dictionary }) {
+export function Header({
+  locale,
+  dict,
+  socialLinks,
+}: {
+  locale: Locale;
+  dict: Dictionary;
+  socialLinks: SocialLinks;
+}) {
   const [open, setOpen] = useState(false);
 
   const links = [
-    { label: dict.nav.telegram, href: SOCIAL_LINKS.telegram },
-    { label: dict.nav.cv, href: SOCIAL_LINKS.cv[locale] },
-    { label: dict.nav.linkedin, href: SOCIAL_LINKS.linkedin },
-    { label: dict.nav.behance, href: SOCIAL_LINKS.behance },
-    { label: "Gmail", href: `mailto:${SOCIAL_LINKS.email}` },
+    { label: dict.nav.telegram, href: socialLinks.telegram },
+    { label: dict.nav.cv, href: socialLinks.cv[locale] },
+    { label: dict.nav.linkedin, href: socialLinks.linkedin },
+    { label: dict.nav.behance, href: socialLinks.behance },
+    { label: "Gmail", href: `mailto:${socialLinks.email}` },
   ];
 
   return (
@@ -53,7 +61,7 @@ export function Header({ locale, dict }: { locale: Locale; dict: Dictionary }) {
               {link.label}
             </a>
           ))}
-          <GlassCTA href={SOCIAL_LINKS.telegram} label={dict.home.ctaLabel} className="ml-1" />
+          <GlassCTA href={socialLinks.telegram} label={dict.home.ctaLabel} className="ml-1" />
         </div>
       </nav>
 
@@ -87,7 +95,7 @@ export function Header({ locale, dict }: { locale: Locale; dict: Dictionary }) {
               </a>
               <div className="flex items-center gap-1">
                 <ThemeToggle />
-                <GlassCTA href={SOCIAL_LINKS.telegram} label={dict.home.ctaLabel} size="sm" />
+                <GlassCTA href={socialLinks.telegram} label={dict.home.ctaLabel} size="sm" />
                 <button
                   aria-label="Menu"
                   onClick={() => setOpen((v) => !v)}

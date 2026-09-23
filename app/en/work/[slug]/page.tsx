@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import { getDictionary } from "@/lib/content";
+import { getDictionary, getSocialLinks } from "@/lib/content";
 import { Header } from "@/components/Header";
 import { CaseStudyView } from "@/components/CaseStudyView";
 import { Footer } from "@/components/Footer";
@@ -17,14 +17,15 @@ export default async function WorkPageEn({
   const dict = getDictionary("en");
   const caseStudy = dict.caseStudies[slug];
   if (!caseStudy) notFound();
+  const socialLinks = getSocialLinks();
 
   return (
     <>
-      <Header locale="en" dict={dict} />
+      <Header locale="en" dict={dict} socialLinks={socialLinks} />
       <main className="flex-1">
         <CaseStudyView caseStudy={caseStudy} locale="en" dict={dict} />
       </main>
-      <Footer locale="en" dict={dict} />
+      <Footer locale="en" dict={dict} socialLinks={socialLinks} />
     </>
   );
 }

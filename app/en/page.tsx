@@ -1,4 +1,4 @@
-import { getDictionary } from "@/lib/content";
+import { getDictionary, getMusicLinks, getSocialLinks, MUSIC_TRACK } from "@/lib/content";
 import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
 import { HomeTabs } from "@/components/HomeTabs";
@@ -6,15 +6,22 @@ import { Footer } from "@/components/Footer";
 
 export default function HomePageEn() {
   const dict = getDictionary("en");
+  const socialLinks = getSocialLinks();
 
   return (
     <>
-      <Header locale="en" dict={dict} />
+      <Header locale="en" dict={dict} socialLinks={socialLinks} />
       <main className="flex-1">
-        <Hero content={dict.home} />
-        <HomeTabs locale="en" content={dict.home} />
+        <Hero content={dict.home} socialLinks={socialLinks} />
+        <HomeTabs
+          locale="en"
+          content={dict.home}
+          socialLinks={socialLinks}
+          musicTrack={MUSIC_TRACK}
+          musicLinks={getMusicLinks()}
+        />
       </main>
-      <Footer locale="en" dict={dict} />
+      <Footer locale="en" dict={dict} socialLinks={socialLinks} />
     </>
   );
 }

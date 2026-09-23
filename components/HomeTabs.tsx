@@ -6,10 +6,23 @@ import { HomeContent, Locale } from "@/lib/types";
 import { FadeIn } from "./FadeIn";
 import { ProjectGrid } from "./ProjectGrid";
 import { About } from "./About";
+import type { SocialLinks, Track } from "@/lib/content";
 
 type Tab = "projects" | "about";
 
-export function HomeTabs({ locale, content }: { locale: Locale; content: HomeContent }) {
+export function HomeTabs({
+  locale,
+  content,
+  socialLinks,
+  musicTrack,
+  musicLinks,
+}: {
+  locale: Locale;
+  content: HomeContent;
+  socialLinks: SocialLinks;
+  musicTrack: Track | null;
+  musicLinks: { label: string; href: string }[];
+}) {
   const [tab, setTab] = useState<Tab>("projects");
 
   const tabs: { key: Tab; label: string }[] = [
@@ -61,7 +74,7 @@ export function HomeTabs({ locale, content }: { locale: Locale; content: HomeCon
             exit={{ opacity: 0, y: -8 }}
             transition={{ type: "spring", bounce: 0, duration: 0.35 }}
           >
-            <About content={content} />
+            <About content={content} socialLinks={socialLinks} musicTrack={musicTrack} musicLinks={musicLinks} />
           </motion.div>
         )}
       </AnimatePresence>

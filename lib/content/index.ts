@@ -1,4 +1,5 @@
-import { Dictionary, Locale } from "@/lib/types";
+import { CaseStudy, Dictionary, HomeContent, Locale, ProjectCard } from "@/lib/types";
+import { readOverrides } from "@/lib/admin/overrides";
 import { home as homeRu } from "./ru/home";
 import { fintrack as fintrackRu } from "./ru/fintrack";
 import { rentag as rentagRu } from "./ru/rentag";
@@ -23,8 +24,55 @@ export const dictionaries: Record<Locale, Dictionary> = {
   },
 };
 
+function applyProjectOverrides(project: ProjectCard, locale: Locale): ProjectCard {
+  const o = readOverrides().projects?.[project.slug];
+  if (!o) return project;
+  return {
+    ...project,
+    available: o.available ?? project.available,
+    image: o.image ?? project.image,
+    tag: o.tag ?? project.tag,
+    timeline: o.timeline ?? project.timeline,
+    users: o.users ?? project.users,
+    description: o.description?.[locale] ?? project.description,
+  };
+}
+
+function applyHomeOverrides(home: HomeContent, locale: Locale): HomeContent {
+  const o = readOverrides().home;
+  return {
+    ...home,
+    bio: o?.bio?.[locale] ?? home.bio,
+    projects: home.projects.map((p) => applyProjectOverrides(p, locale)),
+    about: {
+      ...home.about,
+      bio: o?.aboutBio?.[locale] ? o.aboutBio[locale]!.split(/\n{2,}/).filter(Boolean) : home.about.bio,
+    },
+  };
+}
+
+function applyCaseStudyOverrides(caseStudy: CaseStudy, locale: Locale): CaseStudy {
+  const o = readOverrides().cases?.[caseStudy.slug];
+  if (!o) return caseStudy;
+  return {
+    ...caseStudy,
+    title: o.title ?? caseStudy.title,
+    coverImage: o.coverImage ?? caseStudy.coverImage,
+    coverWidth: o.coverWidth ?? caseStudy.coverWidth,
+    coverHeight: o.coverHeight ?? caseStudy.coverHeight,
+    subtitle: o.subtitle?.[locale] ?? caseStudy.subtitle,
+  };
+}
+
 export function getDictionary(locale: Locale): Dictionary {
-  return dictionaries[locale];
+  const base = dictionaries[locale];
+  return {
+    ...base,
+    home: applyHomeOverrides(base.home, locale),
+    caseStudies: Object.fromEntries(
+      Object.entries(base.caseStudies).map(([slug, cs]) => [slug, applyCaseStudyOverrides(cs, locale)]),
+    ),
+  };
 }
 
 export interface Track {
@@ -45,12 +93,16 @@ export const MUSIC_TRACK: Track | null = {
   cover: "/audio/brutalism-cover.jpg",
 };
 
-/** Streaming profiles shown under the player. */
-export const MUSIC_LINKS: { label: string; href: string }[] = [
+const DEFAULT_MUSIC_LINKS: { label: string; href: string }[] = [
   { label: "Spotify", href: "https://open.spotify.com/album/03t1UCi1VABVGiEO1W5FZi" },
 ];
 
-export const SOCIAL_LINKS = {
+/** Streaming profiles shown under the player. */
+export function getMusicLinks(): { label: string; href: string }[] {
+  return readOverrides().musicLinks ?? DEFAULT_MUSIC_LINKS;
+}
+
+const DEFAULT_SOCIAL_LINKS = {
   telegram: "https://t.me/tonybml",
   telegramHandle: "@tonybml",
   cv: {
@@ -62,3 +114,27 @@ export const SOCIAL_LINKS = {
   email: "tonybmleoy@gmail.com",
   phone: "+7 (922) 041-05-21",
 };
+
+export type SocialLinks = typeof DEFAULT_SOCIAL_LINKS;
+
+/**
+ * Server-only: reads content-overrides.json via `fs`. Call this from a
+ * Server Component (a page, not a "use client" file) and pass the plain
+ * result down as props — importing it directly from client-side code pulls
+ * `node:fs` into the browser bundle and the build fails.
+ */
+export function getSocialLinks(): SocialLinks {
+  const o = readOverrides().social;
+  return {
+    telegram: o?.telegram ?? DEFAULT_SOCIAL_LINKS.telegram,
+    telegramHandle: DEFAULT_SOCIAL_LINKS.telegramHandle,
+    cv: {
+      ru: o?.cv?.ru ?? DEFAULT_SOCIAL_LINKS.cv.ru,
+      en: o?.cv?.en ?? DEFAULT_SOCIAL_LINKS.cv.en,
+    },
+    behance: o?.behance ?? DEFAULT_SOCIAL_LINKS.behance,
+    linkedin: o?.linkedin ?? DEFAULT_SOCIAL_LINKS.linkedin,
+    email: o?.email ?? DEFAULT_SOCIAL_LINKS.email,
+    phone: o?.phone ?? DEFAULT_SOCIAL_LINKS.phone,
+  };
+}

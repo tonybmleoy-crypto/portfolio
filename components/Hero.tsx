@@ -1,11 +1,11 @@
 import Image from "next/image";
 import { HomeContent } from "@/lib/types";
-import { SOCIAL_LINKS } from "@/lib/content";
+import { SocialLinks } from "@/lib/content";
 import { FadeIn } from "./FadeIn";
 import { MagneticButton } from "./MagneticButton";
 import { Squircle } from "./Squircle";
 
-export function Hero({ content }: { content: HomeContent }) {
+export function Hero({ content, socialLinks }: { content: HomeContent; socialLinks: SocialLinks }) {
   return (
     <section className="mx-auto max-w-5xl px-6 pt-16 pb-20 sm:px-10 sm:pt-36">
       <div className="flex flex-col-reverse items-start gap-8 sm:flex-row sm:items-center sm:justify-between">
@@ -35,7 +35,7 @@ export function Hero({ content }: { content: HomeContent }) {
       </div>
 
       <FadeIn delay={0.2} className="mt-10">
-        <MagneticButton label={content.ctaLabel} href={SOCIAL_LINKS.telegram} />
+        <MagneticButton label={content.ctaLabel} href={socialLinks.telegram} />
       </FadeIn>
     </section>
   );

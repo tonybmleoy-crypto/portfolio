@@ -1,12 +1,22 @@
 import Image from "next/image";
 import { Call, Send2, Sms } from "iconsax-react";
 import { HomeContent } from "@/lib/types";
-import { MUSIC_LINKS, MUSIC_TRACK, SOCIAL_LINKS } from "@/lib/content";
+import type { SocialLinks, Track } from "@/lib/content";
 import { FadeIn } from "./FadeIn";
 import { MusicPlayer } from "./MusicPlayer";
 import { Squircle } from "./Squircle";
 
-export function About({ content }: { content: HomeContent }) {
+export function About({
+  content,
+  socialLinks,
+  musicTrack,
+  musicLinks,
+}: {
+  content: HomeContent;
+  socialLinks: SocialLinks;
+  musicTrack: Track | null;
+  musicLinks: { label: string; href: string }[];
+}) {
   return (
     <section className="mx-auto max-w-5xl px-6 sm:px-10">
       <div className="grid grid-cols-1 gap-10 sm:grid-cols-[1fr_320px] sm:gap-11">
@@ -18,9 +28,9 @@ export function About({ content }: { content: HomeContent }) {
             ))}
           </div>
 
-          {MUSIC_TRACK && (
+          {musicTrack && (
             <div className="mt-6">
-              <MusicPlayer track={MUSIC_TRACK} links={MUSIC_LINKS} />
+              <MusicPlayer track={musicTrack} links={musicLinks} />
             </div>
           )}
         </FadeIn>
@@ -47,27 +57,27 @@ export function About({ content }: { content: HomeContent }) {
         <h3 className="text-2xl font-medium tracking-[-0.017em]">{content.about.contactHeading}</h3>
         <div className="mt-4 flex flex-wrap items-center gap-x-6 gap-y-3 text-sm">
           <a
-            href={`tel:${SOCIAL_LINKS.phone.replace(/[^+\d]/g, "")}`}
+            href={`tel:${socialLinks.phone.replace(/[^+\d]/g, "")}`}
             className="flex items-center gap-2 transition-[opacity,transform] duration-150 hover:opacity-70 active:scale-[0.96] active:opacity-60"
           >
             <Call color="currentColor" size={20} variant="Linear" />
-            {SOCIAL_LINKS.phone}
+            {socialLinks.phone}
           </a>
           <a
-            href={`mailto:${SOCIAL_LINKS.email}`}
+            href={`mailto:${socialLinks.email}`}
             className="flex items-center gap-2 transition-[opacity,transform] duration-150 hover:opacity-70 active:scale-[0.96] active:opacity-60"
           >
             <Sms color="currentColor" size={20} variant="Linear" />
-            {SOCIAL_LINKS.email}
+            {socialLinks.email}
           </a>
           <a
-            href={SOCIAL_LINKS.telegram}
+            href={socialLinks.telegram}
             target="_blank"
             rel="noreferrer"
             className="flex items-center gap-2 transition-[opacity,transform] duration-150 hover:opacity-70 active:scale-[0.96] active:opacity-60"
           >
             <Send2 color="currentColor" size={20} variant="Linear" />
-            {SOCIAL_LINKS.telegramHandle}
+            {socialLinks.telegramHandle}
           </a>
         </div>
       </FadeIn>
