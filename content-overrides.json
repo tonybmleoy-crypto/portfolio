@@ -12,7 +12,7 @@
       }
     },
     "rentag": {
-      "available": true,
+      "available": false,
       "image": "/images/home/rentag-card.png",
       "tag": "Fintech",
       "timeline": "2026",
