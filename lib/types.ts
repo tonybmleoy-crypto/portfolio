@@ -21,6 +21,8 @@ export interface HomeContent {
   role: string;
   bio: string;
   ctaLabel: string;
+  /** Own products shown under the bio, with an external link each. */
+  products: { label: string; items: { name: string; tagline: string; badge: string; href: string }[] };
   sectionsNav: { projects: string; about: string };
   projects: ProjectCard[];
   viewCase: string;

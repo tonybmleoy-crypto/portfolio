@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { Link21 } from "iconsax-react";
 import { HomeContent } from "@/lib/types";
 import { SocialLinks } from "@/lib/content";
 import { FadeIn } from "./FadeIn";
@@ -34,7 +35,37 @@ export function Hero({ content, socialLinks }: { content: HomeContent; socialLin
         </FadeIn>
       </div>
 
-      <FadeIn delay={0.2} className="mt-10">
+      {content.products.items.length > 0 && (
+        <FadeIn delay={0.15} className="mt-6 max-w-[367px]">
+          <p className="text-sm font-medium">{content.products.label}</p>
+          <div className="mt-3 flex flex-col gap-3">
+            {content.products.items.map((product) => (
+              <a
+                key={product.name}
+                href={product.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group block rounded-3xl shadow-card transition-transform duration-150 hover:-translate-y-0.5 active:scale-[0.98]"
+              >
+                <Squircle radius={24} className="flex gap-2 bg-surface p-3">
+                  <Link21 aria-hidden color="currentColor" variant="Linear" size={24} className="shrink-0" />
+                  <div className="min-w-0 flex-1">
+                    <div className="flex items-center justify-between gap-3">
+                      <span className="text-2xl font-medium tracking-[-0.017em]">{product.name}</span>
+                      <span className="rounded-full bg-accent-green px-2 py-1 text-xs font-medium text-white">
+                        {product.badge}
+                      </span>
+                    </div>
+                    <p className="mt-1 leading-6 tracking-[-0.011em]">{product.tagline}</p>
+                  </div>
+                </Squircle>
+              </a>
+            ))}
+          </div>
+        </FadeIn>
+      )}
+
+      <FadeIn delay={0.2} className="mt-6">
         <MagneticButton label={content.ctaLabel} href={socialLinks.telegram} />
       </FadeIn>
     </section>

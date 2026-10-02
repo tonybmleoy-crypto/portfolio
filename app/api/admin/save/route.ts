@@ -33,6 +33,20 @@ function validate(body: unknown): body is ContentOverrides {
     }
   }
 
+  if (o.projectOrder !== undefined) {
+    if (!Array.isArray(o.projectOrder) || !o.projectOrder.every((s) => typeof s === "string" && VALID_SLUGS.has(s))) {
+      return false;
+    }
+  }
+
+  const products = (o.home as { products?: { items?: unknown } } | undefined)?.products;
+  if (products !== undefined) {
+    if (!Array.isArray(products.items)) return false;
+    for (const item of products.items) {
+      if (typeof item?.name !== "string" || !isSafeUrl(item?.href)) return false;
+    }
+  }
+
   if (o.social !== undefined) {
     const s = o.social as Record<string, unknown>;
     for (const key of ["telegram", "behance", "linkedin"]) {

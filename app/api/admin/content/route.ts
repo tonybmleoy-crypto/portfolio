@@ -11,17 +11,17 @@ export async function GET() {
   const ru = getDictionary("ru");
   const en = getDictionary("en");
 
-  const projects = dictionaries.ru.home.projects.map((base) => {
-    const ruProject = ru.home.projects.find((p) => p.slug === base.slug)!;
-    const enProject = en.home.projects.find((p) => p.slug === base.slug)!;
+  // ru.home.projects already carries the saved order.
+  const projects = ru.home.projects.map((ruProject) => {
+    const enProject = en.home.projects.find((p) => p.slug === ruProject.slug)!;
     return {
-      slug: base.slug,
+      slug: ruProject.slug,
       available: ruProject.available,
       image: ruProject.image,
       tag: ruProject.tag,
       timeline: ruProject.timeline ?? "",
       users: ruProject.users ?? "",
-      title: base.title,
+      title: ruProject.title,
       description: { ru: ruProject.description, en: enProject.description },
     };
   });
@@ -49,6 +49,15 @@ export async function GET() {
     home: {
       bio: { ru: ru.home.bio, en: en.home.bio },
       aboutBio: { ru: ru.home.about.bio.join("\n\n"), en: en.home.about.bio.join("\n\n") },
+      products: {
+        label: { ru: ru.home.products.label, en: en.home.products.label },
+        items: ru.home.products.items.map((item, i) => ({
+          name: item.name,
+          href: item.href,
+          tagline: { ru: item.tagline, en: en.home.products.items[i]?.tagline ?? "" },
+          badge: { ru: item.badge, en: en.home.products.items[i]?.badge ?? "" },
+        })),
+      },
     },
     social: getSocialLinks(),
     musicLinks: getMusicLinks(),

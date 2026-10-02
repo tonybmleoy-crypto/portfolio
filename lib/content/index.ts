@@ -40,12 +40,41 @@ function applyProjectOverrides(project: ProjectCard, locale: Locale): ProjectCar
   };
 }
 
+function sortByOrder(projects: ProjectCard[], order: string[] | undefined): ProjectCard[] {
+  if (!order?.length) return projects;
+  const rank = (slug: string) => {
+    const i = order.indexOf(slug);
+    return i === -1 ? order.length : i;
+  };
+  // Array.sort is stable, so slugs missing from the saved order keep their code order at the end.
+  return [...projects].sort((a, b) => rank(a.slug) - rank(b.slug));
+}
+
+function applyProductOverrides(products: HomeContent["products"], locale: Locale): HomeContent["products"] {
+  const o = readOverrides().home?.products;
+  if (!o) return products;
+  return {
+    label: o.label?.[locale] ?? products.label,
+    items: o.items.map((item) => ({
+      name: item.name,
+      href: item.href,
+      tagline: item.tagline[locale] ?? "",
+      badge: item.badge[locale] ?? "",
+    })),
+  };
+}
+
 function applyHomeOverrides(home: HomeContent, locale: Locale): HomeContent {
-  const o = readOverrides().home;
+  const overrides = readOverrides();
+  const o = overrides.home;
   return {
     ...home,
     bio: o?.bio?.[locale] ?? home.bio,
-    projects: home.projects.map((p) => applyProjectOverrides(p, locale)),
+    products: applyProductOverrides(home.products, locale),
+    projects: sortByOrder(
+      home.projects.map((p) => applyProjectOverrides(p, locale)),
+      overrides.projectOrder,
+    ),
     about: {
       ...home.about,
       bio: o?.aboutBio?.[locale] ? o.aboutBio[locale]!.split(/\n{2,}/).filter(Boolean) : home.about.bio,

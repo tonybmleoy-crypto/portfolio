@@ -24,10 +24,21 @@ interface CaseForm {
   subtitle: { ru: string; en: string };
 }
 
+interface ProductForm {
+  name: string;
+  href: string;
+  tagline: { ru: string; en: string };
+  badge: { ru: string; en: string };
+}
+
 interface FormState {
   projects: ProjectForm[];
   cases: CaseForm[];
-  home: { bio: { ru: string; en: string }; aboutBio: { ru: string; en: string } };
+  home: {
+    bio: { ru: string; en: string };
+    aboutBio: { ru: string; en: string };
+    products: { label: { ru: string; en: string }; items: ProductForm[] };
+  };
   social: { telegram: string; behance: string; linkedin: string; email: string; phone: string; cv: { ru: string; en: string } };
   musicLinks: { label: string; href: string }[];
   siteUrl: string | null;
@@ -102,6 +113,7 @@ export default function AdminPage() {
           },
         ]),
       ),
+      projectOrder: state.projects.map((p) => p.slug),
       home: state.home,
       social: state.social,
       musicLinks: state.musicLinks,
@@ -129,6 +141,34 @@ export default function AdminPage() {
     setState((s) => s && { ...s, projects: s.projects.map((p) => (p.slug === slug ? { ...p, ...patch } : p)) });
   }
 
+  function moveProject(slug: string, direction: -1 | 1) {
+    setState((s) => {
+      if (!s) return s;
+      const from = s.projects.findIndex((p) => p.slug === slug);
+      const to = from + direction;
+      if (from < 0 || to < 0 || to >= s.projects.length) return s;
+      const projects = [...s.projects];
+      [projects[from], projects[to]] = [projects[to], projects[from]];
+      return { ...s, projects };
+    });
+  }
+
+  function updateProduct(index: number, patch: Partial<ProductForm>) {
+    setState(
+      (s) =>
+        s && {
+          ...s,
+          home: {
+            ...s.home,
+            products: {
+              ...s.home.products,
+              items: s.home.products.items.map((item, i) => (i === index ? { ...item, ...patch } : item)),
+            },
+          },
+        },
+    );
+  }
+
   function updateCase(slug: string, patch: Partial<CaseForm>) {
     setState((s) => s && { ...s, cases: s.cases.map((c) => (c.slug === slug ? { ...c, ...patch } : c)) });
   }
@@ -149,11 +189,32 @@ export default function AdminPage() {
         {/* Projects on the homepage */}
         <section className={sectionClass}>
           <h2 className="text-lg font-medium">Проекты на главной</h2>
+          <p className="mt-1 text-sm text-muted">Стрелками меняется порядок карточек на сайте.</p>
           <div className="mt-4 flex flex-col gap-6">
-            {state.projects.map((p) => (
+            {state.projects.map((p, index) => (
               <div key={p.slug} className="rounded-xl border border-border p-4">
-                <div className="flex items-center justify-between">
-                  <h3 className="font-medium">{p.title}</h3>
+                <div className="flex items-center justify-between gap-3">
+                  <div className="flex items-center gap-2">
+                    <button
+                      type="button"
+                      aria-label="Поднять выше"
+                      disabled={index === 0}
+                      onClick={() => moveProject(p.slug, -1)}
+                      className="rounded-lg border border-border px-2 py-1 text-sm hover:bg-black/5 disabled:opacity-30"
+                    >
+                      ↑
+                    </button>
+                    <button
+                      type="button"
+                      aria-label="Опустить ниже"
+                      disabled={index === state.projects.length - 1}
+                      onClick={() => moveProject(p.slug, 1)}
+                      className="rounded-lg border border-border px-2 py-1 text-sm hover:bg-black/5 disabled:opacity-30"
+                    >
+                      ↓
+                    </button>
+                    <h3 className="font-medium">{p.title}</h3>
+                  </div>
                   <label className="flex items-center gap-2 text-sm">
                     <input
                       type="checkbox"
@@ -291,6 +352,112 @@ export default function AdminPage() {
                 </div>
               </div>
             ))}
+          </div>
+        </section>
+
+        {/* "My products" block under the bio */}
+        <section className={sectionClass}>
+          <h2 className="text-lg font-medium">Блок «Мои продукты» на главной</h2>
+          <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
+            {(["ru", "en"] as const).map((lang) => (
+              <div key={lang} className={fieldGroupClass}>
+                <label className={labelClass}>Подпись блока ({lang.toUpperCase()})</label>
+                <input
+                  className={inputClass}
+                  value={state.home.products.label[lang]}
+                  onChange={(e) =>
+                    setState(
+                      (s) =>
+                        s && {
+                          ...s,
+                          home: {
+                            ...s.home,
+                            products: { ...s.home.products, label: { ...s.home.products.label, [lang]: e.target.value } },
+                          },
+                        },
+                    )
+                  }
+                />
+              </div>
+            ))}
+          </div>
+          <div className="mt-4 flex flex-col gap-4">
+            {state.home.products.items.map((item, i) => (
+              <div key={i} className="rounded-xl border border-border p-4">
+                <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+                  <div className={fieldGroupClass}>
+                    <label className={labelClass}>Название</label>
+                    <input className={inputClass} value={item.name} onChange={(e) => updateProduct(i, { name: e.target.value })} />
+                  </div>
+                  <div className={fieldGroupClass}>
+                    <label className={labelClass}>Ссылка</label>
+                    <input className={inputClass} value={item.href} onChange={(e) => updateProduct(i, { href: e.target.value })} />
+                  </div>
+                  {(["ru", "en"] as const).map((lang) => (
+                    <div key={`tagline-${lang}`} className={fieldGroupClass}>
+                      <label className={labelClass}>Описание ({lang.toUpperCase()})</label>
+                      <input
+                        className={inputClass}
+                        value={item.tagline[lang]}
+                        onChange={(e) => updateProduct(i, { tagline: { ...item.tagline, [lang]: e.target.value } })}
+                      />
+                    </div>
+                  ))}
+                  {(["ru", "en"] as const).map((lang) => (
+                    <div key={`badge-${lang}`} className={fieldGroupClass}>
+                      <label className={labelClass}>Зелёный бейдж ({lang.toUpperCase()})</label>
+                      <input
+                        className={inputClass}
+                        value={item.badge[lang]}
+                        onChange={(e) => updateProduct(i, { badge: { ...item.badge, [lang]: e.target.value } })}
+                      />
+                    </div>
+                  ))}
+                </div>
+                <button
+                  type="button"
+                  onClick={() =>
+                    setState(
+                      (s) =>
+                        s && {
+                          ...s,
+                          home: {
+                            ...s.home,
+                            products: { ...s.home.products, items: s.home.products.items.filter((_, ii) => ii !== i) },
+                          },
+                        },
+                    )
+                  }
+                  className="mt-3 text-sm text-muted hover:text-foreground"
+                >
+                  Удалить продукт
+                </button>
+              </div>
+            ))}
+            <button
+              type="button"
+              onClick={() =>
+                setState(
+                  (s) =>
+                    s && {
+                      ...s,
+                      home: {
+                        ...s.home,
+                        products: {
+                          ...s.home.products,
+                          items: [
+                            ...s.home.products.items,
+                            { name: "", href: "https://", tagline: { ru: "", en: "" }, badge: { ru: "", en: "" } },
+                          ],
+                        },
+                      },
+                    },
+                )
+              }
+              className="w-fit text-sm text-accent-blue"
+            >
+              + добавить продукт
+            </button>
           </div>
         </section>
 

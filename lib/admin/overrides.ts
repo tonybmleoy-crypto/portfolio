@@ -34,7 +34,19 @@ export interface ContentOverrides {
     bio?: { ru?: string; en?: string };
     /** Paragraphs joined by a blank line. */
     aboutBio?: { ru?: string; en?: string };
+    /** The "My products" block under the bio. Replaces the whole list when present. */
+    products?: {
+      label?: { ru?: string; en?: string };
+      items: {
+        name: string;
+        href: string;
+        tagline: { ru?: string; en?: string };
+        badge: { ru?: string; en?: string };
+      }[];
+    };
   };
+  /** Slugs of the homepage project cards, in display order. */
+  projectOrder?: string[];
   social?: {
     telegram?: string;
     behance?: string;

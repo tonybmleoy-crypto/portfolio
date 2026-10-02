@@ -4,6 +4,17 @@ export const home: HomeContent = {
   role: "Product Designer",
   bio: "Продуктовый дизайнер с 4 годами опыта в fintech и e-commerce, сейчас — Team Lead UX/UI в Rentag. Проектирую цифровые продукты от исследования пользовательских проблем до запуска, связывая UX-решения с бизнес-метриками.",
   ctaLabel: "Обсудим?",
+  products: {
+    label: "Мои продукты",
+    items: [
+      {
+        name: "Linky",
+        tagline: "Your links, one keystroke away.",
+        badge: "Попробовать",
+        href: "https://linky-gold.vercel.app/",
+      },
+    ],
+  },
   sectionsNav: { projects: "Проекты", about: "Обо мне" },
   viewCase: "Перейти",
   timelineLabel: "Timeline",
