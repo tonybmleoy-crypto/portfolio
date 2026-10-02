@@ -42,16 +42,6 @@ export const home: HomeContent = {
       timeline: "2025",
     },
     {
-      slug: "vodokachka",
-      title: "VODOKACHKA",
-      tag: "Foodtech",
-      description: "0 → 1: разработка сервиса для заказа еды в баре",
-      image: "/images/home/vodokachka-card.png",
-      category: "product",
-      available: true,
-      timeline: "2025",
-    },
-    {
       slug: "linky",
       title: "Linky",
       tag: "Desktop app",
@@ -60,6 +50,16 @@ export const home: HomeContent = {
       category: "product",
       available: true,
       timeline: "2026",
+    },
+    {
+      slug: "vodokachka",
+      title: "VODOKACHKA",
+      tag: "Foodtech",
+      description: "0 → 1: разработка сервиса для заказа еды в баре",
+      image: "/images/home/vodokachka-card.png",
+      category: "product",
+      available: true,
+      timeline: "2025",
     },
   ],
   about: {
