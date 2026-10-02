@@ -24,6 +24,31 @@ function SectionView({ section }: { section: Section }) {
         </FadeIn>
       );
 
+    case "chapter":
+      return (
+        <FadeIn className="mt-10 sm:mt-14">
+          <h2 className="text-3xl font-medium tracking-[-0.021em] sm:text-4xl sm:tracking-[-0.028em]">
+            {section.title}
+          </h2>
+        </FadeIn>
+      );
+
+    case "facts":
+      return (
+        <FadeIn>
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {section.items.map((fact, i) => (
+              <div key={i} className="rounded-3xl shadow-card">
+                <Squircle radius={24} className="flex h-full flex-col gap-3 bg-surface px-6 py-5">
+                  <p className="text-sm text-muted">{fact.label}</p>
+                  <p className="text-lg font-medium leading-snug tracking-[-0.011em]">{fact.value}</p>
+                </Squircle>
+              </div>
+            ))}
+          </div>
+        </FadeIn>
+      );
+
     case "text":
       return (
         <FadeIn className="max-w-[640px]">
@@ -229,21 +254,25 @@ function SectionView({ section }: { section: Section }) {
             className={`grid grid-cols-1 items-start gap-4 sm:grid-cols-2 ${section.size === "sm" ? "mx-auto max-w-sm sm:max-w-md" : ""}`}
           >
             {section.images.map((img, i) => (
-              <Squircle
-                key={i}
-                radius={16}
-                className={`overflow-hidden ${section.equalHeight ? "flex aspect-square items-center justify-center bg-surface p-4" : ""}`}
-              >
-                <Image
-                  src={img.src}
-                  alt={img.alt}
-                  width={img.width}
-                  height={img.height}
-                  sizes={section.size === "sm" ? "(max-width: 640px) 50vw, 220px" : "(max-width: 640px) 100vw, 448px"}
-                  className={section.equalHeight ? "h-full w-full object-contain" : "h-auto w-full"}
-                  quality={90}
-                />
-              </Squircle>
+              <figure key={i}>
+                <Squircle
+                  radius={16}
+                  className={`overflow-hidden ${section.equalHeight ? "flex aspect-square items-center justify-center bg-surface p-4" : ""}`}
+                >
+                  <Image
+                    src={img.src}
+                    alt={img.alt}
+                    width={img.width}
+                    height={img.height}
+                    sizes={section.size === "sm" ? "(max-width: 640px) 50vw, 220px" : "(max-width: 640px) 100vw, 448px"}
+                    className={section.equalHeight ? "h-full w-full object-contain" : "h-auto w-full"}
+                    quality={90}
+                  />
+                </Squircle>
+                {img.caption && (
+                  <figcaption className="mt-1.5 text-center text-sm text-muted">{img.caption}</figcaption>
+                )}
+              </figure>
             ))}
           </div>
         </FadeIn>

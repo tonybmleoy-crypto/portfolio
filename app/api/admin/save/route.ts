@@ -4,7 +4,7 @@ import { commitFileToGitHub, isProductionHost } from "@/lib/admin/github";
 
 export const runtime = "nodejs";
 
-const VALID_SLUGS = new Set(["fintrack", "rentag", "7pr", "vodokachka"]);
+const VALID_SLUGS = new Set(["fintrack", "rentag", "7pr", "vodokachka", "linky"]);
 
 /** Rejects anything that isn't a same-origin path or an http(s) URL. */
 function isSafeUrl(value: unknown): value is string {

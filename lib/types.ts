@@ -39,6 +39,8 @@ export type TextParagraph = string | { text: string; muted?: boolean };
 
 export type Section =
   | { type: "lead"; body: string }
+  | { type: "chapter"; title: string }
+  | { type: "facts"; items: { label: string; value: string }[] }
   | { type: "text"; heading?: string; body: TextParagraph[] }
   | { type: "list"; heading?: string; intro?: string; items: string[] }
   | { type: "quote"; text: string; author?: string }
@@ -63,7 +65,7 @@ export type Section =
       size?: "sm";
       /** Fit every tile into one square box so mixed-aspect images line up. */
       equalHeight?: boolean;
-      images: { src: string; alt: string; width: number; height: number }[];
+      images: { src: string; alt: string; width: number; height: number; caption?: string }[];
     }
   | { type: "stats"; items: { value: string; label: string }[] }
   | { type: "highlight"; label?: string; body: string }

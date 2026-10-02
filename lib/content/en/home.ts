@@ -51,6 +51,16 @@ export const home: HomeContent = {
       available: true,
       timeline: "2025",
     },
+    {
+      slug: "linky",
+      title: "Linky",
+      tag: "Desktop app",
+      description: "Designed and shipped an app that pastes saved links with one shortcut",
+      image: "/images/home/linky-card-v2.png",
+      category: "product",
+      available: true,
+      timeline: "2026",
+    },
   ],
   about: {
     heading: "About me",

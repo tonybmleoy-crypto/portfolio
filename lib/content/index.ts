@@ -5,22 +5,24 @@ import { fintrack as fintrackRu } from "./ru/fintrack";
 import { rentag as rentagRu } from "./ru/rentag";
 import { sevenpr as sevenprRu } from "./ru/sevenpr";
 import { vodokachka as vodokachkaRu } from "./ru/vodokachka";
+import { linky as linkyRu } from "./ru/linky";
 import { home as homeEn } from "./en/home";
 import { fintrack as fintrackEn } from "./en/fintrack";
 import { rentag as rentagEn } from "./en/rentag";
 import { sevenpr as sevenprEn } from "./en/sevenpr";
 import { vodokachka as vodokachkaEn } from "./en/vodokachka";
+import { linky as linkyEn } from "./en/linky";
 
 export const dictionaries: Record<Locale, Dictionary> = {
   ru: {
     nav: { cv: "CV", behance: "Behance", linkedin: "LinkedIn", telegram: "Telegram", back: "Назад" },
     home: homeRu,
-    caseStudies: { fintrack: fintrackRu, rentag: rentagRu, "7pr": sevenprRu, vodokachka: vodokachkaRu },
+    caseStudies: { fintrack: fintrackRu, rentag: rentagRu, "7pr": sevenprRu, vodokachka: vodokachkaRu, linky: linkyRu },
   },
   en: {
     nav: { cv: "CV", behance: "Behance", linkedin: "LinkedIn", telegram: "Telegram", back: "Back" },
     home: homeEn,
-    caseStudies: { fintrack: fintrackEn, rentag: rentagEn, "7pr": sevenprEn, vodokachka: vodokachkaEn },
+    caseStudies: { fintrack: fintrackEn, rentag: rentagEn, "7pr": sevenprEn, vodokachka: vodokachkaEn, linky: linkyEn },
   },
 };
 

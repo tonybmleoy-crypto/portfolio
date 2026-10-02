@@ -51,6 +51,16 @@ export const home: HomeContent = {
       available: true,
       timeline: "2025",
     },
+    {
+      slug: "linky",
+      title: "Linky",
+      tag: "Desktop app",
+      description: "Спроектировал и выпустил приложение для вставки ссылок одним сочетанием клавиш",
+      image: "/images/home/linky-card-v2.png",
+      category: "product",
+      available: true,
+      timeline: "2026",
+    },
   ],
   about: {
     heading: "Обо мне",
