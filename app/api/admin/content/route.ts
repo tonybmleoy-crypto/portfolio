@@ -8,8 +8,8 @@ export const runtime = "nodejs";
  * overrides and split out by locale where the two differ.
  */
 export async function GET() {
-  const ru = getDictionary("ru");
-  const en = getDictionary("en");
+  const ru = getDictionary("ru", { typography: false });
+  const en = getDictionary("en", { typography: false });
 
   // ru.home.projects already carries the saved order.
   const projects = ru.home.projects.map((ruProject) => {
@@ -31,7 +31,7 @@ export async function GET() {
     const enCase = en.caseStudies[slug];
     return {
       slug,
-      title: ruCase.title,
+      title: { ru: ruCase.title, en: enCase.title },
       coverImage: ruCase.coverImage,
       coverWidth: ruCase.coverWidth ?? null,
       coverHeight: ruCase.coverHeight ?? null,

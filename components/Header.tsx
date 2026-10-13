@@ -99,7 +99,7 @@ export function Header({
                 <button
                   aria-label="Menu"
                   onClick={() => setOpen((v) => !v)}
-                  className="flex h-8 w-8 shrink-0 items-center justify-center transition-transform duration-150 active:scale-90"
+                  className="hit-area flex h-8 w-8 shrink-0 items-center justify-center transition-transform duration-150 active:scale-90"
                 >
                   <span className="relative block h-3.5 w-4">
                     <motion.span

@@ -47,7 +47,9 @@
   },
   "cases": {
     "fintrack": {
-      "title": "Редизайн ключевых экранов для приложения FinTrack",
+      "title": {
+        "ru": "Редизайн ключевых экранов для приложения FinTrack"
+      },
       "coverImage": "/images/fintrack/hero-promo.gif",
       "coverWidth": 1005,
       "coverHeight": 2037,
@@ -57,7 +59,9 @@
       }
     },
     "rentag": {
-      "title": "Rentag — Безопасная сделка для строительного рынка",
+      "title": {
+        "ru": "Rentag — Безопасная сделка для строительного рынка"
+      },
       "coverImage": "/images/rentag/cover.png",
       "coverWidth": 1400,
       "coverHeight": 1129,
@@ -67,7 +71,9 @@
       }
     },
     "7pr": {
-      "title": "Создание ключевых флоу и поддержка дизайн-системы в 7 PRUDOV DEV",
+      "title": {
+        "ru": "Создание ключевых флоу и поддержка дизайн-системы в 7 PRUDOV DEV"
+      },
       "coverImage": "/images/7pr/hero-v3.png",
       "coverWidth": 3840,
       "coverHeight": 2266,
@@ -77,7 +83,9 @@
       }
     },
     "vodokachka": {
-      "title": "VODOKACHKA",
+      "title": {
+        "ru": "VODOKACHKA"
+      },
       "coverImage": "/images/vodokachka/cover.png",
       "coverWidth": 1040,
       "coverHeight": 2072,

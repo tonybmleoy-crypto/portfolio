@@ -21,7 +21,7 @@ export function GlassCTA({
       target="_blank"
       rel="noreferrer"
       whileTap={{ scale: 0.96, transition: { type: "spring", bounce: 0, duration: 0.15 } }}
-      className={`cta-pill inline-flex shrink-0 items-center justify-center whitespace-nowrap rounded-full text-sm font-medium tracking-[0.01em] ${padding} ${className ?? ""}`}
+      className={`hit-area cta-pill inline-flex shrink-0 items-center justify-center whitespace-nowrap rounded-full text-sm font-medium tracking-[0.01em] ${padding} ${className ?? ""}`}
     >
       {label}
     </motion.a>

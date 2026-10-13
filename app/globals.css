@@ -10,6 +10,9 @@
   --accent-blue: #0c80ff;
   --accent-blue-tint: #eff6ff;
   --accent-green: #34c759;
+  /* Green used for text and for badges with a label: #34c759 is only 2.2:1 on white. */
+  --accent-green-strong: #1b7f37;
+  --on-accent-green: #ffffff;
 
   /* Liquid glass chrome (nav, footer, floating buttons) */
   --glass-outer-bg: linear-gradient(
@@ -84,6 +87,8 @@
   --accent-blue: #0a84ff;
   --accent-blue-tint: rgba(10, 132, 255, 0.14);
   --accent-green: #30d158;
+  --accent-green-strong: #30d158;
+  --on-accent-green: #04210e;
 
   --glass-outer-bg: linear-gradient(
     180deg,
@@ -175,6 +180,13 @@ body {
   transition: color 150ms, background-color 150ms, box-shadow 150ms, transform 150ms;
 }
 
+/* Touch layouts (the dropdown menu) get 44px-tall rows. */
+@media (max-width: 1023px) {
+  .nav-link {
+    padding-block: 0.75rem;
+  }
+}
+
 .nav-link:hover {
   color: var(--nav-link-hover);
   background-color: var(--nav-link-hover-bg);
@@ -212,6 +224,51 @@ body {
   background: var(--hero-bg-hover);
   color: var(--hero-fg-hover);
   box-shadow: var(--hero-shadow-hover);
+}
+
+/*
+ * Reading measure: 50-75 characters a line. Cyrillic letters are wider than
+ * Latin ones in this typeface, so Russian gets a wider column than English
+ * to land in the same range (about 62 characters either way).
+ */
+:root {
+  --measure: 34rem;
+}
+
+:root:lang(en) {
+  --measure: 30rem;
+}
+
+/* No one-word last lines in running text, and balanced short headings. */
+p,
+li,
+td,
+figcaption,
+blockquote {
+  text-wrap: pretty;
+}
+
+h1,
+h2,
+h3 {
+  text-wrap: balance;
+}
+
+/* Grows the tap area to 44px+ without changing how the control looks. */
+.hit-area {
+  position: relative;
+}
+
+.hit-area::after {
+  content: "";
+  position: absolute;
+  inset: -6px;
+}
+
+/* One visible keyboard-focus ring for every link and button. */
+:focus-visible {
+  outline: 2px solid var(--accent-blue);
+  outline-offset: 3px;
 }
 
 @media (prefers-reduced-motion: reduce) {

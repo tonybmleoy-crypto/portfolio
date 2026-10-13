@@ -23,7 +23,8 @@ export interface ContentOverrides {
   cases?: Record<
     string,
     {
-      title?: string;
+      /** A plain string is the pre-localised format: it only ever held the Russian title. */
+      title?: string | { ru?: string; en?: string };
       coverImage?: string;
       coverWidth?: number;
       coverHeight?: number;

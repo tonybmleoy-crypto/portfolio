@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getDictionary, getSocialLinks } from "@/lib/content";
 import { Header } from "@/components/Header";
@@ -6,6 +7,16 @@ import { Footer } from "@/components/Footer";
 
 export function generateStaticParams() {
   return Object.keys(getDictionary("ru").caseStudies).map((slug) => ({ slug }));
+}
+
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params;
+  const caseStudy = getDictionary("ru").caseStudies[slug];
+  if (!caseStudy) return {};
+  return {
+    title: `${caseStudy.title} — Anton Lopatin`,
+    description: caseStudy.subtitle,
+  };
 }
 
 export default async function WorkPage({

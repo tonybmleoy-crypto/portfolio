@@ -32,6 +32,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     >
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+        {/* English pages share this root layout, so switch <html lang> before first paint. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `if(location.pathname==="/en"||location.pathname.indexOf("/en/")===0){document.documentElement.lang="en"}`,
+          }}
+        />
       </head>
       <body className="min-h-full flex flex-col overflow-x-hidden bg-background text-foreground">
         <PostHogProvider />

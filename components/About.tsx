@@ -22,7 +22,7 @@ export function About({
       <div className="grid grid-cols-1 gap-10 sm:grid-cols-[1fr_320px] sm:gap-11">
         <FadeIn>
           <h2 className="text-2xl font-medium tracking-[-0.017em]">{content.about.heading}</h2>
-          <div className="mt-4 space-y-4 leading-relaxed text-foreground/90">
+          <div className="mt-4 max-w-[var(--measure)] space-y-4 leading-relaxed text-foreground/90">
             {content.about.bio.map((p, i) => (
               <p key={i}>{p}</p>
             ))}

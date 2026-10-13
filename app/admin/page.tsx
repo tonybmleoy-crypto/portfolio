@@ -17,7 +17,7 @@ interface ProjectForm {
 
 interface CaseForm {
   slug: string;
-  title: string;
+  title: { ru: string; en: string };
   coverImage: string;
   coverWidth: number | null;
   coverHeight: number | null;
@@ -300,11 +300,23 @@ export default function AdminPage() {
           <div className="mt-4 flex flex-col gap-6">
             {state.cases.map((c) => (
               <div key={c.slug} className="rounded-xl border border-border p-4">
-                <h3 className="font-medium">{c.title}</h3>
+                <h3 className="font-medium">{c.title.ru}</h3>
                 <div className="mt-3 grid grid-cols-1 gap-3 sm:grid-cols-2">
                   <div className={fieldGroupClass}>
-                    <label className={labelClass}>Заголовок</label>
-                    <input className={inputClass} value={c.title} onChange={(e) => updateCase(c.slug, { title: e.target.value })} />
+                    <label className={labelClass}>Заголовок (RU)</label>
+                    <input
+                      className={inputClass}
+                      value={c.title.ru}
+                      onChange={(e) => updateCase(c.slug, { title: { ...c.title, ru: e.target.value } })}
+                    />
+                  </div>
+                  <div className={fieldGroupClass}>
+                    <label className={labelClass}>Заголовок (EN)</label>
+                    <input
+                      className={inputClass}
+                      value={c.title.en}
+                      onChange={(e) => updateCase(c.slug, { title: { ...c.title, en: e.target.value } })}
+                    />
                   </div>
                   <div className={fieldGroupClass}>
                     <label className={labelClass}>Обложка</label>

@@ -62,7 +62,7 @@ export function MagneticButton({
           onTapCancel={() => setClicked(false)}
           animate={{ scale: clicked ? 0.93 : hovered ? 1.04 : 1 }}
           transition={{ type: "spring", bounce: 0, duration: clicked ? 0.15 : 0.3 }}
-          className="hero-pill inline-flex cursor-pointer items-center gap-2 whitespace-nowrap rounded-full px-8 py-3.5 text-base font-medium outline-none"
+          className="hero-pill inline-flex cursor-pointer items-center gap-2 whitespace-nowrap rounded-full px-8 py-3.5 text-base font-medium"
         >
           <motion.span style={{ x: innerX, y: innerY }} className="inline-flex items-center gap-2">
             {label}

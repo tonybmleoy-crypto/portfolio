@@ -1,5 +1,6 @@
 import { CaseStudy, Dictionary, HomeContent, Locale, ProjectCard } from "@/lib/types";
 import { readOverrides } from "@/lib/admin/overrides";
+import { typographTree } from "@/lib/typography";
 import { home as homeRu } from "./ru/home";
 import { fintrack as fintrackRu } from "./ru/fintrack";
 import { rentag as rentagRu } from "./ru/rentag";
@@ -87,7 +88,7 @@ function applyCaseStudyOverrides(caseStudy: CaseStudy, locale: Locale): CaseStud
   if (!o) return caseStudy;
   return {
     ...caseStudy,
-    title: o.title ?? caseStudy.title,
+    title: (typeof o.title === "string" ? (locale === "ru" ? o.title : undefined) : o.title?.[locale]) ?? caseStudy.title,
     coverImage: o.coverImage ?? caseStudy.coverImage,
     coverWidth: o.coverWidth ?? caseStudy.coverWidth,
     coverHeight: o.coverHeight ?? caseStudy.coverHeight,
@@ -95,15 +96,20 @@ function applyCaseStudyOverrides(caseStudy: CaseStudy, locale: Locale): CaseStud
   };
 }
 
-export function getDictionary(locale: Locale): Dictionary {
+/**
+ * Pass `{ typography: false }` for the admin panel: its text boxes must hold
+ * the plain strings, not the ones with non-breaking spaces swapped in.
+ */
+export function getDictionary(locale: Locale, { typography = true }: { typography?: boolean } = {}): Dictionary {
   const base = dictionaries[locale];
-  return {
+  const dictionary: Dictionary = {
     ...base,
     home: applyHomeOverrides(base.home, locale),
     caseStudies: Object.fromEntries(
       Object.entries(base.caseStudies).map(([slug, cs]) => [slug, applyCaseStudyOverrides(cs, locale)]),
     ),
   };
+  return typography ? typographTree(dictionary, locale) : dictionary;
 }
 
 export interface Track {

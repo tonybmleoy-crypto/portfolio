@@ -89,7 +89,7 @@ export function ThemeToggle({ className }: { className?: string }) {
       onClick={toggle}
       aria-label={dark ? "Switch to light theme" : "Switch to dark theme"}
       aria-pressed={dark}
-      className={`flex shrink-0 items-center justify-center text-[color:var(--nav-link)] transition-[color,background-color,transform] duration-150 hover:bg-[color:var(--nav-link-hover-bg)] hover:text-[color:var(--nav-link-hover)] active:scale-[0.92] ${className ?? "h-9 w-9 rounded-full"}`}
+      className={`hit-area flex shrink-0 items-center justify-center text-[color:var(--nav-link)] transition-[color,background-color,transform] duration-150 hover:bg-[color:var(--nav-link-hover-bg)] hover:text-[color:var(--nav-link-hover)] active:scale-[0.92] ${className ?? "h-9 w-9 rounded-full"}`}
     >
       {/* Render nothing until mounted so SSR markup matches the stored choice. */}
       {ready &&

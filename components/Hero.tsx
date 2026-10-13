@@ -15,7 +15,7 @@ export function Hero({ content, socialLinks }: { content: HomeContent; socialLin
             Anton Lopatin
             <span className="text-xl text-muted sm:text-2xl">{content.role}</span>
           </h1>
-          <p className="mt-4 leading-relaxed text-foreground/90">{content.bio}</p>
+          <p className="mt-4 max-w-[var(--measure)] leading-relaxed text-foreground/90">{content.bio}</p>
         </FadeIn>
 
         <FadeIn delay={0.1} className="w-40 shrink-0 sm:w-56">
@@ -52,7 +52,7 @@ export function Hero({ content, socialLinks }: { content: HomeContent; socialLin
                   <div className="min-w-0 flex-1">
                     <div className="flex items-center justify-between gap-3">
                       <span className="text-2xl font-medium tracking-[-0.017em]">{product.name}</span>
-                      <span className="rounded-full bg-accent-green px-2 py-1 text-xs font-medium text-white">
+                      <span className="rounded-full bg-[color:var(--accent-green-strong)] px-2 py-1 text-xs font-medium text-[color:var(--on-accent-green)]">
                         {product.badge}
                       </span>
                     </div>

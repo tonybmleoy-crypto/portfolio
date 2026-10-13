@@ -1,3 +1,4 @@
+import { ReactNode } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft2, LampOn, Star } from "iconsax-react";
@@ -15,7 +16,13 @@ function Paragraph({ p }: { p: TextParagraph }) {
   return <p className={muted ? "text-muted" : ""}>{text}</p>;
 }
 
-function SectionView({ section }: { section: Section }) {
+/** Section titles drop to h3 when the case is split into chapters (h2), so the outline stays a tree. */
+function Heading({ nested, children }: { nested: boolean; children: ReactNode }) {
+  const Tag = nested ? "h3" : "h2";
+  return <Tag className="mb-3 text-2xl font-medium tracking-[-0.017em]">{children}</Tag>;
+}
+
+function SectionView({ section, nested }: { section: Section; nested: boolean }) {
   switch (section.type) {
     case "lead":
       return (
@@ -51,9 +58,9 @@ function SectionView({ section }: { section: Section }) {
 
     case "text":
       return (
-        <FadeIn className="max-w-[640px]">
+        <FadeIn className="max-w-[var(--measure)]">
           {section.heading && (
-            <h2 className="mb-3 text-2xl font-medium tracking-[-0.017em]">{section.heading}</h2>
+            <Heading nested={nested}>{section.heading}</Heading>
           )}
           <div className="space-y-3 text-foreground leading-relaxed">
             {section.body.map((p, i) => (
@@ -65,9 +72,9 @@ function SectionView({ section }: { section: Section }) {
 
     case "list":
       return (
-        <FadeIn className="max-w-[640px]">
+        <FadeIn className="max-w-[calc(var(--measure)+1.25rem)]">
           {section.heading && (
-            <h2 className="mb-3 text-2xl font-medium tracking-[-0.017em]">{section.heading}</h2>
+            <Heading nested={nested}>{section.heading}</Heading>
           )}
           {section.intro && (
             <p className="mb-3 leading-relaxed text-foreground">{section.intro}</p>
@@ -84,7 +91,7 @@ function SectionView({ section }: { section: Section }) {
       return (
         <FadeIn>
           {section.heading && (
-            <h2 className="mb-3 text-2xl font-medium tracking-[-0.017em]">{section.heading}</h2>
+            <Heading nested={nested}>{section.heading}</Heading>
           )}
           <div className="rounded-2xl shadow-card">
             <Squircle radius={16} className="overflow-hidden">
@@ -119,7 +126,7 @@ function SectionView({ section }: { section: Section }) {
 
     case "insight":
       return (
-        <FadeIn className="max-w-[640px]">
+        <FadeIn className="max-w-[calc(var(--measure)+4.5rem)]">
           <div className="rounded-2xl shadow-card">
             <Squircle radius={16} className="flex gap-3 border-l-4 border-accent-green px-6 py-5">
               <Star aria-hidden color="currentColor" variant="Linear" size={20} className="mt-0.5 shrink-0" />
@@ -134,10 +141,10 @@ function SectionView({ section }: { section: Section }) {
 
     case "tips":
       return (
-        <FadeIn className="max-w-[640px]">
+        <FadeIn className="max-w-[calc(var(--measure)+3rem)]">
           <Squircle radius={16} className="border-l-4 border-accent-blue bg-accent-blue-tint px-6 py-5">
             <p className="font-medium">{section.heading}</p>
-            <ul className="mt-2 space-y-1 text-sm text-foreground/80">
+            <ul className="mt-2 space-y-1 text-[15px] text-foreground/80">
               {section.items.map((item, i) => (
                 <li key={i}>• {item}</li>
               ))}
@@ -148,7 +155,7 @@ function SectionView({ section }: { section: Section }) {
 
     case "quote":
       return (
-        <FadeIn className="max-w-[640px] border-l-2 border-foreground pl-6">
+        <FadeIn className="max-w-[var(--measure)] border-l-2 border-foreground pl-6">
           <p className="text-lg italic leading-relaxed">&ldquo;{section.text}&rdquo;</p>
           {section.author && (
             <p className="mt-3 text-sm text-muted">{section.author}</p>
@@ -158,7 +165,7 @@ function SectionView({ section }: { section: Section }) {
 
     case "highlight":
       return (
-        <FadeIn className="max-w-[640px]">
+        <FadeIn className="max-w-[calc(var(--measure)+4rem)]">
           <div className="rounded-2xl shadow-card">
             <Squircle radius={16} className="flex gap-3 bg-surface p-5">
               <LampOn aria-hidden color="currentColor" variant="Linear" size={20} className="mt-0.5 shrink-0" />
@@ -179,19 +186,21 @@ function SectionView({ section }: { section: Section }) {
 
     case "numbered":
       if (section.style === "cards") {
-        const cols = section.items.length >= 4 ? "sm:grid-cols-4" : "sm:grid-cols-3";
         return (
           <FadeIn>
-            {section.heading && (
-              <h2 className="mb-3 text-2xl font-medium tracking-[-0.017em]">{section.heading}</h2>
-            )}
+            {section.heading && <Heading nested={nested}>{section.heading}</Heading>}
             <div className="rounded-3xl shadow-card">
-              <Squircle radius={24} className={`grid grid-cols-1 gap-8 bg-surface p-6 sm:gap-6 sm:p-8 ${cols}`}>
+              <Squircle radius={24} className="bg-surface px-6 sm:px-8">
                 {section.items.map((item) => (
-                  <div key={item.number}>
-                    <span className="text-sm font-medium text-muted">{item.number}</span>
-                    <h3 className="mt-2 font-medium">{item.title}</h3>
-                    <p className="mt-1.5 text-muted leading-relaxed">{item.body}</p>
+                  <div
+                    key={item.number}
+                    className="flex flex-col gap-2 border-b border-border py-6 last:border-b-0 sm:flex-row sm:gap-8"
+                  >
+                    <span className="w-10 shrink-0 text-sm font-medium text-muted">{item.number}</span>
+                    <div className="max-w-[var(--measure)]">
+                      <h3 className="font-medium">{item.title}</h3>
+                      <p className="mt-1.5 text-muted leading-relaxed">{item.body}</p>
+                    </div>
                   </div>
                 ))}
               </Squircle>
@@ -200,9 +209,9 @@ function SectionView({ section }: { section: Section }) {
         );
       }
       return (
-        <FadeIn className="max-w-[640px]">
+        <FadeIn className="max-w-[var(--measure)]">
           {section.heading && (
-            <h2 className="mb-3 text-2xl font-medium tracking-[-0.017em]">{section.heading}</h2>
+            <Heading nested={nested}>{section.heading}</Heading>
           )}
           <div className="space-y-5">
             {section.items.map((item) => (
@@ -308,7 +317,7 @@ function SectionView({ section }: { section: Section }) {
                   radius={16}
                   className="flex flex-col items-center justify-center gap-2 bg-surface px-4 py-6 text-center"
                 >
-                  <p className="text-3xl font-medium tracking-[-0.021em] text-accent-green sm:text-4xl sm:tracking-[-0.025em]">
+                  <p className="text-3xl font-medium tracking-[-0.021em] text-[color:var(--accent-green-strong)] sm:text-4xl sm:tracking-[-0.025em]">
                     {stat.value}
                   </p>
                   <p className="text-sm leading-snug">{stat.label}</p>
@@ -336,13 +345,14 @@ export function CaseStudyView({
   const [firstSection, ...restSections] = caseStudy.sections;
   const leadSection = firstSection?.type === "lead" ? firstSection : null;
   const remainingSections = leadSection ? restSections : caseStudy.sections;
+  const hasChapters = caseStudy.sections.some((s) => s.type === "chapter");
 
   return (
     <article className="mx-auto max-w-5xl px-6 pt-28 pb-20 sm:px-10 sm:pt-36">
       <FadeIn>
         <Link
           href={homeHref(locale)}
-          className="inline-flex w-min items-center justify-center gap-1 whitespace-nowrap rounded-[28px] bg-[color:var(--float-bg)] px-4 py-2 text-sm text-foreground shadow-[var(--float-inset)] backdrop-blur-md backdrop-saturate-150 transition-[background-color,transform] duration-150 hover:bg-[color:var(--float-bg-hover)] active:scale-[0.96] active:bg-[color:var(--float-bg-hover)]"
+          className="hit-area inline-flex w-min items-center justify-center gap-1 whitespace-nowrap rounded-[28px] bg-[color:var(--float-bg)] px-4 py-2 text-sm text-foreground shadow-[var(--float-inset)] backdrop-blur-md backdrop-saturate-150 transition-[background-color,transform] duration-150 hover:bg-[color:var(--float-bg-hover)] active:scale-[0.96] active:bg-[color:var(--float-bg-hover)]"
         >
           <ArrowLeft2 color="currentColor" size={16} variant="Linear" />
           {dict.nav.back}
@@ -359,7 +369,7 @@ export function CaseStudyView({
             </FadeIn>
             {caseStudy.subtitle && (
               <FadeIn delay={0.1} className="mt-5">
-                <p className="text-lg text-muted leading-relaxed">{caseStudy.subtitle}</p>
+                <p className="text-base text-muted leading-relaxed">{caseStudy.subtitle}</p>
               </FadeIn>
             )}
             {leadSection && (
@@ -389,12 +399,12 @@ export function CaseStudyView({
         </FadeIn>
         {caseStudy.subtitle && (
           <FadeIn delay={0.1} className="mt-5">
-            <p className="max-w-[640px] text-lg text-muted leading-relaxed">{caseStudy.subtitle}</p>
+            <p className="max-w-[var(--measure)] text-lg text-muted leading-relaxed">{caseStudy.subtitle}</p>
           </FadeIn>
         )}
         {leadSection && (
           <FadeIn delay={0.15} className="mt-5">
-            <p className="max-w-[640px] leading-relaxed text-foreground/90">{leadSection.body}</p>
+            <p className="max-w-[var(--measure)] leading-relaxed text-foreground/90">{leadSection.body}</p>
           </FadeIn>
         )}
       </div>
@@ -447,7 +457,7 @@ export function CaseStudyView({
 
       <div className="mt-10 flex flex-col gap-8">
         {remainingSections.map((section, i) => (
-          <SectionView key={i} section={section} />
+          <SectionView key={i} section={section} nested={hasChapters} />
         ))}
       </div>
 

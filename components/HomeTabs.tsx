@@ -38,7 +38,7 @@ export function HomeTabs({
             <button
               key={t.key}
               onClick={() => setTab(t.key)}
-              className={`relative rounded-full px-4 py-2 text-sm transition-colors ${
+              className={`hit-area relative rounded-full px-4 py-2 text-sm transition-colors ${
                 tab === t.key ? "text-background" : "hover:bg-[color:var(--fill-quiet)]"
               }`}
             >
