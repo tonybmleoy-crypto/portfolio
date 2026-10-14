@@ -7,10 +7,11 @@ import { Moon, Sun1 } from "iconsax-react";
 export const THEME_STORAGE_KEY = "theme";
 
 /**
- * Runs before first paint (injected into <head>) so a visitor who picked dark
- * never sees a light flash. Kept in sync with the toggle below.
+ * Runs before first paint (injected into <head>) so the page never flashes the
+ * wrong theme. Dark is the default; only a visitor who explicitly picked light
+ * (stored by the toggle below) gets the light theme.
  */
-export const themeInitScript = `(function(){try{if(localStorage.getItem("${THEME_STORAGE_KEY}")==="dark"){document.documentElement.setAttribute("data-theme","dark")}}catch(e){}})()`;
+export const themeInitScript = `(function(){var r=document.documentElement;try{if(localStorage.getItem("${THEME_STORAGE_KEY}")!=="light"){r.setAttribute("data-theme","dark")}}catch(e){r.setAttribute("data-theme","dark")}})()`;
 
 function applyThemeAttribute(dark: boolean) {
   const root = document.documentElement;

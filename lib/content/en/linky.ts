@@ -15,7 +15,7 @@ export const linky: CaseStudy = {
       type: "text",
       body: [
         "Linky lives in the tray and opens a quick menu next to your cursor on Ctrl + Alt + V. The menu holds the links and texts you send every day: a portfolio, a calendar for calls, payment details, reply templates. You pick an entry and Linky pastes it into the field where you were typing.",
-        "I built the project alone: research, UX, visual design, the design system in Figma, the app code, the landing page and the releases.",
+        "I built the project alone: research, UX, visual design, a UI kit in Figma, the app code, the landing page and the releases.",
       ],
     },
     {
@@ -161,16 +161,16 @@ export const linky: CaseStudy = {
     },
     {
       type: "text",
-      heading: "Design system",
+      heading: "UI kit",
       body: [
-        "I set up colors, spacing, radii and fonts as Figma variables with light and dark modes. The CSS variables in the code have the same names, so a token moves from Figma into the app without translation. From 11 base components I built 7 composite ones and the quick menu itself.",
+        "I made a UI kit for development: colors, spacing, radii and fonts live as Figma variables with light and dark modes, and the components that the interface is built from sit on top of them. The CSS variables in the code have the same names, so a value moves from Figma into the app without translation. From 11 base components I built 7 composite ones and the quick menu itself.",
       ],
     },
     {
       type: "image",
       src: "/images/linky/designsys.png",
-      alt: "The Linky design system: colors, typography and components",
-      caption: "Tokens with light and dark modes, the Nunito Sans typeface and a component library",
+      alt: "The Linky UI kit: colors, typography and components",
+      caption: "Variables with light and dark modes, the Nunito Sans typeface and a set of components",
       flush: true,
       shadow: true,
       width: 2400,
@@ -280,7 +280,7 @@ export const linky: CaseStudy = {
       items: [
         { value: "2", label: "platforms: Windows and macOS" },
         { value: "2", label: "GitHub releases: 0.1.0 and 0.2.0" },
-        { value: "40", label: "components and icons in the design system" },
+        { value: "40", label: "components and icons in the UI kit" },
         { value: "13 s", label: "demo video rendered from code" },
       ],
     },
