@@ -1,14 +1,14 @@
 {
   "projects": {
-    "fintrack": {
+    "linky": {
       "available": true,
-      "image": "/images/home/fintrack-card-v2.png",
-      "tag": "Fintech",
-      "timeline": "2025",
-      "users": "144k",
+      "image": "/images/home/linky-card-v2.png",
+      "tag": "Desktop app",
+      "timeline": "2026",
+      "users": "",
       "description": {
-        "ru": "Разработка дизайна iOS-приложения",
-        "en": "Development of iOS application design"
+        "ru": "Спроектировал и выпустил приложение для вставки ссылок одним сочетанием клавиш",
+        "en": "Designed and shipped an app that pastes saved links with one shortcut"
       }
     },
     "rentag": {
@@ -20,6 +20,17 @@
       "description": {
         "ru": "Спроектировал escrow-механику для B2B строительного маркетплейса",
         "en": "Designed escrow mechanics for a B2B construction marketplace"
+      }
+    },
+    "fintrack": {
+      "available": true,
+      "image": "/images/home/fintrack-card-v2.png",
+      "tag": "Fintech",
+      "timeline": "2025",
+      "users": "144k",
+      "description": {
+        "ru": "Разработка дизайна iOS-приложения",
+        "en": "Development of iOS application design"
       }
     },
     "7pr": {
@@ -34,7 +45,7 @@
       }
     },
     "vodokachka": {
-      "available": true,
+      "available": false,
       "image": "/images/home/vodokachka-card.png",
       "tag": "Foodtech",
       "timeline": "2025",
@@ -48,7 +59,8 @@
   "cases": {
     "fintrack": {
       "title": {
-        "ru": "Редизайн ключевых экранов для приложения FinTrack"
+        "ru": "Редизайн ключевых экранов для приложения FinTrack",
+        "en": "Redesigning the key screens of the FinTrack app"
       },
       "coverImage": "/images/fintrack/hero-promo.gif",
       "coverWidth": 1005,
@@ -60,7 +72,8 @@
     },
     "rentag": {
       "title": {
-        "ru": "Rentag — Безопасная сделка для строительного рынка"
+        "ru": "Rentag — Безопасная сделка для строительного рынка",
+        "en": "Rentag — A safe deal for the construction market"
       },
       "coverImage": "/images/rentag/cover.png",
       "coverWidth": 1400,
@@ -72,7 +85,8 @@
     },
     "7pr": {
       "title": {
-        "ru": "Создание ключевых флоу и поддержка дизайн-системы в 7 PRUDOV DEV"
+        "ru": "Создание ключевых флоу и поддержка дизайн-системы в 7 PRUDOV DEV",
+        "en": "Building key flows and maintaining the design system at 7 PRUDOV DEV"
       },
       "coverImage": "/images/7pr/hero-v3.png",
       "coverWidth": 3840,
@@ -84,7 +98,8 @@
     },
     "vodokachka": {
       "title": {
-        "ru": "VODOKACHKA"
+        "ru": "VODOKACHKA",
+        "en": "VODOKACHKA"
       },
       "coverImage": "/images/vodokachka/cover.png",
       "coverWidth": 1040,
@@ -93,8 +108,28 @@
         "ru": "0 → 1: разработка сервиса для заказа еды в баре",
         "en": "0 → 1: building a food ordering service for a bar"
       }
+    },
+    "linky": {
+      "title": {
+        "ru": "Linky: ссылки под рукой в любом поле ввода",
+        "en": "Linky: your links, one keystroke away in any text field"
+      },
+      "coverImage": "/images/linky/cover.jpg",
+      "coverWidth": 2400,
+      "coverHeight": 1500,
+      "subtitle": {
+        "ru": "Как я спроектировал и выпустил десктопное приложение для Windows и macOS, которое вставляет сохранённые ссылки одним сочетанием клавиш",
+        "en": "How I designed and shipped a desktop app for Windows and macOS that pastes saved links with a single shortcut"
+      }
     }
   },
+  "projectOrder": [
+    "linky",
+    "rentag",
+    "fintrack",
+    "7pr",
+    "vodokachka"
+  ],
   "home": {
     "bio": {
       "ru": "Продуктовый дизайнер с 4 годами опыта в fintech и e-commerce, сейчас — Team Lead UX/UI в Rentag. Проектирую цифровые продукты от исследования пользовательских проблем до запуска, связывая UX-решения с бизнес-метриками.",
@@ -103,6 +138,26 @@
     "aboutBio": {
       "ru": "Я занимаюсь продуктовым дизайном больше трёх лет, в основном работал с финтехом, инвестициями и разными цифровыми сервисами. Мне важно, чтобы интерфейс реально помогал пользователям и решал задачи бизнеса. Поэтому в работе я всегда опираюсь на исследования и аналитику.\n\nКроме дизайна, большую часть моей жизни занимает музыка. Я играю на гитаре уже более одиннадцать лет: выступал на сцене, преподавал, а сейчас развиваю свой музыкальный проект. Музыка научила меня дисциплине, умению работать с аудиторией и помогать творческим идеям укладываться в чёткую структуру.\n\nЕщё одно моё увлечение — японские автомобили. Мне нравится разбираться в том, как устроена техника, и заниматься машинами самостоятельно. Сейчас я восстанавливаю и дорабатываю свою некро-тойоту. В этом процессе мне интересны инженерные решения и то, как из отдельных деталей собирается работающая система.\n\nМне кажется, что у хорошего дизайна, музыки и инженерии много общего. Везде нужно внимание к мелочам, понимание людей и желание сделать сложные вещи простыми и удобными.",
       "en": "I've been working in product design for over three years, mostly with fintech, investment, and various digital services. It matters to me that an interface actually helps users and solves real business problems. I always lean on research and analytics in my work.\n\nBesides design, music takes up a big part of my life. I've been playing guitar for more than eleven years: performed on stage, taught lessons, and now I'm building my own music project. Music taught me discipline, how to work with an audience, and how to fit creative ideas into a clear structure.\n\nAnother thing I'm into is Japanese cars. I like understanding how the mechanics work and doing the wrenching myself. Right now I'm restoring and upgrading my beat-up old Toyota. What interests me in that process is the engineering — how a working system comes together out of individual parts.\n\nI think good design, music, and engineering have a lot in common. All three need attention to detail, an understanding of people, and a drive to make complicated things simple and usable."
+    },
+    "products": {
+      "label": {
+        "ru": "Мои продукты",
+        "en": "My products"
+      },
+      "items": [
+        {
+          "name": "Linky",
+          "href": "https://linky-gold.vercel.app/",
+          "tagline": {
+            "ru": "Your links, one keystroke away.",
+            "en": "Your links, one keystroke away."
+          },
+          "badge": {
+            "ru": "Попробовать",
+            "en": "Check it!"
+          }
+        }
+      ]
     }
   },
   "social": {
