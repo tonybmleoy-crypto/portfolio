@@ -67,6 +67,14 @@
   --hero-fg-hover: #ffffff;
   --hero-shadow: 0px 8px 24px 0px rgba(0, 0, 0, 0.25);
   --hero-shadow-hover: 0px 13px 38px 0px rgba(0, 0, 0, 0.25);
+  --hero-kbd-bg: rgba(16, 16, 18, 0.08);
+
+  /* Dims the page under the contact dialog. */
+  --scrim: rgba(10, 10, 12, 0.4);
+
+  /* Pixel koi behind the home sections (Figma: fx/koi-body, fx/koi-spot). */
+  --koi-body: rgba(16, 16, 18, 0.06);
+  --koi-spot: rgba(255, 122, 61, 0.14);
 
   --shadow-card-value: 0px 1px 2px rgba(16, 16, 18, 0.04), 0px 4px 8px rgba(16, 16, 18, 0.04),
     0px 12px 12px rgba(16, 16, 18, 0.02), 0px 24px 24px rgba(16, 16, 18, 0.01);
@@ -137,6 +145,10 @@
   --hero-fg-hover: #0a0a0c;
   --hero-shadow: 0px 8px 24px 0px rgba(0, 0, 0, 0.55);
   --hero-shadow-hover: 0px 13px 38px 0px rgba(0, 0, 0, 0.65);
+  --hero-kbd-bg: rgba(10, 10, 12, 0.08);
+  --scrim: rgba(0, 0, 0, 0.6);
+  --koi-body: rgba(242, 242, 245, 0.08);
+  --koi-spot: rgba(255, 133, 71, 0.18);
 
   /* Shadows barely read on dark, so the lift comes from a hairline instead. */
   --shadow-card-value: 0px 0px 0px 1px rgba(255, 255, 255, 0.07),
@@ -224,6 +236,64 @@ body {
   background: var(--hero-bg-hover);
   color: var(--hero-fg-hover);
   box-shadow: var(--hero-shadow-hover);
+}
+
+/* Profile photo: one asset per theme, same box (see ProfileCard). */
+.portrait-dark {
+  display: none;
+}
+
+.portrait-light {
+  display: block;
+}
+
+[data-theme="dark"] .portrait-dark {
+  display: block;
+}
+
+[data-theme="dark"] .portrait-light {
+  display: none;
+}
+
+/* Contact dialog: centred card on desktop, bottom sheet on phones. */
+.contact-dialog::backdrop {
+  background: var(--scrim);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.contact-dialog[open] {
+  animation: contact-in 220ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes contact-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.98);
+  }
+}
+
+@media (max-width: 639px) {
+  .contact-dialog[open] {
+    animation-name: contact-sheet-in;
+  }
+
+  @keyframes contact-sheet-in {
+    from {
+      transform: translateY(100%);
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .contact-dialog[open] {
+    animation: none;
+  }
+}
+
+/* No page scroll behind an open dialog. */
+html:has(dialog[open]) {
+  overflow: hidden;
 }
 
 /*

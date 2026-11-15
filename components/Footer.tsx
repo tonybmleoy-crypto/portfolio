@@ -24,8 +24,8 @@ export function Footer({
   return (
     <footer className="mt-32 px-4 pb-6 sm:px-6">
       <FadeIn className="mx-auto max-w-5xl">
-        <div className="rounded-[28px] p-[3px] sm:rounded-[40px]" style={outerPillStyle}>
-          <div className="rounded-[25px] sm:rounded-[37px]" style={innerPillStyle}>
+        <div className="rounded-[28px] p-px sm:rounded-[40px]" style={outerPillStyle}>
+          <div className="rounded-[27px] sm:rounded-[39px]" style={innerPillStyle}>
             <div className="flex flex-col gap-6 px-6 py-8 sm:flex-row sm:items-center sm:justify-between sm:px-11 sm:py-10">
               <div>
                 <p className="text-[15px] font-semibold tracking-[-0.01em] text-foreground" style={navFont}>
@@ -34,7 +34,7 @@ export function Footer({
                 <p className="mt-1.5 text-sm text-muted">{dict.home.contactTitle}</p>
               </div>
               <GlassCTA
-                href={socialLinks.telegram}
+                contact
                 label={dict.home.ctaLabel}
                 className="self-start sm:self-auto"
               />

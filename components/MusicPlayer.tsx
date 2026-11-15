@@ -6,6 +6,7 @@ import { motion, useMotionValue, useTransform } from "framer-motion";
 import { Pause, Play } from "iconsax-react";
 import type { Track } from "@/lib/content";
 import { Squircle } from "./Squircle";
+import { innerPillStyle, outerPillStyle } from "@/lib/glassStyles";
 
 function formatTime(seconds: number) {
   if (!Number.isFinite(seconds) || seconds < 0) return "0:00";
@@ -65,19 +66,9 @@ export function MusicPlayer({
   }
 
   return (
-    <div
-      className="rounded-[28px] p-[3px]"
-      style={{ background: "var(--glass-outer-bg)", boxShadow: "var(--glass-outer-shadow)" }}
-    >
-      <div
-        className="rounded-[25px] p-4 sm:p-5"
-        style={{
-          background: "var(--glass-inner-bg)",
-          backdropFilter: "blur(24px) saturate(160%)",
-          WebkitBackdropFilter: "blur(24px) saturate(160%)",
-          boxShadow: "var(--glass-inner-inset)",
-        }}
-      >
+    // Radius matches the About text card above it (28px, 36px on desktop).
+    <div className="rounded-[28px] p-px lg:rounded-[36px]" style={outerPillStyle}>
+      <div className="rounded-[27px] p-4 sm:p-5 lg:rounded-[35px] lg:p-6" style={innerPillStyle}>
         <div className="flex items-center gap-4">
           {track.cover && (
             <div className="relative size-14 shrink-0 rounded-2xl shadow-card">

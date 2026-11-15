@@ -1,58 +1,30 @@
-"use client";
-
-import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from "react";
-import { getSvgPath } from "figma-squircle";
+import type { CSSProperties, ReactNode } from "react";
 
 /**
- * A rounded container with Apple/Figma-style continuous corners instead of
- * a plain circular border-radius. Measures itself and clips with an exact
- * squircle path, so it stays correct as the element resizes.
+ * A rounded container.
  *
- * The `rounded-*` class you'd normally use should stay in `className` as a
- * fallback: it's what renders for the one frame before the first measurement
- * lands, so there's no flash of square corners.
+ * This used to clip itself with a smoothed (Figma-style) squircle path. The
+ * cards around it draw their hairline ring and shadow with box-shadow, which
+ * follows a plain border-radius, so at every corner the ring poked out from
+ * under the clipped fill. It now rounds with a plain border-radius of the same
+ * size, so fill, ring and shadow share one shape. Children that must be clipped
+ * (images) still need `overflow-hidden` in `className`, as before.
  */
 export function Squircle({
   radius,
-  smoothing = 1,
   className,
   style,
   children,
 }: {
   radius: number;
-  /** 0 = plain rounded rect, 1 = full iOS-style continuous corner. */
+  /** Kept for compatibility with existing call sites; ignored. */
   smoothing?: number;
   className?: string;
   style?: CSSProperties;
   children?: ReactNode;
 }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const [clipPath, setClipPath] = useState<string>();
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-
-    const update = () => {
-      const { width, height } = el.getBoundingClientRect();
-      if (width < 1 || height < 1) return;
-      const cornerRadius = Math.min(radius, width / 2, height / 2);
-      const d = getSvgPath({ width, height, cornerRadius, cornerSmoothing: smoothing });
-      setClipPath(`path('${d}')`);
-    };
-
-    update();
-    const observer = new ResizeObserver(update);
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, [radius, smoothing]);
-
   return (
-    <div
-      ref={ref}
-      className={className}
-      style={{ ...style, clipPath, WebkitClipPath: clipPath }}
-    >
+    <div className={className} style={{ borderRadius: radius, ...style }}>
       {children}
     </div>
   );

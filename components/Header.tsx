@@ -9,6 +9,7 @@ import { navFont, outerPillStyle, innerPillStyle, navLinkClass } from "@/lib/gla
 import { LanguageSwitcher } from "./LanguageSwitcher";
 import { ThemeToggle } from "./ThemeToggle";
 import { GlassCTA } from "./GlassCTA";
+import { ContactDialog } from "./home/ContactDialog";
 
 export function Header({
   locale,
@@ -34,7 +35,7 @@ export function Header({
       {/* Desktop: the nav pill plus two standalone chips, all scrolling together. */}
       <div className="hidden items-stretch gap-2 lg:flex">
       <nav
-        className="rounded-full p-[3px]"
+        className="rounded-full p-px"
         style={outerPillStyle}
       >
         <div
@@ -61,29 +62,29 @@ export function Header({
               {link.label}
             </a>
           ))}
-          <GlassCTA href={socialLinks.telegram} label={dict.home.ctaLabel} className="ml-1" />
+          <GlassCTA contact label={dict.home.ctaLabel} className="ml-1" />
         </div>
       </nav>
 
-        <div className="rounded-[22px] p-[3px]" style={outerPillStyle}>
-          <div className="flex h-full rounded-[19px]" style={innerPillStyle}>
+        <div className="rounded-[22px] p-px" style={outerPillStyle}>
+          <div className="flex h-full rounded-[21px]" style={innerPillStyle}>
             <LanguageSwitcher
               locale={locale}
-              className="flex aspect-square h-full items-center justify-center rounded-[19px] text-sm font-medium tracking-[0.01em] text-[color:var(--nav-link)] transition-[color,background-color,transform] duration-150 hover:bg-[color:var(--nav-link-hover-bg)] hover:text-[color:var(--nav-link-hover)] active:scale-[0.92]"
+              className="flex aspect-square h-full items-center justify-center rounded-[21px] text-sm font-medium tracking-[0.01em] text-[color:var(--nav-link)] transition-[color,background-color,transform] duration-150 hover:bg-[color:var(--nav-link-hover-bg)] hover:text-[color:var(--nav-link-hover)] active:scale-[0.92]"
             />
           </div>
         </div>
 
-        <div className="rounded-[22px] p-[3px]" style={outerPillStyle}>
-          <div className="flex h-full rounded-[19px]" style={innerPillStyle}>
-            <ThemeToggle className="aspect-square h-full rounded-[19px]" />
+        <div className="rounded-[22px] p-px" style={outerPillStyle}>
+          <div className="flex h-full rounded-[21px]" style={innerPillStyle}>
+            <ThemeToggle className="aspect-square h-full rounded-[21px]" />
           </div>
         </div>
       </div>
 
       <div className="relative w-full max-w-[420px] lg:hidden">
-        <div className="rounded-[26px] p-[3px]" style={outerPillStyle}>
-          <div className="rounded-[23px]" style={innerPillStyle}>
+        <div className="rounded-[26px] p-px" style={outerPillStyle}>
+          <div className="rounded-[25px]" style={innerPillStyle}>
             <div className="flex w-full items-center justify-between gap-2 py-2.5 pr-2.5 pl-4">
               <a
                 href={homeHref(locale)}
@@ -95,7 +96,7 @@ export function Header({
               </a>
               <div className="flex items-center gap-1">
                 <ThemeToggle />
-                <GlassCTA href={socialLinks.telegram} label={dict.home.ctaLabel} size="sm" />
+                <GlassCTA contact label={dict.home.ctaLabel} size="sm" />
                 <button
                   aria-label="Menu"
                   onClick={() => setOpen((v) => !v)}
@@ -128,10 +129,10 @@ export function Header({
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -8 }}
               transition={{ duration: 0.2 }}
-              className="absolute top-[calc(100%+8px)] left-0 right-0 z-40 overflow-hidden rounded-[23px] p-[3px]"
+              className="absolute top-[calc(100%+8px)] left-0 right-0 z-40 overflow-hidden rounded-[23px] p-px"
               style={outerPillStyle}
             >
-              <div className="rounded-[20px]" style={innerPillStyle}>
+              <div className="rounded-[22px]" style={innerPillStyle}>
                 <div className="flex flex-col gap-1 p-3">
                   {links.map((link) => (
                     <a
@@ -151,6 +152,8 @@ export function Header({
           )}
         </AnimatePresence>
       </div>
+      {/* "Let's talk?" in the header and footer opens this dialog, as on the home page. */}
+      <ContactDialog socialLinks={socialLinks} labels={dict.home.contactDialog} />
     </header>
   );
 }

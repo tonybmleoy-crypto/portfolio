@@ -4,6 +4,14 @@ export function homeHref(locale: Locale): string {
   return locale === "ru" ? "/" : "/en";
 }
 
+export function playgroundHref(locale: Locale): string {
+  return locale === "ru" ? "/playground" : "/en/playground";
+}
+
+export function aboutHref(locale: Locale): string {
+  return locale === "ru" ? "/about" : "/en/about";
+}
+
 export function workHref(locale: Locale, slug: string): string {
   return locale === "ru" ? `/work/${slug}` : `/en/work/${slug}`;
 }

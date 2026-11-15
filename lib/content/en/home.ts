@@ -15,13 +15,21 @@ export const home: HomeContent = {
       },
     ],
   },
-  sectionsNav: { projects: "Projects", about: "About" },
+  sectionsNav: { projects: "Case studies", playground: "Playground", about: "About" },
+  resumeLabel: "Résumé",
+  contactDialog: { title: "Get in touch", close: "Close", copy: "Copy", copied: "Copied" },
+  playground: {
+    emptyTitle: "Concepts are coming soon",
+    emptyBody: "Shots, experiments and interfaces that didn't become case studies will live here.",
+    allTag: "All",
+  },
   viewCase: "View case",
   timelineLabel: "Timeline",
   usersLabel: "Users",
   projects: [
     {
       slug: "linky",
+      coverPosition: "50% 0%",
       title: "Linky",
       tag: "Desktop app",
       description: "Designed and shipped an app that pastes saved links with one shortcut",
@@ -32,6 +40,7 @@ export const home: HomeContent = {
     },
     {
       slug: "rentag",
+      coverPosition: "50% 0%",
       title: "Rentag",
       tag: "Fintech",
       description: "Designed escrow mechanics for a B2B construction marketplace",
@@ -43,6 +52,7 @@ export const home: HomeContent = {
     },
     {
       slug: "fintrack",
+      coverPosition: "50% 45%",
       title: "Fintrack",
       tag: "Fintech",
       description: "Development of iOS application design",
@@ -54,6 +64,7 @@ export const home: HomeContent = {
     },
     {
       slug: "7pr",
+      coverPosition: "50% 0%",
       title: "7 Prudov dev",
       tag: "Proptech",
       description: "Creating key screens for the service and supporting the design system",
@@ -64,6 +75,7 @@ export const home: HomeContent = {
     },
     {
       slug: "vodokachka",
+      coverPosition: "50% 50%",
       title: "VODOKACHKA",
       tag: "Foodtech",
       description: "0 → 1: building a food ordering service for a bar",

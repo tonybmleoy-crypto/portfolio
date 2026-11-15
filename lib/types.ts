@@ -15,6 +15,20 @@ export interface ProjectCard {
   available: boolean;
   timeline?: string;
   users?: string;
+  /** CSS object-position for the wide cover crop on the home page, e.g. "50% 0%". */
+  coverPosition?: string;
+}
+
+/** A UI concept shown in the playground grid. */
+export interface Concept {
+  slug: string;
+  title: string;
+  /** Short meta line under the title, e.g. "Mobile · 2026". */
+  meta: string;
+  tags: string[];
+  image: string;
+  /** Opens this case study when set. */
+  caseSlug?: string;
 }
 
 export interface HomeContent {
@@ -23,7 +37,10 @@ export interface HomeContent {
   ctaLabel: string;
   /** Own products shown under the bio, with an external link each. */
   products: { label: string; items: { name: string; tagline: string; badge: string; href: string }[] };
-  sectionsNav: { projects: string; about: string };
+  sectionsNav: { projects: string; playground: string; about: string };
+  resumeLabel: string;
+  contactDialog: { title: string; close: string; copy: string; copied: string };
+  playground: { emptyTitle: string; emptyBody: string; allTag: string };
   projects: ProjectCard[];
   viewCase: string;
   comingSoon: string;

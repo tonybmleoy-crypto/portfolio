@@ -33,8 +33,7 @@ export function ScrollToTop() {
             transition={{ duration: 2.6, repeat: Infinity, ease: "easeInOut" }}
             whileHover={{ scale: 1.1, transition: { type: "spring", bounce: 0, duration: 0.25 } }}
             whileTap={{ scale: 0.94, transition: { type: "spring", bounce: 0, duration: 0.15 } }}
-            style={{ boxShadow: "var(--float-shadow)" }}
-            className="flex h-14 w-14 items-center justify-center rounded-full bg-[color:var(--float-bg)] text-foreground backdrop-blur-xl backdrop-saturate-150 transition-shadow duration-200 hover:shadow-[var(--float-shadow-hover)]"
+            className="flex h-14 w-14 items-center justify-center rounded-full border border-[color:var(--border)] bg-surface text-foreground transition-colors duration-200 hover:bg-[color:var(--fill-quiet-hover)]"
           >
             <ArrowUp2 color="currentColor" size={20} variant="Linear" />
           </motion.button>

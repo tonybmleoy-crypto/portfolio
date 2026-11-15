@@ -15,13 +15,21 @@ export const home: HomeContent = {
       },
     ],
   },
-  sectionsNav: { projects: "Проекты", about: "Обо мне" },
-  viewCase: "Перейти",
+  sectionsNav: { projects: "Кейсы", playground: "Концепты", about: "Обо мне" },
+  resumeLabel: "Резюме",
+  contactDialog: { title: "Связаться", close: "Закрыть", copy: "Скопировать", copied: "Скопировано" },
+  playground: {
+    emptyTitle: "Концепты скоро появятся",
+    emptyBody: "Здесь будут шоты, эксперименты и интерфейсы, которые не стали кейсами.",
+    allTag: "Все",
+  },
+  viewCase: "Смотреть кейс",
   timelineLabel: "Timeline",
   usersLabel: "Users",
   projects: [
     {
       slug: "linky",
+      coverPosition: "50% 0%",
       title: "Linky",
       tag: "Desktop app",
       description: "Спроектировал и выпустил приложение для вставки ссылок одним сочетанием клавиш",
@@ -32,6 +40,7 @@ export const home: HomeContent = {
     },
     {
       slug: "rentag",
+      coverPosition: "50% 0%",
       title: "Rentag",
       tag: "Fintech",
       description: "Спроектировал escrow-механику для B2B строительного маркетплейса",
@@ -43,6 +52,7 @@ export const home: HomeContent = {
     },
     {
       slug: "fintrack",
+      coverPosition: "50% 45%",
       title: "Fintrack",
       tag: "Fintech",
       description: "Разработка дизайна iOS-приложения",
@@ -54,6 +64,7 @@ export const home: HomeContent = {
     },
     {
       slug: "7pr",
+      coverPosition: "50% 0%",
       title: "7 Prudov dev",
       tag: "Proptech",
       description: "Создание ключевых экранов для сервиса и поддержка дизайн-системы",
@@ -64,6 +75,7 @@ export const home: HomeContent = {
     },
     {
       slug: "vodokachka",
+      coverPosition: "50% 50%",
       title: "VODOKACHKA",
       tag: "Foodtech",
       description: "0 → 1: разработка сервиса для заказа еды в баре",

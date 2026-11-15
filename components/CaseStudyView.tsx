@@ -352,7 +352,7 @@ export function CaseStudyView({
       <FadeIn>
         <Link
           href={homeHref(locale)}
-          className="hit-area inline-flex w-min items-center justify-center gap-1 whitespace-nowrap rounded-[28px] bg-[color:var(--float-bg)] px-4 py-2 text-sm text-foreground shadow-[var(--float-inset)] backdrop-blur-md backdrop-saturate-150 transition-[background-color,transform] duration-150 hover:bg-[color:var(--float-bg-hover)] active:scale-[0.96] active:bg-[color:var(--float-bg-hover)]"
+          className="hit-area inline-flex w-min items-center justify-center gap-1 whitespace-nowrap rounded-[28px] border border-[color:var(--border)] bg-surface px-4 py-2 text-sm text-foreground transition-[background-color,transform] duration-150 hover:bg-[color:var(--fill-quiet)] active:scale-[0.96]"
         >
           <ArrowLeft2 color="currentColor" size={16} variant="Linear" />
           {dict.nav.back}
