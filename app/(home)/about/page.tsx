@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { getDictionary, getMusicLinks, MUSIC_TRACK } from "@/lib/content";
 import { AboutPanel } from "@/components/home/AboutPanel";
 
-export const metadata: Metadata = { title: "Обо мне — Anton Lopatin" };
+export const metadata: Metadata = { title: "Обо мне — Антон Лопатин" };
 
 export default function AboutPage() {
   return (

@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { MedeoSans } from "medeo-font/sans";
-import { MedeoMono } from "medeo-font/mono";
 import { MotionConfig } from "framer-motion";
 import { Preloader } from "@/components/Preloader";
 import { PostHogProvider } from "@/components/PostHogProvider";
@@ -8,9 +7,10 @@ import { themeInitScript } from "@/components/ThemeToggle";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Anton Lopatin — Product Designer",
+  // Russian by default; the English pages set their own.
+  title: "Антон Лопатин — продуктовый дизайнер",
   description:
-    "Product designer with experience in fintech and e-commerce. Product discovery, conversion optimization, scalable design systems.",
+    "Продуктовый дизайнер: финтех и e-commerce, исследования, рост конверсии, масштабируемые дизайн-системы.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -18,7 +18,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html
       lang="ru"
       data-scroll-behavior="smooth"
-      className={`${MedeoSans.variable} ${MedeoMono.variable} h-full antialiased`}
+      className={`${MedeoSans.variable} h-full antialiased`}
       suppressHydrationWarning
     >
       <head>
@@ -33,7 +33,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="min-h-full flex flex-col overflow-x-hidden bg-background text-foreground">
         <PostHogProvider />
         <MotionConfig reducedMotion="user">
-          <Preloader text="Anton Lopatin — Product Designer" />
+          <Preloader text={{ ru: "Антон Лопатин", en: "Anton Lopatin" }} />
           {children}
         </MotionConfig>
       </body>

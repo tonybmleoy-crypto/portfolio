@@ -3,7 +3,7 @@ import { getDictionary } from "@/lib/content";
 import { concepts } from "@/lib/content/concepts";
 import { ConceptGrid } from "@/components/home/ConceptGrid";
 
-export const metadata: Metadata = { title: "Концепты — Anton Lopatin" };
+export const metadata: Metadata = { title: "Концепты — Антон Лопатин" };
 
 export default function PlaygroundPage() {
   return (

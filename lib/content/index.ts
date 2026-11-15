@@ -16,16 +16,32 @@ import { linky as linkyEn } from "./en/linky";
 
 export const dictionaries: Record<Locale, Dictionary> = {
   ru: {
-    nav: { cv: "CV", behance: "Behance", linkedin: "LinkedIn", telegram: "Telegram", back: "Назад" },
+    nav: { cv: "CV", behance: "Behance", linkedin: "LinkedIn", telegram: "Telegram", email: "Почта", back: "Назад" },
     home: homeRu,
     caseStudies: { fintrack: fintrackRu, rentag: rentagRu, "7pr": sevenprRu, vodokachka: vodokachkaRu, linky: linkyRu },
   },
   en: {
-    nav: { cv: "CV", behance: "Behance", linkedin: "LinkedIn", telegram: "Telegram", back: "Back" },
+    nav: { cv: "CV", behance: "Behance", linkedin: "LinkedIn", telegram: "Telegram", email: "Email", back: "Back" },
     home: homeEn,
     caseStudies: { fintrack: fintrackEn, rentag: rentagEn, "7pr": sevenprEn, vodokachka: vodokachkaEn, linky: linkyEn },
   },
 };
+
+/**
+ * Project tags set in the admin panel are one string for both languages, in
+ * English. The Russian site shows them in Russian; unknown tags pass through.
+ */
+const TAG_RU: Record<string, string> = {
+  "Desktop app": "Десктоп",
+  Fintech: "Финтех",
+  Proptech: "Проптех",
+  Foodtech: "Фудтех",
+  "E-commerce": "E-commerce",
+};
+
+function localizeTag(tag: string, locale: Locale): string {
+  return locale === "ru" ? (TAG_RU[tag] ?? tag) : tag;
+}
 
 function applyProjectOverrides(project: ProjectCard, locale: Locale): ProjectCard {
   const o = readOverrides().projects?.[project.slug];
@@ -34,7 +50,7 @@ function applyProjectOverrides(project: ProjectCard, locale: Locale): ProjectCar
     ...project,
     available: o.available ?? project.available,
     image: o.image ?? project.image,
-    tag: o.tag ?? project.tag,
+    tag: o.tag ? localizeTag(o.tag, locale) : project.tag,
     timeline: o.timeline ?? project.timeline,
     users: o.users ?? project.users,
     description: o.description?.[locale] ?? project.description,

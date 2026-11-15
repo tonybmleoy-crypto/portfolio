@@ -3,7 +3,7 @@ import { HomeContent } from "@/lib/types";
 export const home: HomeContent = {
   name: "Anton Lopatin",
   role: "Senior Product Designer",
-  bio: "Product designer with 4 years of experience in fintech and e-commerce, currently Team Lead UX/UI at Rentag. I design digital products from user research to launch, tying UX decisions to business metrics.",
+  bio: "4 years in fintech and e-commerce, currently Team Lead UX/UI at Rentag. I design digital products from user research to launch and tie UX decisions to business metrics.",
   ctaLabel: "Let's talk?",
   products: {
     label: "My products",
@@ -19,13 +19,26 @@ export const home: HomeContent = {
   sectionsNav: { projects: "Case studies", playground: "Playground", about: "About" },
   resumeLabel: "Résumé",
   contactDialog: { title: "Get in touch", close: "Close", copy: "Copy", copied: "Copied" },
+  caseNav: {
+    back: "All cases",
+    top: "Back to top",
+    contents: "Contents",
+    decision: "Decision",
+    quote: "Quote",
+    insights: "Insights",
+    summary: "Outcome",
+    next: "Next case",
+    keepScrolling: "Keep scrolling to open it",
+    zoom: "Open the full image",
+    closeZoom: "Close",
+  },
   playground: {
     emptyTitle: "Concepts are coming soon",
     emptyBody: "Shots, experiments and interfaces that didn't become case studies will live here.",
     allTag: "All",
   },
   viewCase: "View case",
-  timelineLabel: "Timeline",
+  timelineLabel: "Year",
   usersLabel: "Users",
   projects: [
     {
