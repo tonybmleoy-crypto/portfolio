@@ -263,6 +263,12 @@ body {
   -webkit-backdrop-filter: blur(8px);
 }
 
+/* The dialog takes focus on open so the close button doesn't; the box itself
+   needs no ring. */
+.contact-dialog:focus-visible {
+  outline: none;
+}
+
 .contact-dialog[open] {
   animation: contact-in 220ms cubic-bezier(0.22, 1, 0.36, 1);
 }

@@ -23,8 +23,10 @@ export function ProfileCard({ locale, content, socialLinks }: { locale: Locale; 
     // overflow-hidden keeps the photo inside the rounded corner; it does not clip
     // the card's own box-shadow ring.
     <div className="flex flex-col gap-6 overflow-hidden rounded-[32px] bg-surface p-6 shadow-card lg:rounded-[36px] lg:p-8">
-      <div className="flex items-start justify-between gap-3">
-        <div>
+      <div>
+        {/* Photo and the corner buttons share a row; the name and role sit below
+            at the card's full width, so a longer role never runs into the buttons. */}
+        <div className="flex items-start justify-between gap-3">
           {/* One Figma composition per theme (cut-out portrait with a soft glow),
               each exported on that theme's card colour with the same 20px margin,
               so both share one box and switching themes doesn't move the photo.
@@ -38,7 +40,7 @@ export function ProfileCard({ locale, content, socialLinks }: { locale: Locale; 
             >
               <Image
                 src={`/images/home/portrait-${theme}.png`}
-                alt="Anton Lopatin"
+                alt={content.name}
                 width={130}
                 height={140}
                 // Already exported at 3x for this exact box, so it is served as is.
@@ -50,27 +52,17 @@ export function ProfileCard({ locale, content, socialLinks }: { locale: Locale; 
               {theme === "light" && <GlassesPortrait />}
             </div>
           ))}
-          {/* Inline nowrap: the global `h1 { text-wrap: balance }` is unlayered and
-              would beat a utility class. Smaller on phones so the name and the two
-              corner buttons share one row. */}
-          <h1
-            style={{ whiteSpace: "nowrap" }}
-            className="text-[28px] font-medium leading-8 tracking-[-0.031em] lg:text-[32px]"
-          >
-            Anton Lopatin
-          </h1>
-          <p
-            style={{ whiteSpace: "nowrap" }}
-            className="mt-1.5 text-xl font-medium leading-6 tracking-[-0.021em] text-muted lg:text-2xl"
-          >
-            {content.role}
-          </p>
+
+          <div className="flex shrink-0 gap-2 lg:gap-3">
+            <ThemeToggle className={cornerButton} />
+            <LanguageSwitcher locale={locale} className={`${cornerButton} text-sm font-medium tracking-[0.01em]`} />
+          </div>
         </div>
 
-        <div className="flex shrink-0 gap-2 lg:gap-3">
-          <ThemeToggle className={cornerButton} />
-          <LanguageSwitcher locale={locale} className={`${cornerButton} text-sm font-medium tracking-[0.01em]`} />
-        </div>
+        <h1 className="text-[28px] font-medium leading-8 tracking-[-0.031em] lg:text-[32px]">{content.name}</h1>
+        <p className="mt-1.5 text-xl font-medium leading-6 tracking-[-0.021em] text-muted lg:text-2xl">
+          {content.role}
+        </p>
       </div>
 
         <p className="leading-6 tracking-[-0.016em]">{content.bio}</p>

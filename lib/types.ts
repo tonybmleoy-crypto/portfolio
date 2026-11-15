@@ -32,6 +32,8 @@ export interface Concept {
 }
 
 export interface HomeContent {
+  /** Name as written in this locale (Cyrillic on the Russian site). */
+  name: string;
   role: string;
   bio: string;
   ctaLabel: string;

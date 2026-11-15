@@ -62,10 +62,25 @@ export function ContactDialog({ socialLinks, labels }: { socialLinks: SocialLink
   const [copied, setCopied] = useState(false);
 
   useEffect(() => {
+    // Focus goes to the dialog itself, not the close button: showModal() would
+    // otherwise put a keyboard ring on the cross right after a mouse click.
+    // On close the browser hands focus back to the opener; it keeps its ring
+    // only if it had one before (a keyboard user tabbed to it).
+    let openerHadRing = false;
     const open = () => {
       const dialog = ref.current;
-      if (dialog && !dialog.open) dialog.showModal();
+      if (!dialog || dialog.open) return;
+      const opener = document.activeElement;
+      openerHadRing = opener instanceof HTMLElement && opener !== document.body && opener.matches(":focus-visible");
+      dialog.showModal();
+      dialog.focus();
     };
+    const onClose = () => {
+      const active = document.activeElement;
+      if (!openerHadRing && active instanceof HTMLElement) active.blur();
+    };
+    const dialogEl = ref.current;
+    dialogEl?.addEventListener("close", onClose);
     const onKey = (e: KeyboardEvent) => {
       if (e.code !== "KeyC" || e.metaKey || e.ctrlKey || e.altKey || e.shiftKey || e.repeat) return;
       const target = e.target;
@@ -78,6 +93,7 @@ export function ContactDialog({ socialLinks, labels }: { socialLinks: SocialLink
     return () => {
       window.removeEventListener(CONTACT_OPEN_EVENT, open);
       window.removeEventListener("keydown", onKey);
+      dialogEl?.removeEventListener("close", onClose);
     };
   }, []);
 
@@ -95,6 +111,7 @@ export function ContactDialog({ socialLinks, labels }: { socialLinks: SocialLink
     <dialog
       ref={ref}
       aria-labelledby="contact-title"
+      tabIndex={-1}
       onClick={(e) => {
         if (e.target === e.currentTarget) e.currentTarget.close();
       }}

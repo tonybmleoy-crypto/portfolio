@@ -47,7 +47,7 @@ export function Header({
             className="flex shrink-0 items-center pr-3 transition-transform duration-150 active:scale-[0.96]"
           >
             <span className="whitespace-nowrap text-[15px] font-semibold tracking-[-0.01em] text-foreground" style={navFont}>
-              Anton Lopatin
+              {dict.home.name}
             </span>
           </a>
 
@@ -91,7 +91,7 @@ export function Header({
                 className="flex items-center transition-transform duration-150 active:scale-[0.96]"
               >
                 <span className="text-sm font-semibold tracking-[-0.01em] text-foreground" style={navFont}>
-                  Anton Lopatin
+                  {dict.home.name}
                 </span>
               </a>
               <div className="flex items-center gap-1">

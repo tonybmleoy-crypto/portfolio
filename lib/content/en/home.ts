@@ -1,7 +1,8 @@
 import { HomeContent } from "@/lib/types";
 
 export const home: HomeContent = {
-  role: "Product Designer",
+  name: "Anton Lopatin",
+  role: "Senior Product Designer",
   bio: "Product designer with 4 years of experience in fintech and e-commerce, currently Team Lead UX/UI at Rentag. I design digital products from user research to launch, tying UX decisions to business metrics.",
   ctaLabel: "Let's talk?",
   products: {
