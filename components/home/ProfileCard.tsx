@@ -6,6 +6,7 @@ import { ExportSquare } from "iconsax-react";
 import type { SocialLinks } from "@/lib/content";
 import type { HomeContent, Locale } from "@/lib/types";
 import { openContact } from "@/lib/contact";
+import { GlassesPortrait } from "./GlassesPortrait";
 import { LanguageSwitcher } from "../LanguageSwitcher";
 import { ThemeToggle } from "../ThemeToggle";
 
@@ -29,19 +30,25 @@ export function ProfileCard({ locale, content, socialLinks }: { locale: Locale; 
               so both share one box and switching themes doesn't move the photo.
               The margin is pulled back so the name sits right under the photo. */}
           {(["dark", "light"] as const).map((theme) => (
-            <Image
+            // The export cuts the glow off at its edges; the radial mask fades
+            // them out, so no rectangle shows whatever the card's padding or radius.
+            <div
               key={theme}
-              src={`/images/home/portrait-${theme}.png`}
-              alt="Anton Lopatin"
-              width={130}
-              height={140}
-              // Already exported at 3x for this exact box, so it is served as is.
-              unoptimized
-              fetchPriority="high"
-              // The export cuts the glow off at its edges; the radial mask fades
-              // them out, so no rectangle shows whatever the card's padding or radius.
-              className={`portrait-${theme} -mb-[9px] -ml-5 -mt-5 h-[140px] w-[130px] max-w-none [mask-image:radial-gradient(closest-side,#000_72%,transparent)]`}
-            />
+              className={`portrait-${theme} relative -mb-[9px] -ml-5 -mt-5 h-[140px] w-[130px] [mask-image:radial-gradient(closest-side,#000_72%,transparent)]`}
+            >
+              <Image
+                src={`/images/home/portrait-${theme}.png`}
+                alt="Anton Lopatin"
+                width={130}
+                height={140}
+                // Already exported at 3x for this exact box, so it is served as is.
+                unoptimized
+                fetchPriority="high"
+                className="h-[140px] w-[130px] max-w-none"
+              />
+              {/* Light theme: he puts on sunglasses when the theme switches to light. */}
+              {theme === "light" && <GlassesPortrait />}
+            </div>
           ))}
           {/* Inline nowrap: the global `h1 { text-wrap: balance }` is unlayered and
               would beat a utility class. Smaller on phones so the name and the two
