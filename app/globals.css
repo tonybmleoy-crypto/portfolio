@@ -65,8 +65,10 @@
   --hero-fg: #101012;
   --hero-bg-hover: #101012;
   --hero-fg-hover: #ffffff;
-  --hero-shadow: 0px 8px 24px 0px rgba(0, 0, 0, 0.25);
-  --hero-shadow-hover: 0px 13px 38px 0px rgba(0, 0, 0, 0.25);
+  /* A white button on a white card: a hairline ring plus a soft, close shadow
+     lift it off the card; a big dark blur read as a smudge. */
+  --hero-shadow: 0 0 0 1px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.06), 0 4px 12px rgba(0, 0, 0, 0.07);
+  --hero-shadow-hover: 0 0 0 1px rgba(0, 0, 0, 0.04), 0 2px 4px rgba(0, 0, 0, 0.08), 0 8px 20px rgba(0, 0, 0, 0.1);
   --hero-kbd-bg: rgba(16, 16, 18, 0.08);
 
   /* Dims the page under the contact dialog. */
@@ -159,8 +161,10 @@
   --hero-fg: #0a0a0c;
   --hero-bg-hover: #ffffff;
   --hero-fg-hover: #0a0a0c;
-  --hero-shadow: 0px 8px 24px 0px rgba(0, 0, 0, 0.55);
-  --hero-shadow-hover: 0px 13px 38px 0px rgba(0, 0, 0, 0.65);
+  /* Close and soft: a wide dark halo made the button look bigger than the
+     "Резюме" one next to it. */
+  --hero-shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 4px 12px rgba(0, 0, 0, 0.28);
+  --hero-shadow-hover: 0 2px 4px rgba(0, 0, 0, 0.45), 0 8px 20px rgba(0, 0, 0, 0.32);
   --hero-kbd-bg: rgba(10, 10, 12, 0.08);
   --scrim: rgba(0, 0, 0, 0.6);
   --koi-body: rgba(242, 242, 245, 0.08);
