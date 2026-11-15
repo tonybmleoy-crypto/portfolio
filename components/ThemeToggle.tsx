@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { flushSync } from "react-dom";
 import { Moon, Sun1 } from "iconsax-react";
+import { runBeforeDark } from "@/lib/themeTransition";
 
 export const THEME_STORAGE_KEY = "theme";
 
@@ -38,8 +39,21 @@ export function ThemeToggle({ className }: { className?: string }) {
     setReady(true);
   }, []);
 
-  function toggle() {
+  const busy = useRef(false);
+
+  async function toggle() {
+    if (busy.current) return;
     const next = !dark;
+    if (next) {
+      // Going dark: let the page finish what it plays first (the home portrait
+      // takes its sunglasses off). Returns at once where nothing listens.
+      busy.current = true;
+      try {
+        await runBeforeDark();
+      } finally {
+        busy.current = false;
+      }
+    }
     const button = buttonRef.current;
     const canAnimate =
       button &&
