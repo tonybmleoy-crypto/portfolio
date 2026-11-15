@@ -429,7 +429,10 @@ function Summary({ caseStudy, labels }: { caseStudy: CaseStudy; labels: Labels }
       </Tag>
       <dl className="mt-5 grid grid-cols-2 gap-x-6 gap-y-5 sm:grid-cols-4">
         {stats.items.map((stat, i) => (
-          <div key={i} className="flex flex-col-reverse gap-1">
+          // Label before value in the markup (dt, dd), value on top on screen.
+          // In a reversed column, justify-end is the top: every figure starts
+          // on the same line however many lines its label takes.
+          <div key={i} className="flex flex-col-reverse justify-end gap-1">
             <dt className="text-sm leading-5 text-muted">{stat.label}</dt>
             <dd className="text-[28px] font-medium leading-8 tracking-[-0.025em] text-[color:var(--accent-green-strong)]">{stat.value}</dd>
           </div>
