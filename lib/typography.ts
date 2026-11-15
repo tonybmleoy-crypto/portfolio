@@ -33,6 +33,11 @@ export function typograph(text: string, locale: Locale): string {
     out
       // "слово — слово": keep the dash with the word before it.
       .replace(/ ([—–]) /g, `${NBSP}$1 `)
+      // "5–7": a range never splits at its dash (word joiners on both sides).
+      .replace(/(?<=\d)–(?=\d)/g, "⁠–⁠")
+      // "2 600 ₽": thousands groups and the currency sign stay together.
+      .replace(/(\d) (?=\d{3}(?!\d))/g, `$1${NBSP}`)
+      .replace(/(\d) (?=[₽$€])/g, `$1${NBSP}`)
       // "13 с", "4 годами": a number stays with its unit or noun.
       .replace(/(\d) (?=\p{L})/gu, `$1${NBSP}`)
       // "Ctrl + Alt + V" and "0 → 1" read as one unit.
