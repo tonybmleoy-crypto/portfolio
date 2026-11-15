@@ -52,6 +52,8 @@ export interface HomeContent {
     contactHeading: string;
   };
   contactTitle: string;
+  /** Name line in the site footer, e.g. "Антон Лопатин, продуктовый дизайнер". */
+  footerName: string;
 }
 
 export type TextParagraph = string | { text: string; muted?: boolean };

@@ -96,5 +96,6 @@ export const home: HomeContent = {
     contactHeading: "Get in touch",
   },
   contactTitle: "Open to collaboration and new projects",
+  footerName: "Anton Lopatin, product designer",
   comingSoon: "Coming soon",
 };

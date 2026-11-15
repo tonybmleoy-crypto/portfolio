@@ -96,5 +96,6 @@ export const home: HomeContent = {
     contactHeading: "Связь со мной",
   },
   contactTitle: "Открыт к сотрудничеству и новым проектам",
+  footerName: "Антон Лопатин, продуктовый дизайнер",
   comingSoon: "Скоро",
 };

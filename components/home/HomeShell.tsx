@@ -3,6 +3,7 @@ import type { SocialLinks } from "@/lib/content";
 import type { Dictionary, Locale } from "@/lib/types";
 import { aboutHref, homeHref, playgroundHref } from "@/lib/paths";
 import { concepts } from "@/lib/content/concepts";
+import { SiteFooter } from "../SiteFooter";
 import { ContactDialog } from "./ContactDialog";
 import { KoiBackground } from "./KoiBackground";
 import { ProfileCard } from "./ProfileCard";
@@ -39,7 +40,7 @@ export function HomeShell({
     <>
     {/* Pixel koi on a fixed canvas behind everything; the content sits above it (z-10). */}
     <KoiBackground />
-    <div className="relative z-10 mx-auto w-full max-w-[1120px] flex-1 px-4 pb-12 lg:px-6 xl:px-0">
+    <div className="relative z-10 mx-auto w-full max-w-[1120px] flex-1 px-4 pb-16 lg:px-6 xl:px-0">
       {/* Language and theme live in the profile card's corner. */}
       <div className="flex flex-col gap-4 pt-4 lg:flex-row lg:items-start lg:gap-10 lg:pt-6">
         <aside className="lg:sticky lg:top-6 lg:w-[400px] lg:shrink-0">
@@ -51,15 +52,12 @@ export function HomeShell({
             <SectionTabs tabs={tabs} />
           </div>
           {children}
-          <footer className="flex flex-col gap-1 px-2 pt-12 text-xs text-muted sm:flex-row sm:justify-between sm:px-4">
-            <span>© {new Date().getFullYear()} Anton Lopatin</span>
-            <span>{home.contactTitle}</span>
-          </footer>
         </div>
       </div>
 
       <ContactDialog socialLinks={socialLinks} labels={home.contactDialog} />
     </div>
+    <SiteFooter locale={locale} dict={dict} socialLinks={socialLinks} />
     </>
   );
 }

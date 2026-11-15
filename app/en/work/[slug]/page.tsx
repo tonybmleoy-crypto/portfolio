@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { getDictionary, getSocialLinks } from "@/lib/content";
 import { Header } from "@/components/Header";
 import { CaseStudyView } from "@/components/CaseStudyView";
-import { Footer } from "@/components/Footer";
+import { SiteFooter } from "@/components/SiteFooter";
 
 export function generateStaticParams() {
   return Object.keys(getDictionary("en").caseStudies).map((slug) => ({ slug }));
@@ -36,7 +36,7 @@ export default async function WorkPageEn({
       <main className="flex-1">
         <CaseStudyView caseStudy={caseStudy} locale="en" dict={dict} />
       </main>
-      <Footer locale="en" dict={dict} socialLinks={socialLinks} />
+      <SiteFooter locale="en" dict={dict} socialLinks={socialLinks} />
     </>
   );
 }
