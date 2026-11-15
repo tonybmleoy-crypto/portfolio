@@ -11,6 +11,7 @@ export const fintrack: CaseStudy = {
   coverPlain: true,
   coverSide: true,
   sections: [
+    { type: "chapter", title: "Context" },
     {
       type: "lead",
       body: "A startup was building a fintech app for personal budgeting. By the time I joined, the first screens already existed, put together quickly, without research, straight from an idea. The team felt something was off but couldn't pinpoint what.",
@@ -47,6 +48,7 @@ export const fintrack: CaseStudy = {
         "Time constraints → progress had to be shown to investors quickly.",
       ],
     },
+    { type: "chapter", title: "Research" },
     {
       type: "text",
       heading: "Research and getting started",
@@ -94,6 +96,7 @@ export const fintrack: CaseStudy = {
     },
     {
       type: "text",
+      tone: "research",
       heading: "Key insights from the interviews",
       body: [
         "What people want is to stop worrying about money, not to \"keep a budget\" for its own sake.",
@@ -129,11 +132,7 @@ export const fintrack: CaseStudy = {
       alt: "FinTrack user flow",
       caption: "User flow: the path from the first screen to saving an expense",
     },
-    {
-      type: "text",
-      heading: "Screen design",
-      body: [],
-    },
+    { type: "chapter", title: "Decisions" },
     {
       type: "imageGrid",
       images: [
@@ -143,6 +142,7 @@ export const fintrack: CaseStudy = {
     },
     {
       type: "text",
+      tone: "decision",
       body: [
         "On the \"Statistics\" screen, the header and the \"Expenses\" filter set the context right away, and I put the key amount front and center so people read the data faster.",
         "The \"Top categories\" cards pair an icon with an amount so categories are easy to compare at a glance.",
@@ -158,6 +158,7 @@ export const fintrack: CaseStudy = {
     },
     {
       type: "text",
+      tone: "decision",
       body: [
         "The recent-transactions list closes the loop: people can quickly check that everything recorded correctly.",
         "The quick-actions block surfaces the most frequent scenarios, so the path to the action people need most is shorter, especially if they use the app every day.",
@@ -171,12 +172,13 @@ export const fintrack: CaseStudy = {
       ],
     },
     {
-      type: "highlight",
+      type: "insight",
       label: "Insight",
       body: "From the interviews: people lost motivation to save because they couldn't see progress — the number on the account grew, but there was no sense of movement toward a goal.",
     },
     {
       type: "text",
+      tone: "decision",
       body: [
         "A progress bar runs on the Zeigarnik effect: an unfinished action pulls you to finish it. The amount next to the bar adds specifics.",
         "In testing, participants who saw the progress bar called their goal \"actually achievable\" twice as often as those who only saw a number.",
@@ -184,6 +186,7 @@ export const fintrack: CaseStudy = {
     },
     {
       type: "text",
+      tone: "decision",
       heading: "Lock screen",
       body: [
         "The lock screen is the one point where the phone is already in your hand but you haven't left for another app yet. The flow is deliberately stripped down to a minimum: a description field, a category list, and autosave with a loader.",
@@ -219,6 +222,7 @@ export const fintrack: CaseStudy = {
         { src: "/images/fintrack/lock-undo.jpg", alt: "Final shot: FinTrack lock screen", width: 644, height: 734 },
       ],
     },
+    { type: "chapter", title: "Outcome" },
     {
       type: "text",
       heading: "Testing",

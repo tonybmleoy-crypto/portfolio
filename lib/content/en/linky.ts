@@ -27,7 +27,6 @@ export const linky: CaseStudy = {
         { label: "Tools", value: "Figma, React, Electron, TypeScript" },
       ],
     },
-
     { type: "chapter", title: "S · Situation" },
     {
       type: "text",
@@ -52,7 +51,6 @@ export const linky: CaseStudy = {
         "Anyone who writes a lot lives with the same routine: designers and freelancers with a portfolio, salespeople with a calendar link, recruiters with job posts, support teams with canned replies.",
       ],
     },
-
     { type: "chapter", title: "T · Task" },
     {
       type: "text",
@@ -72,7 +70,6 @@ export const linky: CaseStudy = {
         ["Windows and macOS, Russian and English", "My audience works on both systems"],
       ],
     },
-
     { type: "chapter", title: "A · Actions" },
     {
       type: "text",
@@ -136,6 +133,7 @@ export const linky: CaseStudy = {
     },
     {
       type: "tips",
+      tone: "decision",
       heading: "Key decisions",
       items: [
         "A global Ctrl + Alt + V shortcut: it sits next to the familiar Ctrl + V and other apps rarely use it",
@@ -178,6 +176,7 @@ export const linky: CaseStudy = {
     },
     {
       type: "text",
+      tone: "decision",
       heading: "Key screens",
       body: [
         "The main screen of the product is the quick menu: search, folders, digits 1 to 9 and a paste hint. Everything else opens in the library window: entries, folders, an editor and settings in plain words.",
@@ -267,7 +266,6 @@ export const linky: CaseStudy = {
       width: 2400,
       height: 1680,
     },
-
     { type: "chapter", title: "R · Result" },
     {
       type: "text",

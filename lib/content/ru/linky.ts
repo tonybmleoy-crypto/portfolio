@@ -27,7 +27,6 @@ export const linky: CaseStudy = {
         { label: "Инструменты", value: "Figma, React, Electron, TypeScript" },
       ],
     },
-
     { type: "chapter", title: "S · Ситуация" },
     {
       type: "text",
@@ -52,7 +51,6 @@ export const linky: CaseStudy = {
         "С той же рутиной живут те, кто много переписывается: дизайнеры и фрилансеры с портфолио, продажники со ссылкой на календарь, рекрутеры с вакансиями, поддержка с типовыми ответами.",
       ],
     },
-
     { type: "chapter", title: "T · Задача" },
     {
       type: "text",
@@ -72,7 +70,6 @@ export const linky: CaseStudy = {
         ["Windows и macOS, русский и английский", "Моя аудитория работает на обеих системах"],
       ],
     },
-
     { type: "chapter", title: "A · Действия" },
     {
       type: "text",
@@ -136,6 +133,7 @@ export const linky: CaseStudy = {
     },
     {
       type: "tips",
+      tone: "decision",
       heading: "Ключевые решения",
       items: [
         "Глобальное сочетание Ctrl + Alt + V: стоит рядом с привычным Ctrl + V и почти не занято другими программами",
@@ -178,6 +176,7 @@ export const linky: CaseStudy = {
     },
     {
       type: "text",
+      tone: "decision",
       heading: "Ключевые экраны",
       body: [
         "Главный экран продукта — быстрое меню: поиск, папки, цифры от 1 до 9 и подсказка вставки. Остальное открывается в окне библиотеки: записи, папки, редактор и настройки простыми словами.",
@@ -267,7 +266,6 @@ export const linky: CaseStudy = {
       width: 2400,
       height: 1680,
     },
-
     { type: "chapter", title: "R · Результат" },
     {
       type: "text",

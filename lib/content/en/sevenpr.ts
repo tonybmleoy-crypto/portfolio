@@ -15,6 +15,7 @@ export const sevenpr: CaseStudy = {
     height: 1210,
   },
   sections: [
+    { type: "chapter", title: "Context" },
     {
       type: "text",
       heading: "The core task",
@@ -45,6 +46,7 @@ export const sevenpr: CaseStudy = {
         "Success criteria: consistent visual and behavioral logic across screens; clear navigation and hierarchy; less visual noise; interfaces ready to scale.",
       ],
     },
+    { type: "chapter", title: "Research" },
     {
       type: "text",
       heading: "Discovery",
@@ -53,7 +55,7 @@ export const sevenpr: CaseStudy = {
       ],
     },
     {
-      type: "highlight",
+      type: "insight",
       label: "Key insight",
       body: "Users see real-estate investing as a serious, high-stakes decision. The interface needed to convey reliability and transparency — not through words, but through the structure and behavior of the elements themselves.",
     },
@@ -82,8 +84,10 @@ export const sevenpr: CaseStudy = {
         },
       ],
     },
+    { type: "chapter", title: "Decisions" },
     {
       type: "text",
+      tone: "decision",
       heading: "Design system and UI kit",
       body: [
         "I started by building the design system:",
@@ -109,6 +113,7 @@ export const sevenpr: CaseStudy = {
     },
     {
       type: "text",
+      tone: "decision",
       heading: "Key screens",
       body: [
         "Dashboard. I built the hierarchy so key KPIs could be read effortlessly. Details are available but don't compete with the main numbers. Cards segment the information — what matters is visible without scrolling.",
@@ -143,6 +148,7 @@ export const sevenpr: CaseStudy = {
     },
     {
       type: "text",
+      tone: "decision",
       body: [
         "Property catalog. The main scenario here is comparison and decision-making. I structured the cards so key parameters (yield, entry threshold, term) can be read at a glance. Filters don't reset the context or send users back to the start.",
       ],
@@ -165,6 +171,7 @@ export const sevenpr: CaseStudy = {
       shadow: true,
       flush: true,
     },
+    { type: "chapter", title: "Outcome" },
     {
       type: "image",
       src: "/images/7pr/results.png",

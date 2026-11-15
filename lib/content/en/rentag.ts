@@ -9,6 +9,7 @@ export const rentag: CaseStudy = {
   coverWidth: 1400,
   coverHeight: 1129,
   sections: [
+    { type: "chapter", title: "Context" },
     {
       type: "text",
       heading: "About the project",
@@ -35,6 +36,7 @@ export const rentag: CaseStudy = {
         "The main challenge was doing this for a market where contracts run into tens of millions of rubles, and a client physically can't freeze the entire sum at once.",
       ],
     },
+    { type: "chapter", title: "Research" },
     {
       type: "text",
       heading: "Discovery",
@@ -45,6 +47,11 @@ export const rentag: CaseStudy = {
       ],
     },
     {
+      type: "insight",
+      label: "Key insight",
+      body: "30% of conversations on the platform raise the payment question within the first 2–3 messages. Users think about money before they think about order details.",
+    },
+    {
       type: "text",
       heading: "Competitor anti-patterns",
       body: [
@@ -53,13 +60,29 @@ export const rentag: CaseStudy = {
     },
     {
       type: "quote",
-      text: "The platform's arbitration always sides with the client, even when they're clearly wrong — the most common complaint contractors had about competitors. That became a requirement: the neutrality of arbitration had to be visible in the interface.",
+      text: "The platform's arbitration always sides with the client, even when they're clearly wrong",
+      author: "The most common complaint contractors had about competitors (YouDo, FL.ru reviews)",
+    },
+    {
+      type: "insight",
+      label: "Design requirement",
+      body: "The neutrality of arbitration had to be visible in the interface.",
     },
     {
       type: "image",
       src: "/images/rentag/discovery.png",
       alt: "Analysis of Rentag user conversations and competitor anti-patterns",
     },
+    {
+      type: "tips",
+      heading: "Three hypotheses:",
+      items: [
+        "Contractors are afraid of not getting paid after finishing the work",
+        "Clients are afraid of losing their prepayment with no way to get it back",
+        "Both sides distrust the platform's neutrality in disputes",
+      ],
+    },
+    { type: "chapter", title: "Decisions" },
     {
       type: "table",
       columns: ["Role", "Main fear", "Solution"],
@@ -82,26 +105,8 @@ export const rentag: CaseStudy = {
       ],
     },
     {
-      type: "insight",
-      label: "Key insight",
-      body: "30% of conversations on the platform raise the payment question within the first 2–3 messages. Users think about money before they think about order details.",
-    },
-    {
-      type: "tips",
-      heading: "Three hypotheses:",
-      items: [
-        "Contractors are afraid of not getting paid after finishing the work",
-        "Clients are afraid of losing their prepayment with no way to get it back",
-        "Both sides distrust the platform's neutrality in disputes",
-      ],
-    },
-    {
       type: "text",
-      heading: "Key design decisions",
-      body: [],
-    },
-    {
-      type: "text",
+      tone: "decision",
       heading: "A staged deal instead of a single freeze",
       body: [
         "After breaking down the four main staged-payment models — from Upwork to construction ERPs — I realized rigid milestones wouldn't work: on a construction site, stages are fuzzy, scope shifts mid-project, and timelines move because of weather and deliveries.",
@@ -143,6 +148,7 @@ export const rentag: CaseStudy = {
     },
     {
       type: "text",
+      tone: "decision",
       heading: "Living terms",
       body: [
         "Scope on a construction site changes after the deal starts — that's the norm, not the exception. Rigid deal terms would break the moment scope shifted. The solution: a revision mechanism that lets both sides renegotiate terms without losing protection.",
@@ -164,20 +170,17 @@ export const rentag: CaseStudy = {
     },
     {
       type: "text",
+      tone: "decision",
       heading: "Revision vs. arbitration",
       body: [
         "Two different scenarios needed to be split apart. Revision is a technical error in the document; arbitration is a dispute about work quality or a breach of terms.",
-      ],
-    },
-    {
-      type: "quote",
-      text: "Customer development interviews with clients showed they already drew this distinction intuitively. The closed list of revision reasons is built directly on that distinction — how users themselves separate the two situations.",
-    },
-    {
-      type: "text",
-      body: [
         "A closed list is a defense against abuse. Without it, a client could use \"revision\" to stall a payout for reasons unrelated to the document itself.",
       ],
+    },
+    {
+      type: "insight",
+      label: "From client interviews",
+      body: "Customer development interviews with clients showed they already drew this distinction intuitively. The closed list of revision reasons is built directly on that distinction — how users themselves separate the two situations.",
     },
     {
       type: "image",
@@ -185,6 +188,7 @@ export const rentag: CaseStudy = {
       alt: "Sending a document for revision on Rentag",
       caption: "Sending a document for revision: a closed list of reasons plus a mandatory comment",
     },
+    { type: "chapter", title: "Outcome" },
     {
       type: "text",
       heading: "The outcome",

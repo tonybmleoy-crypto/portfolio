@@ -10,6 +10,7 @@ export const vodokachka: CaseStudy = {
   coverPlain: true,
   coverSide: true,
   sections: [
+    { type: "chapter", title: "Context" },
     {
       type: "lead",
       body: "Waiters couldn't keep up with orders during peak hours: a guest waited 12 minutes just for their order to enter the system, before food prep even started. I designed a self-ordering service for guests' phones that took order-taking off the waiters without touching the kitchen. It's been running in the bar since launch.",
@@ -38,6 +39,7 @@ export const vodokachka: CaseStudy = {
         "The client came in with a solution already framed: \"we need an online menu.\" That's a description of a solution, not a problem. Measurements showed the time from being seated to receiving a dish grew by 20–25 minutes at peak.",
       ],
     },
+    { type: "chapter", title: "Research" },
     {
       type: "insight",
       label: "The diagnosis",
@@ -67,8 +69,10 @@ export const vodokachka: CaseStudy = {
       label: "Hypothesis",
       body: "If you remove the waiter from order-taking, the time to an order entering the system stops depending on headcount, and ordering becomes cheap enough, effort-wise, that guests order more than once an evening.",
     },
+    { type: "chapter", title: "Decisions" },
     {
       type: "text",
+      tone: "decision",
       heading: "Design",
       body: [
         "A guest scans the QR code on the table, builds an order in the menu, pays on the bank's side. The waiter delivers the dish to the table it came from. I was competing with the waiter, not with other digital menus. The bar was \"no slower than raising a hand,\" with zero mandatory steps like registration.",
@@ -85,6 +89,7 @@ export const vodokachka: CaseStudy = {
     },
     {
       type: "numbered",
+      tone: "decision",
       heading: "Key decisions",
       style: "cards",
       items: [
@@ -127,6 +132,7 @@ export const vodokachka: CaseStudy = {
     },
     {
       type: "text",
+      tone: "decision",
       heading: "Design system",
       body: [
         "Development was handled by an external team with no daily contact. I built a UI kit on atomic-design principles: around 50 components, tokens, a type scale on the Navigo typeface.",
@@ -142,6 +148,7 @@ export const vodokachka: CaseStudy = {
         { src: "/images/vodokachka/case-uikit-cart.png", alt: "Dish card and cart components", width: 585, height: 465 },
       ],
     },
+    { type: "chapter", title: "Outcome" },
     {
       type: "text",
       heading: "Testing",
