@@ -42,6 +42,8 @@ export interface HomeContent {
   sectionsNav: { projects: string; playground: string; about: string };
   resumeLabel: string;
   contactDialog: { title: string; close: string; copy: string; copied: string };
+  /** Case page chrome: the contents list, the next-case block and image zoom. */
+  caseNav: { back: string; top: string; contents: string; decision: string; quote: string; insights: string; summary: string; next: string; keepScrolling: string; zoom: string; closeZoom: string };
   playground: { emptyTitle: string; emptyBody: string; allTag: string };
   projects: ProjectCard[];
   viewCase: string;
@@ -64,12 +66,24 @@ export type Section =
   | { type: "lead"; body: string }
   | { type: "chapter"; title: string }
   | { type: "facts"; items: { label: string; value: string }[] }
-  | { type: "text"; heading?: string; body: TextParagraph[] }
+  | {
+      type: "text";
+      heading?: string;
+      body: TextParagraph[];
+      /**
+       * "decision": a key design decision (card, orange "Decision" tag).
+       * "research": findings from research (card, blue "Insights" tag).
+       * Plain narrative on the page otherwise.
+       */
+      tone?: "decision" | "research";
+    }
   | { type: "list"; heading?: string; intro?: string; items: string[] }
   | { type: "quote"; text: string; author?: string }
   | {
       type: "numbered";
       heading?: string;
+      /** "decision": the list is a set of design decisions (orange tag). */
+      tone?: "decision";
       style?: "cards";
       items: { number: string; title: string; body: string }[];
     }
@@ -93,7 +107,7 @@ export type Section =
   | { type: "stats"; items: { value: string; label: string }[] }
   | { type: "highlight"; label?: string; body: string }
   | { type: "insight"; label: string; body: string }
-  | { type: "tips"; heading: string; items: string[] }
+  | { type: "tips"; heading: string; items: string[]; /** "decision": orange tag instead of the neutral one. */ tone?: "decision" }
   | { type: "table"; heading?: string; columns: string[]; rows: string[][] }
   | { type: "prototype"; caption?: string; href?: string; hrefLabel?: string };
 
@@ -113,7 +127,7 @@ export interface CaseStudy {
 }
 
 export interface Dictionary {
-  nav: { cv: string; behance: string; linkedin: string; telegram: string; back: string };
+  nav: { cv: string; behance: string; linkedin: string; telegram: string; email: string; back: string };
   home: HomeContent;
   caseStudies: Record<string, CaseStudy>;
 }

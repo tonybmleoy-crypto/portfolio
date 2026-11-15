@@ -75,6 +75,22 @@
   /* Pixel koi behind the home sections (Figma: fx/koi-body, fx/koi-spot). */
   --koi-body: rgba(16, 16, 18, 0.06);
   --koi-spot: rgba(255, 122, 61, 0.14);
+  /* Reading progress on the case nav bar and the next-case pull. */
+  --progress: #ff7a3d;
+  --progress-from: #ff7a3d;
+  --progress-to: #c4551f;
+  /* Case block tags: research (insights, quotes) and decisions. */
+  --tag-research: #0a6cdb;
+  --tag-research-bg: rgba(12, 128, 255, 0.1);
+  --tag-decision: #c4551f;
+  --tag-decision-bg: rgba(255, 122, 61, 0.12);
+  --tag-result: #1b7f37;
+  --tag-result-bg: rgba(52, 199, 89, 0.12);
+  /* Case floating bar (Figma 987:1514): glass panel, quiet round buttons. */
+  --navbar-bg: rgba(255, 255, 255, 0.72);
+  --navbar-btn: rgba(0, 0, 0, 0.04);
+  --navbar-btn-hover: rgba(0, 0, 0, 0.08);
+  --navbar-btn-border: rgba(0, 0, 0, 0.08);
 
   --shadow-card-value: 0px 1px 2px rgba(16, 16, 18, 0.04), 0px 4px 8px rgba(16, 16, 18, 0.04),
     0px 12px 12px rgba(16, 16, 18, 0.02), 0px 24px 24px rgba(16, 16, 18, 0.01);
@@ -149,6 +165,21 @@
   --scrim: rgba(0, 0, 0, 0.6);
   --koi-body: rgba(242, 242, 245, 0.08);
   --koi-spot: rgba(255, 133, 71, 0.18);
+  --progress: #ff8547;
+  --progress-from: #ff8547;
+  --progress-to: #994f2b;
+  --tag-research: #6cb2ff;
+  --tag-research-bg: rgba(10, 132, 255, 0.16);
+  --tag-decision: #ff9a66;
+  --tag-decision-bg: rgba(255, 133, 71, 0.16);
+  --tag-result: #30d158;
+  --tag-result-bg: rgba(48, 209, 88, 0.14);
+  /* Figma's white 5% glass reads only over dark; tinted so it holds up over
+     the white screenshots the bar floats across. */
+  --navbar-bg: rgba(30, 30, 34, 0.72);
+  --navbar-btn: rgba(255, 255, 255, 0.12);
+  --navbar-btn-hover: rgba(255, 255, 255, 0.18);
+  --navbar-btn-border: rgba(255, 255, 255, 0.12);
 
   /* Shadows barely read on dark, so the lift comes from a hairline instead. */
   --shadow-card-value: 0px 0px 0px 1px rgba(255, 255, 255, 0.07),
@@ -169,7 +200,8 @@
   --shadow-card: var(--shadow-card-value);
   /* Medeo (medeo-font): Sans picks its display cut by itself at large sizes (opsz axis). */
   --font-sans: var(--font-medeo-sans);
-  --font-mono: var(--font-medeo-mono);
+  /* The site uses no monospace text; system mono if code ever shows up. */
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
 }
 
 html {
@@ -197,6 +229,14 @@ body {
 @media (max-width: 1023px) {
   .nav-link {
     padding-block: 0.75rem;
+  }
+}
+
+/* Footer on phones: four links share one row, so they sit a little closer.
+   (.nav-link is unlayered, so a utility class couldn't override its padding.) */
+@media (max-width: 639px) {
+  .nav-link.nav-link-tight {
+    padding-inline: 0.75rem;
   }
 }
 
@@ -342,9 +382,10 @@ h3 {
   inset: -6px;
 }
 
-/* One visible keyboard-focus ring for every link and button. */
+/* One visible keyboard-focus ring for every link and button. Neutral, in the
+   text colour, so it reads in both themes without a stray brand blue. */
 :focus-visible {
-  outline: 2px solid var(--accent-blue);
+  outline: 2px solid color-mix(in srgb, var(--foreground) 72%, transparent);
   outline-offset: 3px;
 }
 
@@ -367,13 +408,15 @@ h3 {
  * document.startViewTransition(). Skipped by JS entirely when the browser
  * doesn't support it, or the visitor asked for reduced motion — this CSS
  * block is a second line of defense in case some other caller ever invokes
- * startViewTransition() without checking for it.
+ * startViewTransition() without checking for it. Scoped to .theme-switching
+ * (set by the toggle for the length of the switch) so page navigations,
+ * which are view transitions too, keep their own animation.
  */
-::view-transition-old(root) {
+html.theme-switching::view-transition-old(root) {
   animation: none;
 }
 
-::view-transition-new(root) {
+html.theme-switching::view-transition-new(root) {
   animation: theme-reveal 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
@@ -390,5 +433,110 @@ h3 {
   ::view-transition-old(root),
   ::view-transition-new(root) {
     animation: none !important;
+  }
+}
+
+/* Full-screen case image (ZoomImage). */
+.zoom-dialog::backdrop {
+  background: var(--scrim);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/*
+ * Moving between cases (React <ViewTransition>, see NextCase and CaseBody).
+ * The next-case card at the bottom grows into the new page's cover, and the
+ * left card (profile or case) changes in place. Everything else crossfades.
+ */
+::view-transition-group(.case-morph),
+::view-transition-group(.side-morph) {
+  animation-duration: 520ms;
+  animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Old and new shapes differ (a 3:2 card, a cover); fill the box instead of
+   stretching, and clip the overflow. */
+::view-transition-old(.case-morph),
+::view-transition-new(.case-morph),
+::view-transition-old(.side-morph),
+::view-transition-new(.side-morph) {
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  overflow: clip;
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 320ms;
+}
+
+/* Keep the scrollbar's room when scrolling is held between cases (scrollHold),
+   so pages with a classic scrollbar don't shift sideways. */
+html {
+  scrollbar-gutter: stable;
+}
+
+/*
+ * Preloader (components/Preloader.tsx): the name fades in out of a blur, holds
+ * for a moment, then the whole screen dissolves. ~1.3s from the first paint.
+ */
+.preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #000;
+  pointer-events: none;
+  animation: preloader-out 420ms ease-in-out 880ms forwards;
+}
+
+.preloader-text {
+  color: #fff;
+  font-size: clamp(20px, 3vw, 32px);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  opacity: 0;
+  filter: blur(10px);
+  animation: preloader-text-in 450ms ease-out 50ms forwards;
+}
+
+html[lang="en"] .preloader-text-ru,
+html:not([lang="en"]) .preloader-text-en {
+  display: none;
+}
+
+@keyframes preloader-text-in {
+  to {
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+
+@keyframes preloader-out {
+  to {
+    opacity: 0;
+    filter: blur(16px);
+    visibility: hidden;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .preloader {
+    animation: preloader-out 300ms ease-in-out 700ms forwards;
+  }
+
+  .preloader-text {
+    filter: none;
+    animation: preloader-text-in 300ms ease-out forwards;
+  }
+
+  @keyframes preloader-out {
+    to {
+      opacity: 0;
+      visibility: hidden;
+    }
   }
 }

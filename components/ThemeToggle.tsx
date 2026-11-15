@@ -81,6 +81,7 @@ export function ThemeToggle({ className }: { className?: string }) {
     root.style.setProperty("--theme-toggle-y", `${y}px`);
     root.style.setProperty("--theme-toggle-r", `${radius}px`);
 
+    root.classList.add("theme-switching");
     const transition = document.startViewTransition(() => {
       // startViewTransition needs the "after" DOM committed and painted
       // before it takes its snapshot. A plain setState is batched and may
@@ -95,6 +96,7 @@ export function ThemeToggle({ className }: { className?: string }) {
     // is skipped, so this only needs to stop it from surfacing as an
     // unhandled rejection.
     transition.ready.catch(() => {});
+    transition.finished.finally(() => root.classList.remove("theme-switching"));
   }
 
   return (

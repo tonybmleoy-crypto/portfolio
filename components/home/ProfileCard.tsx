@@ -1,5 +1,6 @@
 "use client";
 
+import { ViewTransition } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { ExportSquare } from "iconsax-react";
@@ -22,6 +23,7 @@ export function ProfileCard({ locale, content, socialLinks }: { locale: Locale; 
     // A squircle clip here would leave the ring's round corner poking out.
     // overflow-hidden keeps the photo inside the rounded corner; it does not clip
     // the card's own box-shadow ring.
+    <ViewTransition name="side-card" share="side-morph" default="none">
     <div className="flex flex-col gap-6 overflow-hidden rounded-[32px] bg-surface p-6 shadow-card lg:rounded-[36px] lg:p-8">
       <div>
         {/* Photo and the corner buttons share a row; the name and role sit below
@@ -95,5 +97,6 @@ export function ProfileCard({ locale, content, socialLinks }: { locale: Locale; 
           </motion.a>
         </div>
     </div>
+    </ViewTransition>
   );
 }

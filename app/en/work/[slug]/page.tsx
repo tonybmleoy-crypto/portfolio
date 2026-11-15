@@ -1,9 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getDictionary, getSocialLinks } from "@/lib/content";
-import { Header } from "@/components/Header";
-import { CaseStudyView } from "@/components/CaseStudyView";
-import { SiteFooter } from "@/components/SiteFooter";
+import { CaseShell } from "@/components/case/CaseShell";
 
 export function generateStaticParams() {
   return Object.keys(getDictionary("en").caseStudies).map((slug) => ({ slug }));
@@ -30,13 +28,5 @@ export default async function WorkPageEn({
   if (!caseStudy) notFound();
   const socialLinks = getSocialLinks();
 
-  return (
-    <>
-      <Header locale="en" dict={dict} socialLinks={socialLinks} />
-      <main className="flex-1">
-        <CaseStudyView caseStudy={caseStudy} locale="en" dict={dict} />
-      </main>
-      <SiteFooter locale="en" dict={dict} socialLinks={socialLinks} />
-    </>
-  );
+  return <CaseShell caseStudy={caseStudy} locale="en" dict={dict} socialLinks={socialLinks} />;
 }

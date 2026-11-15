@@ -1,9 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getDictionary, getSocialLinks } from "@/lib/content";
-import { Header } from "@/components/Header";
-import { CaseStudyView } from "@/components/CaseStudyView";
-import { SiteFooter } from "@/components/SiteFooter";
+import { CaseShell } from "@/components/case/CaseShell";
 
 export function generateStaticParams() {
   return Object.keys(getDictionary("ru").caseStudies).map((slug) => ({ slug }));
@@ -14,7 +12,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const caseStudy = getDictionary("ru").caseStudies[slug];
   if (!caseStudy) return {};
   return {
-    title: `${caseStudy.title} — Anton Lopatin`,
+    title: `${caseStudy.title} — Антон Лопатин`,
     description: caseStudy.subtitle,
   };
 }
@@ -30,13 +28,5 @@ export default async function WorkPage({
   if (!caseStudy) notFound();
   const socialLinks = getSocialLinks();
 
-  return (
-    <>
-      <Header locale="ru" dict={dict} socialLinks={socialLinks} />
-      <main className="flex-1">
-        <CaseStudyView caseStudy={caseStudy} locale="ru" dict={dict} />
-      </main>
-      <SiteFooter locale="ru" dict={dict} socialLinks={socialLinks} />
-    </>
-  );
+  return <CaseShell caseStudy={caseStudy} locale="ru" dict={dict} socialLinks={socialLinks} />;
 }
