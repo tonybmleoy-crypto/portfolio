@@ -1,20 +1,11 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { MedeoSans } from "medeo-font/sans";
+import { MedeoMono } from "medeo-font/mono";
 import { MotionConfig } from "framer-motion";
 import { Preloader } from "@/components/Preloader";
 import { PostHogProvider } from "@/components/PostHogProvider";
 import { themeInitScript } from "@/components/ThemeToggle";
 import "./globals.css";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin", "cyrillic"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
 
 export const metadata: Metadata = {
   title: "Anton Lopatin — Product Designer",
@@ -27,7 +18,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html
       lang="ru"
       data-scroll-behavior="smooth"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${MedeoSans.variable} ${MedeoMono.variable} h-full antialiased`}
       suppressHydrationWarning
     >
       <head>

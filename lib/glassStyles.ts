@@ -1,7 +1,8 @@
 import type { CSSProperties } from "react";
 
+/** The name in the header and footer: same family as the rest of the site. */
 export const navFont: CSSProperties = {
-  fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif",
+  fontFamily: "var(--font-sans), system-ui, sans-serif",
 };
 
 /*
