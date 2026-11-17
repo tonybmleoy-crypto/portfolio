@@ -168,20 +168,44 @@ export function CaseContents({ items, label, variant }: { items: ContentsItem[];
   const go = useJump();
   useSlidingPill(listRef, pillRef, variant === "bar" ? active : null);
 
+  // Keep the current tab in view, centred in the row. Measured on the <li>:
+  // the row is its offsetParent (the link's is the <li> itself, always 0).
   useEffect(() => {
     if (variant !== "bar" || !active) return;
     const list = listRef.current;
-    const link = list?.querySelector<HTMLElement>(`[data-id="${active}"]`);
-    if (!list || !link) return;
-    list.scrollTo({ left: link.offsetLeft - 16, behavior: "smooth" });
+    const item = list?.querySelector<HTMLElement>('[data-active="true"]');
+    if (!list || !item) return;
+    const left = item.offsetLeft - (list.clientWidth - item.offsetWidth) / 2;
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    list.scrollTo({ left: Math.max(0, left), behavior: reduce ? "auto" : "smooth" });
   }, [active, variant]);
+
+  // Fade the row's edges only where tabs run past them.
+  useEffect(() => {
+    if (variant !== "bar") return;
+    const list = listRef.current;
+    if (!list) return;
+    const update = () => {
+      const max = list.scrollWidth - list.clientWidth;
+      list.dataset.fadeStart = String(list.scrollLeft > 1);
+      list.dataset.fadeEnd = String(list.scrollLeft < max - 1);
+    };
+    update();
+    list.addEventListener("scroll", update, { passive: true });
+    const observer = new ResizeObserver(update);
+    observer.observe(list);
+    return () => {
+      list.removeEventListener("scroll", update);
+      observer.disconnect();
+    };
+  }, [variant]);
 
   if (items.length === 0) return null;
   if (variant === "side") return <SideContents items={items} label={label} active={active} />;
 
   return (
     <nav aria-label={label} className="rounded-full bg-surface p-1">
-      <ul ref={listRef} className="relative flex overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+      <ul ref={listRef} className="case-tabs-row relative flex overflow-x-auto overscroll-x-contain rounded-full [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
         {/* Slides inside the row (see useSlidingPill): the row is sticky, and a
             page-relative animation would fly in from wherever the page was. */}
         <span ref={pillRef} aria-hidden className="absolute inset-y-0 left-0 rounded-full bg-foreground opacity-0" />

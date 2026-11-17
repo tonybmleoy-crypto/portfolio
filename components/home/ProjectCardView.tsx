@@ -1,7 +1,14 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight2, ExportSquare } from "iconsax-react";
+import type { ComponentType } from "react";
 import type { HomeContent, ProjectCard } from "@/lib/types";
+import { FintrackCover } from "./covers/FintrackCover";
+import { LinkyCover } from "./covers/LinkyCover";
+import { SevenPondsCover } from "./covers/SevenPondsCover";
+
+/** Covers built from layers in code, by case slug; the rest use the flat image. */
+const LIVE_COVERS: Record<string, ComponentType> = { linky: LinkyCover, fintrack: FintrackCover, "7pr": SevenPondsCover };
 
 /**
  * One case card: cover, title, description, timeline and users. The title link
@@ -22,18 +29,23 @@ export function ProjectCardView({
   /** The "next case" card opens by scrolling on; the whole card is still a link. */
   hideButton?: boolean;
 }) {
+  const LiveCover = LIVE_COVERS[project.slug];
   return (
     <article className="group relative rounded-[28px] bg-surface p-2 shadow-card transition-transform duration-300 has-[a[data-card]:active]:scale-[0.99] lg:rounded-[36px] lg:p-3 [@media(hover:hover)]:hover:-translate-y-1">
         <div className="relative aspect-[3/2] overflow-hidden rounded-[20px] bg-[color:var(--fill-quiet-hover)] lg:rounded-[24px]">
-          <Image
-            src={project.image}
-            alt=""
-            fill
-            sizes="(max-width: 1024px) 100vw, 656px"
-            quality={90}
-            className={`object-cover ${project.available ? "" : "opacity-70 grayscale"}`}
-            style={{ objectPosition: project.coverPosition ?? "50% 50%" }}
-          />
+          {LiveCover ? (
+            <LiveCover />
+          ) : (
+            <Image
+              src={project.image}
+              alt=""
+              fill
+              sizes="(max-width: 1024px) 100vw, 656px"
+              quality={90}
+              className={`object-cover ${project.available ? "" : "opacity-70 grayscale"}`}
+              style={{ objectPosition: project.coverPosition ?? "50% 50%" }}
+            />
+          )}
           {!project.available && (
             <span className="absolute right-3 top-3 rounded-full bg-[color:var(--float-bg)] px-3 py-1 text-xs text-muted backdrop-blur-md">
               {content.comingSoon}

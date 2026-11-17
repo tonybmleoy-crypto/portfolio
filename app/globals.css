@@ -544,3 +544,22 @@ html:not([lang="en"]) .preloader-text-en {
     }
   }
 }
+
+/* Case contents row on phones: soft edges where tabs scroll past them
+   (CaseContents sets the data attributes). */
+.case-tabs-row[data-fade-start="true"] {
+  mask-image: linear-gradient(to right, transparent, #000 24px);
+}
+.case-tabs-row[data-fade-end="true"] {
+  mask-image: linear-gradient(to left, transparent, #000 24px);
+}
+.case-tabs-row[data-fade-start="true"][data-fade-end="true"] {
+  mask-image: linear-gradient(to right, transparent, #000 24px, #000 calc(100% - 24px), transparent);
+}
+
+/* Text caret in the Linky case cover. */
+@keyframes linky-caret {
+  50% {
+    opacity: 0;
+  }
+}
