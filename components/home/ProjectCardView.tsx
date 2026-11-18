@@ -5,10 +5,12 @@ import type { ComponentType } from "react";
 import type { HomeContent, ProjectCard } from "@/lib/types";
 import { FintrackCover } from "./covers/FintrackCover";
 import { LinkyCover } from "./covers/LinkyCover";
+import { RentagCover } from "./covers/RentagCover";
 import { SevenPondsCover } from "./covers/SevenPondsCover";
+import { VodokachkaCover } from "./covers/VodokachkaCover";
 
 /** Covers built from layers in code, by case slug; the rest use the flat image. */
-const LIVE_COVERS: Record<string, ComponentType> = { linky: LinkyCover, fintrack: FintrackCover, "7pr": SevenPondsCover };
+const LIVE_COVERS: Record<string, ComponentType> = { linky: LinkyCover, fintrack: FintrackCover, "7pr": SevenPondsCover, vodokachka: VodokachkaCover, rentag: RentagCover };
 
 /**
  * One case card: cover, title, description, timeline and users. The title link
