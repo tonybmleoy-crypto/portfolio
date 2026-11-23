@@ -3,7 +3,7 @@
     "linky": {
       "available": true,
       "image": "/images/home/linky-card-v2.png",
-      "tag": "Desktop app",
+      "tag": "Десктоп",
       "timeline": "2026",
       "users": "",
       "description": {
@@ -14,7 +14,7 @@
     "rentag": {
       "available": true,
       "image": "/images/home/rentag-card.png",
-      "tag": "Fintech",
+      "tag": "Финтех",
       "timeline": "2026",
       "users": "370k",
       "description": {
@@ -25,7 +25,7 @@
     "fintrack": {
       "available": true,
       "image": "/images/home/fintrack-card-v2.png",
-      "tag": "Fintech",
+      "tag": "Финтех",
       "timeline": "2025",
       "users": "144k",
       "description": {
@@ -36,7 +36,7 @@
     "7pr": {
       "available": true,
       "image": "/images/home/7pr-card-v2.png",
-      "tag": "Proptech",
+      "tag": "Проптех",
       "timeline": "2025",
       "users": "",
       "description": {
@@ -47,7 +47,7 @@
     "vodokachka": {
       "available": true,
       "image": "/images/home/vodokachka-card.png",
-      "tag": "Foodtech",
+      "tag": "Фудтех",
       "timeline": "2025",
       "users": "",
       "description": {
@@ -132,8 +132,8 @@
   ],
   "home": {
     "bio": {
-      "ru": "4 года в финтехе и e-commerce, сейчас — Team Lead UX/UI в Rentag. Проектирую цифровые продукты от исследования пользовательских проблем до запуска и связываю UX-решения с бизнес-метриками.",
-      "en": "4 years in fintech and e-commerce, currently Team Lead UX/UI at Rentag. I design digital products from user research to launch and tie UX decisions to business metrics."
+      "ru": "4 года в финтехе и e-commerce, сейчас — Team Lead UX/UI в MPGO. Проектирую цифровые продукты от исследования пользовательских проблем до запуска и связываю UX-решения с бизнес-метриками.",
+      "en": "4 years in fintech and e-commerce, currently Team Lead UX/UI at MPGO. I design digital products from user research to launch and tie UX decisions to business metrics."
     },
     "aboutBio": {
       "ru": "Я занимаюсь продуктовым дизайном больше трёх лет, в основном работал с финтехом, инвестициями и разными цифровыми сервисами. Мне важно, чтобы интерфейс реально помогал пользователям и решал задачи бизнеса. Поэтому в работе я всегда опираюсь на исследования и аналитику.\n\nКроме дизайна, большую часть моей жизни занимает музыка. Я играю на гитаре уже более одиннадцать лет: выступал на сцене, преподавал, а сейчас развиваю свой музыкальный проект. Музыка научила меня дисциплине, умению работать с аудиторией и помогать творческим идеям укладываться в чёткую структуру.\n\nЕщё одно моё увлечение — японские автомобили. Мне нравится разбираться в том, как устроена техника, и заниматься машинами самостоятельно. Сейчас я восстанавливаю и дорабатываю свою некро-тойоту. В этом процессе мне интересны инженерные решения и то, как из отдельных деталей собирается работающая система.\n\nМне кажется, что у хорошего дизайна, музыки и инженерии много общего. Везде нужно внимание к мелочам, понимание людей и желание сделать сложные вещи простыми и удобными.",
