@@ -159,8 +159,8 @@ const DEFAULT_SOCIAL_LINKS = {
   telegram: "https://t.me/tonybml",
   telegramHandle: "@tonybml",
   cv: {
-    ru: "https://drive.google.com/file/d/1f2unPZRwIX3vbDOvnKzSUKHJeyANUXZA/view?usp=sharing",
-    en: "https://drive.google.com/file/d/10BLA0X578HJ5qZVQ8-3Z_xd70Ja14lJt/view?usp=sharing",
+    ru: "https://drive.google.com/file/d/1O35T4lGVSo_FpsrXI6LpUhpcstx6h2dm/view?usp=sharing",
+    en: "https://drive.google.com/file/d/1clBiNXY3SSG7e-GSksclgL7oPuSwpbk6/view?usp=sharing",
   },
   behance: "https://www.behance.net/cyberpapaz",
   linkedin: "https://www.linkedin.com/in/anton-lopatin-88a2a3396",
