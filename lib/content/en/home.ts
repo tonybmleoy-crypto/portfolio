@@ -35,7 +35,6 @@ export const home: HomeContent = {
   playground: {
     emptyTitle: "Concepts are coming soon",
     emptyBody: "Shots, experiments and interfaces that didn't become case studies will live here.",
-    allTag: "All",
   },
   viewCase: "View case",
   timelineLabel: "Year",

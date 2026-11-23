@@ -1,39 +1,27 @@
-"use client";
-
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useMemo, useRef, useState } from "react";
 import type { Concept, HomeContent, Locale } from "@/lib/types";
 import { workHref } from "@/lib/paths";
 
-const PAGE = 24;
+/** Static class names so Tailwind keeps them. */
+const SPAN: Record<Concept["span"], string> = {
+  4: "sm:col-span-4",
+  5: "sm:col-span-5",
+  6: "sm:col-span-6",
+  7: "sm:col-span-7",
+  8: "sm:col-span-8",
+  12: "sm:col-span-12",
+};
 
 /**
- * Square-cell grid of concepts. Renders a page of 24 and reveals the next one
- * when a sentinel comes within a screen of the viewport. Tag chips filter the
- * list. While the list is empty it shows an empty state instead.
+ * Bento grid of concepts on a 12-column track. From sm up every tile is the
+ * same height, set as a share of the grid's own width (cqw), and every phone
+ * takes the same share of that height: the mockups stay one size and the
+ * tiles keep their proportions at any width. Rows differ only in how they
+ * split the 12 columns. On phones the grid is one column; a scene tile is
+ * square there.
  */
 export function ConceptGrid({ locale, concepts, labels }: { locale: Locale; concepts: Concept[]; labels: HomeContent["playground"] }) {
-  const [tag, setTag] = useState<string | null>(null);
-  const [shown, setShown] = useState(PAGE);
-  const sentinel = useRef<HTMLDivElement>(null);
-
-  const tags = useMemo(() => [...new Set(concepts.flatMap((c) => c.tags))], [concepts]);
-  const list = useMemo(() => (tag ? concepts.filter((c) => c.tags.includes(tag)) : concepts), [concepts, tag]);
-
-  useEffect(() => {
-    const el = sentinel.current;
-    if (!el || shown >= list.length) return;
-    const io = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting) setShown((n) => n + PAGE);
-      },
-      { rootMargin: "0px 0px 100% 0px" },
-    );
-    io.observe(el);
-    return () => io.disconnect();
-  }, [shown, list.length]);
-
   if (concepts.length === 0) {
     return (
       <div className="rounded-[28px] bg-surface p-8 shadow-card lg:rounded-[36px]">
@@ -44,56 +32,73 @@ export function ConceptGrid({ locale, concepts, labels }: { locale: Locale; conc
   }
 
   return (
-    <div>
-      {tags.length > 1 && (
-        <div className="-mx-4 mb-4 flex gap-2 overflow-x-auto px-4 [scrollbar-width:none] lg:mx-0 lg:flex-wrap lg:px-0">
-          {[null, ...tags].map((t) => (
-            <button
-              key={t ?? "all"}
-              type="button"
-              onClick={() => {
-                setTag(t);
-                setShown(PAGE);
-              }}
-              aria-pressed={tag === t}
-              className={`shrink-0 rounded-full px-4 py-2.5 text-sm font-medium transition-colors ${
-                tag === t ? "bg-foreground text-background" : "bg-[color:var(--fill-quiet)] hover:bg-[color:var(--fill-quiet-hover)]"
-              }`}
-            >
-              {t ?? labels.allTag}
-            </button>
-          ))}
-        </div>
-      )}
-
-      <ul className="grid grid-cols-2 gap-2 lg:grid-cols-3 lg:gap-4">
-        {list.slice(0, shown).map((c) => {
+    <div className="@container">
+      <ul className="grid grid-cols-1 gap-3 sm:grid-cols-12 lg:gap-4">
+        {concepts.map((c, i) => {
+          const size = c.kind === "scene" ? "aspect-square sm:aspect-auto" : "h-[400px]";
           const tile = (
-            <>
-              <Image src={c.image} alt="" fill sizes="(max-width: 1024px) 50vw, 216px" className="object-cover" />
-              <span className="absolute inset-0 flex flex-col justify-end bg-gradient-to-b from-transparent from-45% to-black/70 p-4 opacity-0 transition-opacity duration-200 group-hover:opacity-100 group-focus-visible:opacity-100">
-                <span className="font-medium text-white">{c.title}</span>
-                <span className="mt-1 text-xs text-white/60">{c.meta}</span>
-              </span>
-            </>
+            <div
+              role="img"
+              aria-label={c.title}
+              className={`group relative overflow-hidden rounded-[20px] bg-[color:var(--fill-quiet)] sm:h-[64cqw] lg:rounded-[24px] ${size}`}
+            >
+              {c.kind === "scene" ? (
+                <Image
+                  src={c.screens[0]}
+                  alt=""
+                  fill
+                  sizes="(max-width: 640px) 100vw, 460px"
+                  className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
+                  priority={i < 2}
+                />
+              ) : (
+                <>
+                  {/* Stage: the first screen, blurred, so each tile gets its own colour. */}
+                  {c.stage ? (
+                    <span className="absolute inset-0" style={{ background: c.stage }} />
+                  ) : (
+                    <>
+                      <Image src={c.screens[0]} alt="" fill sizes="120px" className="scale-150 object-cover blur-2xl" />
+                      <span className="absolute inset-0 bg-black/20" />
+                    </>
+                  )}
+                  <div className="relative flex h-full items-center justify-center gap-4">
+                    {c.screens.map((src) => (
+                      <Phone key={src} src={src} priority={i < 2} />
+                    ))}
+                  </div>
+                </>
+              )}
+              {/* Hairline edge so dark tiles still read as tiles on a dark page. */}
+              <span className="pointer-events-none absolute inset-0 rounded-[inherit] shadow-[inset_0_0_0_1px_rgba(255,255,255,0.08)]" />
+            </div>
           );
-          const cls = "group relative block aspect-square overflow-hidden rounded-2xl bg-[color:var(--fill-quiet)] lg:rounded-[20px]";
+
           return (
-            <li key={c.slug}>
+            <li key={c.slug} className={SPAN[c.span]}>
               {c.caseSlug ? (
-                <Link href={workHref(locale, c.caseSlug)} className={cls} aria-label={c.title}>
+                <Link href={workHref(locale, c.caseSlug)} className="block">
                   {tile}
                 </Link>
               ) : (
-                <div className={cls} role="img" aria-label={c.title}>
-                  {tile}
-                </div>
+                tile
               )}
             </li>
           );
         })}
       </ul>
-      <div ref={sentinel} />
+    </div>
+  );
+}
+
+/** CSS iPhone: black bezel, titanium edge, Dynamic Island. Height-driven. */
+function Phone({ src, priority }: { src: string; priority: boolean }) {
+  return (
+    <div className="relative aspect-[402/874] h-[84%] rounded-[30px] bg-[#0b0b0c] p-[5px] shadow-[0_0_0_1px_rgba(255,255,255,0.14),0_28px_56px_-16px_rgba(0,0,0,0.55)] transition-transform duration-500 ease-out group-hover:-translate-y-1.5">
+      <div className="relative h-full w-full overflow-hidden rounded-[25px] bg-black">
+        <Image src={src} alt="" fill sizes="190px" quality={90} className="object-cover object-top" priority={priority} />
+      </div>
+      <span className="absolute left-1/2 top-[11px] h-[3.4%] w-[30%] -translate-x-1/2 rounded-full bg-black" />
     </div>
   );
 }

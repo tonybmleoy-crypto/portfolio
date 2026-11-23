@@ -23,10 +23,24 @@ export interface ProjectCard {
 export interface Concept {
   slug: string;
   title: string;
-  /** Short meta line under the title, e.g. "Mobile · 2026". */
-  meta: string;
-  tags: string[];
-  image: string;
+  /**
+   * "phone" puts each screen into an iPhone mockup on a blurred stage made
+   * from the first screen; "scene" fills the tile edge to edge.
+   */
+  kind: "phone" | "scene";
+  /**
+   * CSS background for a phone tile instead of the blurred first screen. Use
+   * it when the screens are so dark that the blur sinks into the page.
+   */
+  stage?: string;
+  /** Screens in display order; a phone tile fits up to two. */
+  screens: string[];
+  /**
+   * Columns out of 12 on sm+ screens. The spans of each row must add up to 12,
+   * e.g. 7+5, 4+4+4, 4+8; all rows share one height, so phones keep one size.
+   * A scene reads best at span 8, where the tile is about square.
+   */
+  span: 4 | 5 | 6 | 7 | 8 | 12;
   /** Opens this case study when set. */
   caseSlug?: string;
 }
@@ -44,7 +58,7 @@ export interface HomeContent {
   contactDialog: { title: string; close: string; copy: string; copied: string };
   /** Case page chrome: the contents list, the next-case block and image zoom. */
   caseNav: { back: string; top: string; contents: string; decision: string; quote: string; insights: string; summary: string; next: string; keepScrolling: string; zoom: string; closeZoom: string };
-  playground: { emptyTitle: string; emptyBody: string; allTag: string };
+  playground: { emptyTitle: string; emptyBody: string };
   projects: ProjectCard[];
   viewCase: string;
   comingSoon: string;

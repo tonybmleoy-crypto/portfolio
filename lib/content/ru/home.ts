@@ -35,7 +35,6 @@ export const home: HomeContent = {
   playground: {
     emptyTitle: "Концепты скоро появятся",
     emptyBody: "Здесь будут шоты, эксперименты и интерфейсы, которые не стали кейсами.",
-    allTag: "Все",
   },
   viewCase: "Смотреть кейс",
   timelineLabel: "Год",
