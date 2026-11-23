@@ -17,10 +17,6 @@ export function RentagCover() {
     <div
       aria-hidden
       className="absolute inset-0 select-none overflow-hidden [container-type:inline-size]"
-      style={{
-        background:
-          "radial-gradient(45% 55% at 78% 8%, rgba(122,44,246,0.55) 0%, rgba(122,44,246,0) 100%), radial-gradient(40% 50% at 8% 92%, rgba(94,60,255,0.4) 0%, rgba(94,60,255,0) 100%), linear-gradient(180deg, #17122e 0%, #0e0b1d 100%)",
-      }}
     >
       <div className="absolute inset-0" style={{ fontSize: "calc(100cqw / 60)" }}>
         <MacBook className="left-[8em] top-[5.6em] w-[44em]" />

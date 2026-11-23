@@ -106,9 +106,6 @@ export function VodokachkaCover() {
       aria-hidden
       className="absolute inset-0 select-none overflow-hidden [container-type:inline-size]"
       style={{
-        // A four-colour mesh in the brand's warm range, like showtime's backdrops.
-        background:
-          "radial-gradient(60% 70% at 8% 12%, #ffd6a8 0%, rgba(255,214,168,0) 70%), radial-gradient(55% 65% at 92% 18%, #ff9a5c 0%, rgba(255,154,92,0) 70%), radial-gradient(60% 70% at 85% 95%, #f4b6a0 0%, rgba(244,182,160,0) 70%), radial-gradient(60% 70% at 10% 90%, #ffc58a 0%, rgba(255,197,138,0) 70%), #fbd9bd",
         fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Text", Inter, system-ui, sans-serif',
       }}
     >

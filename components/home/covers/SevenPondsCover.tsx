@@ -223,8 +223,6 @@ export function SevenPondsCover() {
       aria-hidden
       className="absolute inset-0 select-none overflow-hidden [container-type:inline-size]"
       style={{
-        background:
-          "radial-gradient(38% 42% at 100% 8%, rgba(32,136,122,0.85) 0%, rgba(32,136,122,0) 100%), radial-gradient(36% 40% at 100% 96%, rgba(32,136,122,0.8) 0%, rgba(32,136,122,0) 100%), radial-gradient(22% 36% at 0% 50%, rgba(32,130,117,0.75) 0%, rgba(32,130,117,0) 100%), #1f1f1f",
         fontFamily:
           "Inter, -apple-system, BlinkMacSystemFont, system-ui, sans-serif",
       }}

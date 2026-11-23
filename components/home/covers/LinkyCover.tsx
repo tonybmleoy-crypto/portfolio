@@ -60,10 +60,6 @@ export function LinkyCover() {
       ref={ref}
       aria-hidden
       className="absolute inset-0 select-none overflow-hidden [container-type:inline-size]"
-      style={{
-        background:
-          "radial-gradient(60% 70% at 100% 45%, #ff8a2a 0%, #ffb562 38%, rgba(255,181,98,0) 72%), radial-gradient(40% 35% at 45% 100%, #b9d2fb 0%, rgba(185,210,251,0) 100%), #eeeef1",
-      }}
     >
       <div className="absolute inset-0 text-[#101012]" style={{ fontSize: "calc(100cqw / 60)" }}>
         {/* Chat window: the app Linky pastes into. */}

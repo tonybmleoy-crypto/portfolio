@@ -1,3 +1,4 @@
+import { glowStage } from "@/lib/stage";
 import { Concept } from "@/lib/types";
 
 /**
@@ -14,7 +15,7 @@ export const concepts: Concept[] = [
     title: "Ember Case",
     kind: "phone",
     // Ember glow rising from the bottom, after the "Open Case" button.
-    stage: "radial-gradient(110% 80% at 50% 105%, #b5531a 0%, #6b2f12 38%, #2e1a12 72%, #241813 100%)",
+    stage: glowStage("#b5531a", "#6b2f12", "#2e1a12", "#241813"),
     screens: ["/images/concepts/ember-reward.png", "/images/concepts/ember-rolling.png"],
     span: 7,
   },

@@ -156,8 +156,6 @@ export function FintrackCover() {
       aria-hidden
       className="absolute inset-0 select-none overflow-hidden [container-type:inline-size]"
       style={{
-        background:
-          "radial-gradient(55% 48% at 80% 0%, rgba(26,74,116,0.95) 0%, rgba(26,74,116,0) 100%), radial-gradient(34% 46% at 0% 52%, rgba(26,64,98,0.85) 0%, rgba(26,64,98,0) 100%), #1a1818",
         fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Text", Inter, system-ui, sans-serif',
       }}
     >

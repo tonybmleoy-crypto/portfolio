@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight2, ExportSquare } from "iconsax-react";
 import type { ComponentType } from "react";
+import { CASE_STAGES } from "@/lib/stage";
 import type { HomeContent, ProjectCard } from "@/lib/types";
 import { FintrackCover } from "./covers/FintrackCover";
 import { LinkyCover } from "./covers/LinkyCover";
@@ -36,7 +37,11 @@ export function ProjectCardView({
     <article className="group relative rounded-[28px] bg-surface p-2 shadow-card transition-transform duration-300 has-[a[data-card]:active]:scale-[0.99] lg:rounded-[36px] lg:p-3 [@media(hover:hover)]:hover:-translate-y-1">
         <div className="relative aspect-[3/2] overflow-hidden rounded-[20px] bg-[color:var(--fill-quiet-hover)] lg:rounded-[24px]">
           {LiveCover ? (
-            <LiveCover />
+            <>
+              {/* Stage: brand glow, the same composition as the concept tiles. */}
+              <span className="absolute inset-0" style={{ background: CASE_STAGES[project.slug] }} />
+              <LiveCover />
+            </>
           ) : (
             <Image
               src={project.image}
