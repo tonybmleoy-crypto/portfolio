@@ -24,6 +24,7 @@ export function ProjectCardView({
   href,
   product,
   hideButton = false,
+  position,
 }: {
   project: ProjectCard;
   content: HomeContent;
@@ -31,10 +32,11 @@ export function ProjectCardView({
   product?: HomeContent["products"]["items"][number];
   /** The "next case" card opens by scrolling on; the whole card is still a link. */
   hideButton?: boolean;
+  position?: number;
 }) {
   const LiveCover = LIVE_COVERS[project.slug];
   return (
-    <article className="group relative rounded-[28px] bg-surface p-2 shadow-card transition-transform duration-300 has-[a[data-card]:active]:scale-[0.99] lg:rounded-[36px] lg:p-3 [@media(hover:hover)]:hover:-translate-y-1">
+    <article data-analytics-card={project.available ? project.slug : undefined} data-analytics-placement={hideButton ? "next_case" : "case_list"} data-analytics-position={position} className="group relative rounded-[28px] bg-surface p-2 shadow-card transition-transform duration-300 has-[a[data-card]:active]:scale-[0.99] lg:rounded-[36px] lg:p-3 [@media(hover:hover)]:hover:-translate-y-1">
         <div className="relative aspect-[3/2] overflow-hidden rounded-[20px] bg-[color:var(--fill-quiet-hover)] lg:rounded-[24px]">
           {LiveCover ? (
             <>
@@ -75,7 +77,7 @@ export function ProjectCardView({
           <div className="flex items-center gap-3">
             <h2 className="text-2xl font-medium leading-7 tracking-[-0.021em]">
               {project.available ? (
-                <Link href={href} data-card className="after:absolute after:inset-0 after:rounded-[inherit] focus-visible:outline-none">
+                <Link href={href} data-card data-analytics-event="case_selected" data-analytics-placement={hideButton ? "next_case" : "case_list"} data-analytics-position={position} className="after:absolute after:inset-0 after:rounded-[inherit] focus-visible:outline-none">
                   {project.title} · {project.tag}
                 </Link>
               ) : (

@@ -140,7 +140,7 @@ export function CaseNavBar({ homeHref, labels }: { homeHref: string; labels: { h
                 <div className="px-6">
                   <button
                     type="button"
-                    onClick={openContact}
+                    onClick={() => openContact("case_nav")}
                     tabIndex={cta ? 0 : -1}
                     className="hero-pill h-12 whitespace-nowrap rounded-full px-6 text-base font-medium lg:h-[52px]"
                   >

@@ -447,7 +447,7 @@ export function CaseBody({ caseStudy, content }: { caseStudy: CaseStudy; content
   // Chapter number at each index: how many chapters up to and including it.
   const chapterAt = caseStudy.sections.map((_, i) => caseStudy.sections.slice(0, i + 1).filter((s) => s.type === "chapter").length);
   return (
-    <div className="flex flex-col gap-4 lg:gap-6">
+    <div data-case-content data-case-slug={caseStudy.slug} className="flex flex-col gap-4 lg:gap-6">
       {/* No fade-in on the cover: it must be on screen in the first frame, where
           the card it came from (home list or "next case") morphs into it. */}
       <ViewTransition name={`case-${caseStudy.slug}`} share="case-morph" default="none">

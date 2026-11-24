@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState, ViewTransition, type ReactNode } from "react";
 import { useRouter } from "next/navigation";
 import { holdScroll } from "@/lib/scrollHold";
+import { captureAnalytics, markCaseNavigation } from "@/lib/analytics";
 
 /** How far to keep scrolling past the end to open the next case (wheel delta px / finger px). */
 const WHEEL_DISTANCE = 700;
@@ -44,6 +45,8 @@ export function NextCase({
         // The wheel or finger is still moving; keep that from scrolling the
         // next case past its beginning once it opens at the top.
         holdScroll();
+        captureAnalytics("case_auto_advanced", { target_case_slug: slug });
+        markCaseNavigation(href, "auto_scroll");
         router.push(href);
       }
     };
@@ -90,7 +93,7 @@ export function NextCase({
       window.removeEventListener("touchmove", onTouchMove);
       window.removeEventListener("touchend", onTouchEnd);
     };
-  }, [href, router]);
+  }, [href, router, slug]);
 
   return (
     <section className="mt-12 flex flex-col gap-4 lg:mt-16 lg:gap-6">

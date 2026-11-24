@@ -19,7 +19,7 @@ export function CaseList({ locale, content }: { locale: Locale; content: HomeCon
             {/* Morphs into the case page's cover on open (see CaseBody). */}
             <ViewTransition name={`case-${project.slug}`} share="case-morph" default="none">
               <div>
-                <ProjectCardView project={project} content={content} href={href} product={product} />
+                <ProjectCardView project={project} content={content} href={href} product={product} position={i + 1} />
               </div>
             </ViewTransition>
           </FadeIn>

@@ -72,7 +72,7 @@ export function ProfileCard({ locale, content, socialLinks }: { locale: Locale; 
         <div className="flex gap-2">
           <motion.button
             type="button"
-            onClick={openContact}
+            onClick={() => openContact("profile")}
             whileTap={tap}
             className="hero-pill inline-flex h-[52px] items-center justify-center gap-3 rounded-full pl-8 pr-8 text-base font-medium max-lg:flex-1 [@media(hover:hover)]:pr-3.5"
           >
@@ -86,6 +86,8 @@ export function ProfileCard({ locale, content, socialLinks }: { locale: Locale; 
           </motion.button>
           <motion.a
             href={socialLinks.cv[locale]}
+            data-analytics-event="resume_opened"
+            data-analytics-placement="profile"
             target="_blank"
             rel="noreferrer"
             whileTap={tap}

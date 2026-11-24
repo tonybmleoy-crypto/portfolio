@@ -17,10 +17,10 @@ import { navLinkClass } from "@/lib/glassStyles";
  */
 export function SiteFooter({ dict, socialLinks }: { locale: Locale; dict: Dictionary; socialLinks: SocialLinks }) {
   const links = [
-    { label: dict.nav.telegram, href: socialLinks.telegram },
-    { label: dict.nav.linkedin, href: socialLinks.linkedin },
-    { label: dict.nav.behance, href: socialLinks.behance },
-    { label: dict.nav.email, href: `mailto:${socialLinks.email}` },
+    { label: dict.nav.telegram, href: socialLinks.telegram, channel: "telegram" },
+    { label: dict.nav.linkedin, href: socialLinks.linkedin, channel: "linkedin" },
+    { label: dict.nav.behance, href: socialLinks.behance, channel: "behance" },
+    { label: dict.nav.email, href: `mailto:${socialLinks.email}`, channel: "email" },
   ];
 
   return (
@@ -37,6 +37,9 @@ export function SiteFooter({ dict, socialLinks }: { locale: Locale; dict: Dictio
           <a
             key={link.label}
             href={link.href}
+            data-analytics-event={link.channel === "telegram" || link.channel === "email" ? "contact_intent" : "social_opened"}
+            data-analytics-channel={link.channel}
+            data-analytics-placement="footer"
             target={link.href.startsWith("mailto:") ? undefined : "_blank"}
             rel="noreferrer"
             className={`${navLinkClass} nav-link-tight`}

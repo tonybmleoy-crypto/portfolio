@@ -5,6 +5,6 @@
  */
 export const CONTACT_OPEN_EVENT = "contact:open";
 
-export function openContact() {
-  window.dispatchEvent(new Event(CONTACT_OPEN_EVENT));
+export function openContact(source: "profile" | "case_nav" = "profile") {
+  window.dispatchEvent(new CustomEvent(CONTACT_OPEN_EVENT, { detail: { source } }));
 }

@@ -5,6 +5,7 @@ import { Copy, CopySuccess, Send2, Sms } from "iconsax-react";
 import type { SocialLinks } from "@/lib/content";
 import type { HomeContent } from "@/lib/types";
 import { CONTACT_OPEN_EVENT } from "@/lib/contact";
+import { captureAnalytics } from "@/lib/analytics";
 
 function LinkedInIcon() {
   return (
@@ -37,6 +38,9 @@ function Row({ href, icon, label, value, trailing }: { href: string; icon: React
     <div className="flex items-center gap-2 rounded-[20px] pr-3 transition-colors hover:bg-[color:var(--fill-quiet)]">
       <a
         href={href}
+        data-analytics-event={href.startsWith("mailto:") || label === "Telegram" ? "contact_intent" : "social_opened"}
+        data-analytics-channel={href.startsWith("mailto:") ? "email" : label.toLowerCase()}
+        data-analytics-placement="contact_dialog"
         target={href.startsWith("mailto:") ? undefined : "_blank"}
         rel="noreferrer"
         className="flex min-w-0 flex-1 items-center gap-4 rounded-[20px] py-3 pl-4"
@@ -67,13 +71,15 @@ export function ContactDialog({ socialLinks, labels }: { socialLinks: SocialLink
     // On close the browser hands focus back to the opener; it keeps its ring
     // only if it had one before (a keyboard user tabbed to it).
     let openerHadRing = false;
-    const open = () => {
+    const open = (event?: Event) => {
       const dialog = ref.current;
       if (!dialog || dialog.open) return;
       const opener = document.activeElement;
       openerHadRing = opener instanceof HTMLElement && opener !== document.body && opener.matches(":focus-visible");
       dialog.showModal();
       dialog.focus();
+      const source = event instanceof CustomEvent ? event.detail?.source : "keyboard";
+      captureAnalytics("contact_opened", { placement: typeof source === "string" ? source : "unknown" });
     };
     const onClose = () => {
       const active = document.activeElement;
@@ -100,6 +106,7 @@ export function ContactDialog({ socialLinks, labels }: { socialLinks: SocialLink
   async function copyEmail() {
     try {
       await navigator.clipboard.writeText(socialLinks.email);
+      captureAnalytics("contact_intent", { channel: "email", action: "copy_email", placement: "contact_dialog" });
       setCopied(true);
       window.setTimeout(() => setCopied(false), 1600);
     } catch {
