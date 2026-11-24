@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Net worth</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0}
+html,body{height:100%;overflow:hidden;background:#f0f0f0}
+body{font-family:Figtree,-apple-system,system-ui,sans-serif;-webkit-font-smoothing:antialiased;font-weight:400}
+.screen{position:relative;width:402px;height:874px;transform-origin:0 0;overflow:hidden;background:#f0f0f0}
+.hero{position:absolute;left:4px;top:4px;width:394px;height:496px;border-radius:56px;overflow:hidden;color:#fff;background:#0d1b22}
+.hero>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.sb{position:absolute;left:0;top:0;width:402px;height:62px;display:flex;align-items:center;padding:2.3px 9px 0;color:#fff;z-index:2}
+.sb .t{flex:1;text-align:center;font-weight:500;font-size:17px;padding-right:6px}
+.sb .isl{width:125px;height:37px;border-radius:100px;background:#000}
+.sb .lv{flex:1;display:flex;justify-content:center;align-items:center;gap:6px;font-size:13px;font-weight:500}
+.bat{border:1px solid rgba(255,255,255,.45);border-radius:4px;padding:2px;display:flex}
+.bat i{width:18px;height:8px;border-radius:2px;background:#fff}
+.tabs{position:absolute;left:50%;top:58px;transform:translateX(-50%);display:flex;gap:32px;padding:8px 16px}
+.tabs span{display:flex;padding-bottom:4px}
+.tabs span.on{border-bottom:1px solid #fff}
+.tabs img{width:24px;height:24px}
+.ava{position:absolute;left:20px;top:58px;width:44px;height:44px;border-radius:22px;background:rgba(255,255,255,.14);display:grid;place-items:center;font-size:14px;font-weight:500}
+.content{position:absolute;left:24px;top:124px;width:346px;display:flex;flex-direction:column;gap:20px}
+.proj{display:flex;flex-direction:column;gap:6px;white-space:nowrap}
+.cap{font-size:12px;letter-spacing:.48px;color:rgba(255,255,255,.6)}
+.big{font-size:44px;line-height:48px;letter-spacing:-.88px;font-variant-numeric:tabular-nums}
+.today{display:flex;gap:8px;font-size:14px}
+.today span:first-child{color:rgba(255,255,255,.8)}
+.today span:last-child{color:#78db9e;font-weight:500}
+.chips{display:flex;gap:8px}
+.chip{display:flex;align-items:center;gap:4px;padding:8px 8px 8px 12px;border-radius:17px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.25);font-size:13px;white-space:nowrap}
+.chip img{width:14px;height:14px}
+.chartb{display:flex;flex-direction:column;gap:8px}
+.chart{position:relative;height:150px;width:346px}
+.grid{position:absolute;left:0;width:346px;height:1px;background:rgba(255,255,255,.12)}
+.gl{position:absolute;left:0;font-size:11px;color:rgba(255,255,255,.55)}
+.bar{position:absolute;bottom:0;width:2.023px;transform-origin:50% 100%;transition:background-color .18s}
+.tip{position:absolute;left:0;top:0;padding:6px 10px;border-radius:10px;background:#fff;color:#0f141a;font-size:12px;font-weight:500;white-space:nowrap;font-variant-numeric:tabular-nums;will-change:transform}
+.axis{display:flex;justify-content:space-between;font-size:12px}
+.axis span{color:rgba(255,255,255,.6)}.axis span:first-child{color:#fff}
+.details{position:absolute;left:12px;top:512px;width:378px;display:flex;flex-direction:column;gap:12px}
+.card{background:rgba(255,255,255,.7);border-radius:20px}
+.acc{padding:4px 16px}
+.r{display:flex;justify-content:space-between;align-items:center;padding:12px 0}
+.r .tx{display:flex;flex-direction:column;gap:4px}
+.r .tx b{font-weight:400;font-size:16px;color:#000}
+.r .tx span{font-size:14px;color:rgba(0,0,0,.6)}
+.r .v{display:flex;align-items:center;gap:4px;font-size:16px;font-weight:500}
+.r .v img{width:20px;height:20px;transform:rotate(-90deg)}
+.div{height:1px;background:rgba(0,0,0,.08)}
+.stats{display:flex;gap:12px}
+.st{flex:1;padding:16px;display:flex;flex-direction:column;gap:4px;white-space:nowrap}
+.st span{font-size:14px;color:rgba(0,0,0,.6)}
+.st b{font-weight:400;font-size:32px;line-height:38px;letter-spacing:-.64px}
+.st small{font-size:13px;color:rgba(0,0,0,.6)}
+.add{height:52px;border-radius:18px;background:#0f141a;color:#fff;display:flex;align-items:center;justify-content:center;gap:8px;font-size:16px;font-weight:500}
+.add img{width:18px;height:18px}
+.home{position:absolute;left:129px;top:861px;width:144px;height:5px;border-radius:3px;background:#000}
+</style>
+</head>
+<body>
+<div class="screen" id="screen">
+  <div class="hero">
+    <img src="net-worth/hero-a.png" alt=""><img src="net-worth/hero-b.png" alt="">
+    <div class="tabs" aria-hidden="true">
+      <span><img src="net-worth/layers.svg" alt=""></span>
+      <span><img src="net-worth/component.svg" alt=""></span>
+      <span class="on"><img src="net-worth/stats.svg" alt=""></span>
+    </div>
+    <div class="ava">AK</div>
+    <div class="content">
+      <div class="proj">
+        <p class="cap">PROJECTED NET WORTH · 2055</p>
+        <p class="big" id="big">$1,256,025</p>
+        <p class="today"><span>Today $248,310</span><span>1.4% this month</span></p>
+      </div>
+      <div class="chips">
+        <span class="chip">$500 / week <img src="net-worth/chevron-down.svg" alt=""></span>
+        <span class="chip">7% return <img src="net-worth/chevron-down.svg" alt=""></span>
+        <span class="chip">Until 2055 <img src="net-worth/chevron-down.svg" alt=""></span>
+      </div>
+      <div class="chartb">
+        <div class="chart" id="chart" aria-hidden="true">
+          <div class="grid" style="top:31px"></div><span class="gl" style="top:15px">$1M</span>
+          <div class="grid" style="top:90px"></div><span class="gl" style="top:74px">$500K</span>
+          <div class="tip" id="tip">2045 · $640,200</div>
+        </div>
+        <div class="axis"><span>Today</span><span>2035</span><span>2045</span><span>2055</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="sb" aria-hidden="true"><span class="t">9:41</span><span class="isl"></span><span class="lv">5G<span class="bat"><i></i></span></span></div>
+  <div class="details">
+    <div class="card acc">
+      <div class="r"><div class="tx"><b>Autonomous</b><span>Personalized index</span></div><div class="v">$125,000<img src="net-worth/chevron-right.svg" alt=""></div></div>
+      <div class="div"></div>
+      <div class="r"><div class="tx"><b>7 external accounts</b><span>Synced today</span></div><div class="v">$123,310<img src="net-worth/chevron-right.svg" alt=""></div></div>
+    </div>
+    <div class="stats">
+      <div class="card st"><span>Weekly deposit</span><b>$500</b><small>Next: Mon, 30 Nov</small></div>
+      <div class="card st"><span>YTD return</span><b style="color:#148045">+10.2%</b><small>+$11,580 · S&amp;P +8.1%</small></div>
+    </div>
+    <div class="add"><img src="net-worth/plus.svg" alt="">Add money</div>
+  </div>
+  <div class="home"></div>
+</div>
+<script src="live.js"></script>
+<script>
+{
+const $ = (id) => document.getElementById(id);
+Live.fit($("screen"), 402);
+
+/* Bar heights from the Figma chart, left to right (41 bars, 8.6px apart). */
+const H = [16.265,19.277,20.482,21.687,22.892,24.096,25.301,26.506,27.711,28.916,30.12,31.928,33.735,35.542,37.349,39.759,42.169,44.578,47.59,50.602,53.614,56.626,59.638,63.253,66.867,70.482,74.096,78.313,82.53,86.747,90.964,95.783,95.783,105.421,110.843,116.265,122.289,128.313,134.94,142.771,150];
+const base = (i) => i < 11 ? "#657279" : i < 28 ? "#547687" : i < 39 ? "#485f6a" : i === 39 ? "#a9bac1" : "#00a6d9";
+const glow = (i) => i === 39 ? "0 0 12.7px 1.06px rgba(61,216,255,.27)" : i === 40 ? "0 0 9.5px 1.06px rgba(64,92,255,.53)" : "none";
+const chart = $("chart"), tip = $("tip"), big = $("big");
+const bars = H.map((h, i) => {
+  const b = document.createElement("div");
+  b.className = "bar";
+  b.style.cssText = `left:${(i * 8.6).toFixed(2)}px;height:${h}px;background:${base(i)};box-shadow:${glow(i)};opacity:${i < 39 ? .88 : 1}`;
+  chart.insertBefore(b, tip);
+  return b;
+});
+
+// Year and value under each bar; bar 27 reads 2045 · $640,200, as designed.
+const year = (i) => 2025 + Math.round((i * 30) / 40);
+const value = (i) => i === 40 ? 1256025 : Math.round((H[i] * 640200) / 78.313 / 100) * 100;
+const money = (n) => "$" + Math.round(n).toLocaleString("en-US");
+let active = -1;
+const tipW = () => tip.offsetWidth;
+const point = (x) => {
+  const i = Math.max(0, Math.min(40, Math.round(x / 8.6)));
+  if (i !== active) {
+    if (active >= 0) bars[active].style.background = base(active);
+    bars[i].style.background = "#fff";
+    active = i;
+    tip.textContent = `${year(i)} · ${money(value(i))}`;
+  }
+  const left = Math.max(0, Math.min(346 - tipW(), x + 1 - tipW() / 2));
+  tip.style.transform = `translate(${left}px,${150 - H[i] - 34}px)`;
+};
+point(27 * 8.6);
+
+/* Motion: bars rise left to right on the serega-emotional spring, the
+   projection counts up, then the tooltip scrubs the chart like a finger. */
+let raf = 0, run = 0;
+const ease = (u) => 1 - Math.pow(1 - u, 3);
+const intro = () => {
+  const t0 = performance.now(), my = ++run;
+  tip.style.opacity = "0";
+  const f = (now) => {
+    if (my !== run) return;
+    const t = (now - t0) / 1000;
+    bars.forEach((b, i) => {
+      const lt = Math.max(0, t - i * 0.022) / 1.1;      // stretched spring
+      b.style.transform = `scaleY(${Math.max(0, 1 - Live.spring(lt))})`;
+    });
+    big.textContent = money(248310 + (1256025 - 248310) * ease(Math.min(1, t / 1.5)));
+    if (t < 2.1) raf = requestAnimationFrame(f);
+    else { bars.forEach((b) => (b.style.transform = "")); big.textContent = "$1,256,025"; scrub(my); }
+  };
+  raf = requestAnimationFrame(f);
+};
+// Finger path in bar indexes: rest on 2045, run to 2055, back through the
+// early years and home to 2045; then hold and repeat.
+const PATH = [[27, 0.9], [40, 1.3], [40, 0.7], [9, 1.9], [9, 0.5], [27, 1.3], [27, 2.4]];
+const scrub = (my) => {
+  tip.animate([{ opacity: 0, transform: tip.style.transform + " translateY(6px)" }, { opacity: 1, transform: tip.style.transform }], { duration: 320, easing: "cubic-bezier(.2,.8,.2,1)" });
+  tip.style.opacity = "1";
+  let k = 0, from = 27 * 8.6, t0 = performance.now();
+  const f = (now) => {
+    if (my !== run) return;
+    const [to, dur] = PATH[k], u = Math.min(1, (now - t0) / 1000 / dur);
+    const s = u < .5 ? 4 * u * u * u : 1 - Math.pow(-2 * u + 2, 3) / 2;   // easeInOutCubic
+    point(from + (to * 8.6 - from) * s);
+    if (u >= 1) { from = to * 8.6; t0 = now; k = (k + 1) % PATH.length; }
+    raf = requestAnimationFrame(f);
+  };
+  raf = requestAnimationFrame(f);
+};
+let played = false;
+Live.watch(
+  () => { if (!played) { played = true; intro(); } else scrub(++run); },
+  () => { run++; cancelAnimationFrame(raf); },
+);
+}
+</script>
+</body>
+</html>

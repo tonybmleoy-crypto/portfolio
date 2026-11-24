@@ -38,8 +38,8 @@ export function ConceptGrid({ locale, concepts, labels }: { locale: Locale; conc
           const size = c.kind === "scene" ? "aspect-square sm:aspect-auto" : "h-[400px]";
           const tile = (
             <div
-              role="img"
-              aria-label={c.title}
+              role={c.live?.some(Boolean) ? undefined : "img"}
+              aria-label={c.live?.some(Boolean) ? undefined : c.title}
               className={`group relative overflow-hidden rounded-[20px] bg-[color:var(--fill-quiet)] sm:h-[64cqw] lg:rounded-[24px] ${size}`}
             >
               {c.kind === "scene" ? (
@@ -63,9 +63,18 @@ export function ConceptGrid({ locale, concepts, labels }: { locale: Locale; conc
                     </>
                   )}
                   <div className="relative flex h-full items-center justify-center gap-4">
-                    {c.screens.map((src) => (
-                      <Phone key={src} src={src} priority={i < 2} />
-                    ))}
+                    {Array.from({ length: Math.max(c.screens.length, c.live?.length ?? 0) }, (_, n) => {
+                      const live = c.live?.[n];
+                      return (
+                        <Phone key={live ?? c.screens[n]}>
+                          {live ? (
+                            <LiveScreen src={live} title={c.title} />
+                          ) : (
+                            <Image src={c.screens[n]} alt="" fill sizes="190px" quality={90} className="object-cover object-top" priority={i < 2} />
+                          )}
+                        </Phone>
+                      );
+                    })}
                   </div>
                 </>
               )}
@@ -92,13 +101,21 @@ export function ConceptGrid({ locale, concepts, labels }: { locale: Locale; conc
 }
 
 /** CSS iPhone: black bezel, titanium edge, Dynamic Island. Height-driven. */
-function Phone({ src, priority }: { src: string; priority: boolean }) {
+function Phone({ children }: { children: React.ReactNode }) {
   return (
     <div className="relative aspect-[402/874] h-[84%] rounded-[30px] bg-[#0b0b0c] p-[5px] shadow-[0_0_0_1px_rgba(255,255,255,0.14),0_28px_56px_-16px_rgba(0,0,0,0.55)] transition-transform duration-500 ease-out group-hover:-translate-y-1.5">
       <div className="relative h-full w-full overflow-hidden rounded-[25px] bg-black">
-        <Image src={src} alt="" fill sizes="190px" quality={90} className="object-cover object-top" priority={priority} />
+        {children}
       </div>
       <span className="absolute left-1/2 top-[11px] h-[3.4%] w-[30%] -translate-x-1/2 rounded-full bg-black" />
     </div>
   );
+}
+
+/**
+ * A live HTML screen inside the phone. The page scales itself to the frame
+ * width and runs its motion only while it is on screen.
+ */
+function LiveScreen({ src, title }: { src: string; title: string }) {
+  return <iframe src={src} title={title} loading="lazy" className="absolute inset-0 h-full w-full border-0 bg-white" />;
 }

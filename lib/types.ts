@@ -36,6 +36,12 @@ export interface Concept {
   /** Screens in display order; a phone tile fits up to two. */
   screens: string[];
   /**
+   * Live HTML screens under /public, by phone: `live[i]` replaces
+   * `screens[i]` in the mockup (null keeps the image). A phone may be live
+   * only, with no image behind it; then the tile needs a `stage`.
+   */
+  live?: (string | null)[];
+  /**
    * Columns out of 12 on sm+ screens. The spans of each row must add up to 12,
    * e.g. 7+5, 4+4+4, 4+8; all rows share one height, so phones keep one size.
    * A scene reads best at span 8, where the tile is about square.
