@@ -8,7 +8,7 @@ export const metadata: Metadata = { title: "Playground — Anton Lopatin" };
 export default function PlaygroundPageEn() {
   return (
     <section className="scroll-mt-[76px] lg:scroll-mt-24">
-      <ConceptGrid locale="en" concepts={concepts} labels={getDictionary("en").home.playground} />
+      <ConceptGrid locale="en" concepts={concepts} labels={getDictionary("en").home.playground} zoomLabels={getDictionary("en").home.caseNav} />
     </section>
   );
 }

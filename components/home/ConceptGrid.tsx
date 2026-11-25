@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import type { Concept, HomeContent, Locale } from "@/lib/types";
 import { workHref } from "@/lib/paths";
+import { ConceptZoom } from "./ConceptZoom";
 
 /** Static class names so Tailwind keeps them. */
 const SPAN: Record<Concept["span"], string> = {
@@ -21,7 +22,18 @@ const SPAN: Record<Concept["span"], string> = {
  * split the 12 columns. On phones the grid is one column; a scene tile is
  * square there.
  */
-export function ConceptGrid({ locale, concepts, labels }: { locale: Locale; concepts: Concept[]; labels: HomeContent["playground"] }) {
+export function ConceptGrid({
+  locale,
+  concepts,
+  labels,
+  zoomLabels,
+}: {
+  locale: Locale;
+  concepts: Concept[];
+  labels: HomeContent["playground"];
+  /** Same wording as the case image zoom. */
+  zoomLabels: { zoom: string; closeZoom: string };
+}) {
   if (concepts.length === 0) {
     return (
       <div className="rounded-[28px] bg-surface p-8 shadow-card lg:rounded-[36px]">
@@ -62,20 +74,7 @@ export function ConceptGrid({ locale, concepts, labels }: { locale: Locale; conc
                       <span className="absolute inset-0 bg-black/20" />
                     </>
                   )}
-                  <div className="relative flex h-full items-center justify-center gap-4">
-                    {Array.from({ length: Math.max(c.screens.length, c.live?.length ?? 0) }, (_, n) => {
-                      const live = c.live?.[n];
-                      return (
-                        <Phone key={live ?? c.screens[n]}>
-                          {live ? (
-                            <LiveScreen src={live} title={c.title} />
-                          ) : (
-                            <Image src={c.screens[n]} alt="" fill sizes="190px" quality={90} className="object-cover object-top" priority={i < 2} />
-                          )}
-                        </Phone>
-                      );
-                    })}
-                  </div>
+                  <div className="relative flex h-full items-center justify-center gap-4">{phones(c, false, i < 2, !c.caseSlug)}</div>
                 </>
               )}
               {/* Hairline edge so dark tiles still read as tiles on a dark page. */}
@@ -90,7 +89,21 @@ export function ConceptGrid({ locale, concepts, labels }: { locale: Locale; conc
                   {tile}
                 </Link>
               ) : (
-                tile
+                <ConceptZoom title={c.title} labels={zoomLabels} tile={tile}>
+                  {c.kind === "scene" ? (
+                    <Image
+                      src={c.screens[0]}
+                      alt={c.title}
+                      width={716}
+                      height={736}
+                      sizes="100vw"
+                      quality={90}
+                      className="h-auto w-[min(calc(100vw-32px),calc((100dvh-80px)*716/736),900px)] shrink-0 rounded-[24px]"
+                    />
+                  ) : (
+                    phones(c, true, false, false)
+                  )}
+                </ConceptZoom>
               )}
             </li>
           );
@@ -100,14 +113,41 @@ export function ConceptGrid({ locale, concepts, labels }: { locale: Locale; conc
   );
 }
 
-/** CSS iPhone: black bezel, titanium edge, Dynamic Island. Height-driven. */
-function Phone({ children }: { children: React.ReactNode }) {
+/**
+ * One mockup per screen; `live[n]` swaps screen n for a live HTML page. In a
+ * tile that opens the zoom the live page is a preview that lets clicks through
+ * to the tile; in the zoom view it is interactive.
+ */
+function phones(c: Concept, large: boolean, priority: boolean, preview: boolean) {
+  return Array.from({ length: Math.max(c.screens.length, c.live?.length ?? 0) }, (_, n) => {
+    const live = c.live?.[n];
+    return (
+      <Phone key={live ?? c.screens[n]} large={large}>
+        {live ? (
+          <LiveScreen src={live} title={c.title} preview={preview} />
+        ) : (
+          <Image src={c.screens[n]} alt="" fill sizes={large ? "414px" : "190px"} quality={90} className="object-cover object-top" priority={priority} />
+        )}
+      </Phone>
+    );
+  });
+}
+
+/**
+ * CSS iPhone: black bezel, titanium edge, Dynamic Island. In a tile it takes
+ * 84% of the tile height; `large` (the zoom view) is sized by width to fit the
+ * screen, so on a phone two screens sit side by side and scroll.
+ */
+function Phone({ children, large = false }: { children: React.ReactNode; large?: boolean }) {
+  const frame = large
+    ? "w-[min(calc(100vw-32px),calc((100dvh-80px)*402/874),414px)] shrink-0 rounded-[56px] p-[10px]"
+    : "h-[84%] rounded-[30px] p-[5px] group-hover:-translate-y-1.5";
   return (
-    <div className="relative aspect-[402/874] h-[84%] rounded-[30px] bg-[#0b0b0c] p-[5px] shadow-[0_0_0_1px_rgba(255,255,255,0.14),0_28px_56px_-16px_rgba(0,0,0,0.55)] transition-transform duration-500 ease-out group-hover:-translate-y-1.5">
-      <div className="relative h-full w-full overflow-hidden rounded-[25px] bg-black">
-        {children}
-      </div>
-      <span className="absolute left-1/2 top-[11px] h-[3.4%] w-[30%] -translate-x-1/2 rounded-full bg-black" />
+    <div
+      className={`relative aspect-[402/874] bg-[#0b0b0c] shadow-[0_0_0_1px_rgba(255,255,255,0.14),0_28px_56px_-16px_rgba(0,0,0,0.55)] transition-transform duration-500 ease-out ${frame}`}
+    >
+      <div className={`relative h-full w-full overflow-hidden bg-black ${large ? "rounded-[46px]" : "rounded-[25px]"}`}>{children}</div>
+      <span className={`absolute left-1/2 h-[3.4%] w-[30%] -translate-x-1/2 rounded-full bg-black ${large ? "top-[22px]" : "top-[11px]"}`} />
     </div>
   );
 }
@@ -116,6 +156,14 @@ function Phone({ children }: { children: React.ReactNode }) {
  * A live HTML screen inside the phone. The page scales itself to the frame
  * width and runs its motion only while it is on screen.
  */
-function LiveScreen({ src, title }: { src: string; title: string }) {
-  return <iframe src={src} title={title} loading="lazy" className="absolute inset-0 h-full w-full border-0 bg-white" />;
+function LiveScreen({ src, title, preview }: { src: string; title: string; preview: boolean }) {
+  return (
+    <iframe
+      src={src}
+      title={title}
+      loading="lazy"
+      tabIndex={preview ? -1 : undefined}
+      className={`absolute inset-0 h-full w-full border-0 bg-white ${preview ? "pointer-events-none" : ""}`}
+    />
+  );
 }
